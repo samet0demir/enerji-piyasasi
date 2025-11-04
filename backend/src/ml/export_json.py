@@ -160,12 +160,21 @@ def export_forecasts():
     # public klasörünü oluştur
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
-    # JSON'u kaydet
+    # JSON'u kaydet (backend/public)
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
     print(f"[+] JSON dosyası kaydedildi: {OUTPUT_PATH}")
     print(f"   Dosya boyutu: {os.path.getsize(OUTPUT_PATH) / 1024:.2f} KB")
+
+    # Frontend'e de kopyala
+    frontend_path = os.path.join(os.path.dirname(__file__), '../../../frontend/public/forecasts.json')
+    os.makedirs(os.path.dirname(frontend_path), exist_ok=True)
+
+    with open(frontend_path, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, ensure_ascii=False, indent=2)
+
+    print(f"[+] Frontend JSON kopyalandı: {frontend_path}")
     print("="*70)
 
     return output_data

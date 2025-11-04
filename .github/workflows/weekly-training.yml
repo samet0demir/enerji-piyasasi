@@ -66,6 +66,7 @@ jobs:
           git add backend/data/energy.db
           git add backend/models/
           git add backend/public/forecasts.json
+          git add frontend/public/forecasts.json
           git add backend/logs/*.log || true
           git diff --cached --exit-code || echo "changed=true" >> $GITHUB_OUTPUT
 
