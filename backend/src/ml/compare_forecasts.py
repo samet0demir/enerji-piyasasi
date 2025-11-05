@@ -59,13 +59,15 @@ def compare_week(week_start, week_end):
     print(f"[*] Gerçek değerler yükleniyor...")
 
     # week_end'i dahil et (Pazar günü dahil)
+    # Bug fix: Use < next_day instead of <= week_end to handle ISO datetime strings properly
+    next_day = (datetime.strptime(week_end, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d')
     actual_query = """
         SELECT date, price
         FROM mcp_data
-        WHERE date >= ? AND date <= ?
+        WHERE date >= ? AND date < ?
         ORDER BY date
     """
-    actuals = pd.read_sql_query(actual_query, conn, params=[week_start, week_end + ' 23:59:59'])
+    actuals = pd.read_sql_query(actual_query, conn, params=[week_start, next_day])
 
     if len(actuals) == 0:
         print(f"[!] UYARI: {week_start} - {week_end} için gerçek veri bulunamadı!")

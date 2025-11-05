@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import type { GenerationData } from '../services/api';
+import WeekSelector from '../components/WeekSelector';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import '../App.css';
 
@@ -17,12 +18,22 @@ export function Production() {
   const [generation, setGeneration] = useState<GenerationData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const genData = await api.getGeneration();
+        let genData;
+
+        if (selectedWeek) {
+          // Seçili hafta varsa backend API'den çek
+          genData = await api.getGenerationByWeek(selectedWeek);
+        } else {
+          // Seçili hafta yoksa default API'den çek
+          genData = await api.getGeneration();
+        }
+
         setGeneration(genData);
         setError(null);
       } catch (err: any) {
@@ -34,9 +45,7 @@ export function Production() {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  }, [selectedWeek]);
 
   if (isLoading) {
     return (
@@ -137,6 +146,14 @@ export function Production() {
         <div className="update-time">
           Toplam Üretim: {totalProduction.toLocaleString()} MWh/gün (ortalama)
         </div>
+      </div>
+
+      {/* Week Selector */}
+      <div style={{ padding: '20px 12px 0 12px' }}>
+        <WeekSelector
+          selectedWeek={selectedWeek}
+          onWeekChange={setSelectedWeek}
+        />
       </div>
 
       {/* Stats Grid */}

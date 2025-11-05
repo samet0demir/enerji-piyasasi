@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import type { ConsumptionData } from '../services/api';
+import WeekSelector from '../components/WeekSelector';
 import { LineChart, Line, BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import '../App.css';
 
@@ -8,12 +9,22 @@ export function Consumption() {
   const [consumption, setConsumption] = useState<ConsumptionData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const consData = await api.getConsumption();
+        let consData;
+
+        if (selectedWeek) {
+          // Seçili hafta varsa backend API'den çek
+          consData = await api.getConsumptionByWeek(selectedWeek);
+        } else {
+          // Seçili hafta yoksa default API'den çek
+          consData = await api.getConsumption();
+        }
+
         setConsumption(consData);
         setError(null);
       } catch (err: any) {
@@ -25,9 +36,7 @@ export function Consumption() {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  }, [selectedWeek]);
 
   if (isLoading) {
     return (
@@ -141,6 +150,14 @@ export function Consumption() {
         <div className="update-time">
           Günlük Toplam: ~{totalDailyConsumption.toLocaleString()} MWh
         </div>
+      </div>
+
+      {/* Week Selector */}
+      <div style={{ padding: '20px 12px 0 12px' }}>
+        <WeekSelector
+          selectedWeek={selectedWeek}
+          onWeekChange={setSelectedWeek}
+        />
       </div>
 
       {/* Stats Grid */}

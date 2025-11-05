@@ -2,23 +2,44 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import type { ForecastsResponse } from '../services/api';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import WeekSelector from '../components/WeekSelector';
 import '../App.css';
 
 export function Dashboard() {
   const [data, setData] = useState<ForecastsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
 
   // Date range filter for table
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [showTable, setShowTable] = useState(false);
 
+  // MAPE değerine göre renk sınıfı döndür
+  const getMapeColorClass = (mape: number): string => {
+    if (mape < 10) return 'mape-excellent';  // Mükemmel - Koyu yeşil
+    if (mape < 20) return 'mape-good';       // İyi - Yeşil
+    if (mape < 30) return 'mape-average';    // Orta - Sarı
+    if (mape < 40) return 'mape-poor';       // Zayıf - Turuncu
+    return 'mape-bad';                       // Kötü - Kırmızı
+  };
+
+  // Seçili hafta değiştiğinde veri çek
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const forecastData = await api.getForecasts();
+        let forecastData;
+
+        if (selectedWeek) {
+          // Seçili hafta varsa backend API'den çek
+          forecastData = await api.getWeekData(selectedWeek);
+        } else {
+          // Seçili hafta yoksa default JSON'dan çek
+          forecastData = await api.getForecasts();
+        }
+
         setData(forecastData);
         setError(null);
       } catch (err: any) {
@@ -30,9 +51,7 @@ export function Dashboard() {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  }, [selectedWeek]); // selectedWeek değiştiğinde yeniden çalışır
 
   if (isLoading) {
     return (
@@ -102,11 +121,27 @@ export function Dashboard() {
     adet: count
   }));
 
-  // Performance trend
-  const trendData = data.historical_trend.map(w => ({
-    hafta: `${new Date(w.week_start).getDate()}/${new Date(w.week_start).getMonth() + 1}`,
-    MAPE: parseFloat(w.mape.toFixed(1))
-  }));
+  // Performance trend - Eskiden yeniye sırala ve daha açıklayıcı tarih formatı
+  const trendData = [...data.historical_trend]
+    .reverse() // En eski haftayı sola al
+    .map(w => {
+      const startDate = new Date(w.week_start);
+      const endDate = new Date(w.week_end);
+      const months = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+
+      // Aynı ay içindeyse: "20-26 Eki", farklı aylardaysa: "27 Eki-2 Kas"
+      if (startDate.getMonth() === endDate.getMonth()) {
+        return {
+          hafta: `${startDate.getDate()}-${endDate.getDate()} ${months[startDate.getMonth()]}`,
+          MAPE: parseFloat(w.mape.toFixed(1))
+        };
+      } else {
+        return {
+          hafta: `${startDate.getDate()} ${months[startDate.getMonth()]}-${endDate.getDate()} ${months[endDate.getMonth()]}`,
+          MAPE: parseFloat(w.mape.toFixed(1))
+        };
+      }
+    });
 
   // Filtered table data based on date range
   const filteredTableData = data.last_week_comparison.filter(item => {
@@ -141,6 +176,14 @@ export function Dashboard() {
         </div>
       </div>
 
+      {/* Week Selector */}
+      <div style={{ padding: '20px 12px 0 12px' }}>
+        <WeekSelector
+          selectedWeek={selectedWeek}
+          onWeekChange={setSelectedWeek}
+        />
+      </div>
+
       {/* Stats Grid */}
       <div className="stats-grid">
         <div className="stat-card">
@@ -155,11 +198,14 @@ export function Dashboard() {
         </div>
         {lastWeekPerf && (
           <>
-            <div className="stat-card highlight">
+            <div className={`stat-card ${getMapeColorClass(lastWeekPerf.mape)}`}>
               <div className="stat-label">Model MAPE</div>
               <div className="stat-value">{lastWeekPerf.mape.toFixed(1)}%</div>
               <div className="stat-unit">
-                {lastWeekPerf.mape < 15 ? '✓ İyi' : lastWeekPerf.mape < 25 ? '~ Orta' : '⚠ Düşük'}
+                {lastWeekPerf.mape < 10 ? '✓ Mükemmel' :
+                 lastWeekPerf.mape < 20 ? '✓ İyi' :
+                 lastWeekPerf.mape < 30 ? '~ Orta' :
+                 lastWeekPerf.mape < 40 ? '⚠ Zayıf' : '✗ Kötü'}
               </div>
             </div>
             <div className="stat-card">

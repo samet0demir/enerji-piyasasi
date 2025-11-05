@@ -133,6 +133,8 @@ def export_forecasts():
         for _, row in trend.iterrows():
             historical_trend.append({
                 'week': f"{row['week_start']} - {row['week_end']}",
+                'week_start': row['week_start'],
+                'week_end': row['week_end'],
                 'mape': round(row['mape'], 2),
                 'mae': round(row['mae'], 2),
                 'rmse': round(row['rmse'], 2)

@@ -518,6 +518,192 @@ app.get('/api/consumption/recent', (req: Request, res: Response) => {
   }
 });
 
+// ============================================================================
+// WEEK SELECTOR API ENDPOINTS
+// ============================================================================
+
+// Mevcut haftalardaki verileri listele
+app.get('/api/weeks/available', (req: Request, res: Response) => {
+  try {
+    // Tüm mevcut haftaları çek (forecast_history'den)
+    const weeksQuery = db.prepare(`
+      SELECT DISTINCT
+        week_start,
+        week_end
+      FROM forecast_history
+      ORDER BY week_start DESC
+    `);
+
+    const weeks = weeksQuery.all() as { week_start: string; week_end: string }[];
+
+    // Her hafta için tamamlanma durumunu kontrol et
+    const weeksWithStatus = weeks.map((week) => {
+      // Bu haftadaki tahminlerin kaç tanesinin actual_price'ı dolu?
+      const statsQuery = db.prepare(`
+        SELECT
+          COUNT(*) as total_predictions,
+          COUNT(actual_price) as completed_predictions,
+          MIN(forecast_datetime) as first_prediction,
+          MAX(forecast_datetime) as last_prediction
+        FROM forecast_history
+        WHERE week_start = ?
+      `);
+
+      const stats = statsQuery.get(week.week_start) as {
+        total_predictions: number;
+        completed_predictions: number;
+        first_prediction: string;
+        last_prediction: string;
+      };
+
+      // Eğer tüm tahminlerin actual_price'ı varsa tamamlanmış demektir
+      const is_complete = stats.total_predictions === stats.completed_predictions;
+
+      // Performans metriklerini çek (eğer tamamlanmışsa)
+      let performance = null;
+      if (is_complete) {
+        const perfQuery = db.prepare(`
+          SELECT mape, mae, rmse
+          FROM weekly_performance
+          WHERE week_start = ?
+        `);
+        performance = perfQuery.get(week.week_start) as { mape: number; mae: number; rmse: number } | undefined;
+      }
+
+      return {
+        week_start: week.week_start,
+        week_end: week.week_end,
+        is_complete: is_complete,
+        total_predictions: stats.total_predictions,
+        completed_predictions: stats.completed_predictions,
+        completion_percentage: Math.round((stats.completed_predictions / stats.total_predictions) * 100),
+        performance: performance || null
+      };
+    });
+
+    res.status(200).json({
+      success: true,
+      count: weeksWithStatus.length,
+      weeks: weeksWithStatus
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch available weeks',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// Seçili hafta için detaylı veri getir (MCP + Generation + Consumption)
+app.get('/api/weeks/:week_start/data', (req: Request, res: Response) => {
+  try {
+    const { week_start } = req.params;
+
+    // 1. MCP Tahmin + Gerçek verilerini çek
+    const mcpQuery = db.prepare(`
+      SELECT
+        forecast_datetime as datetime,
+        predicted_price,
+        actual_price,
+        absolute_error,
+        percentage_error
+      FROM forecast_history
+      WHERE week_start = ?
+      ORDER BY forecast_datetime ASC
+    `);
+
+    const mcpData = mcpQuery.all(week_start);
+
+    // 2. Week_end tarihini bul
+    const weekInfoQuery = db.prepare(`
+      SELECT DISTINCT week_end
+      FROM forecast_history
+      WHERE week_start = ?
+    `);
+
+    const weekInfo = weekInfoQuery.get(week_start) as { week_end: string } | undefined;
+
+    if (!weekInfo) {
+      return res.status(404).json({
+        success: false,
+        message: 'Week not found'
+      });
+    }
+
+    const week_end = weekInfo.week_end;
+
+    // 3. Generation verilerini çek (o hafta için)
+    const generationQuery = db.prepare(`
+      SELECT
+        date as datetime,
+        total,
+        solar,
+        wind,
+        hydro,
+        natural_gas,
+        lignite,
+        geothermal,
+        biomass
+      FROM generation_data
+      WHERE date >= ? AND date <= datetime(?, '+1 day')
+      ORDER BY date ASC
+    `);
+
+    const generationData = generationQuery.all(week_start, week_end);
+
+    // 4. Consumption verilerini çek (o hafta için)
+    const consumptionQuery = db.prepare(`
+      SELECT
+        date as datetime,
+        consumption
+      FROM consumption_data
+      WHERE date >= ? AND date <= datetime(?, '+1 day')
+      ORDER BY date ASC
+    `);
+
+    const consumptionData = consumptionQuery.all(week_start, week_end);
+
+    // 5. Performans metriklerini çek (eğer varsa)
+    const performanceQuery = db.prepare(`
+      SELECT mape, mae, rmse, total_predictions
+      FROM weekly_performance
+      WHERE week_start = ?
+    `);
+
+    const performance = performanceQuery.get(week_start);
+
+    res.status(200).json({
+      success: true,
+      week: {
+        start: week_start,
+        end: week_end
+      },
+      mcp: {
+        count: mcpData.length,
+        data: mcpData
+      },
+      generation: {
+        count: generationData.length,
+        data: generationData
+      },
+      consumption: {
+        count: consumptionData.length,
+        data: consumptionData
+      },
+      performance: performance || null
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch week data',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // Sunucuyu başlat
 app.listen(PORT, () => {
   console.log(`🚀 Backend server is running at http://localhost:${PORT}`);

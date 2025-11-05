@@ -136,6 +136,117 @@ body {
   color: #6ee7b7;
 }
 
+/* MAPE Performance Color Classes */
+/* Mükemmel (< 10%) - Koyu Yeşil */
+.stat-card.mape-excellent {
+  background: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+  border-color: #10b981;
+}
+
+.stat-card.mape-excellent::before {
+  background: #10b981;
+}
+
+.stat-card.mape-excellent .stat-label {
+  color: #6ee7b7;
+}
+
+.stat-card.mape-excellent .stat-value {
+  color: #ffffff;
+}
+
+.stat-card.mape-excellent .stat-unit {
+  color: #6ee7b7;
+}
+
+/* İyi (10-20%) - Yeşil */
+.stat-card.mape-good {
+  background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+  border-color: #22c55e;
+}
+
+.stat-card.mape-good::before {
+  background: #22c55e;
+}
+
+.stat-card.mape-good .stat-label {
+  color: #86efac;
+}
+
+.stat-card.mape-good .stat-value {
+  color: #ffffff;
+}
+
+.stat-card.mape-good .stat-unit {
+  color: #86efac;
+}
+
+/* Orta (20-30%) - Sarı/Amber */
+.stat-card.mape-average {
+  background: linear-gradient(135deg, #854d0e 0%, #713f12 100%);
+  border-color: #eab308;
+}
+
+.stat-card.mape-average::before {
+  background: #eab308;
+}
+
+.stat-card.mape-average .stat-label {
+  color: #fde047;
+}
+
+.stat-card.mape-average .stat-value {
+  color: #ffffff;
+}
+
+.stat-card.mape-average .stat-unit {
+  color: #fde047;
+}
+
+/* Zayıf (30-40%) - Turuncu */
+.stat-card.mape-poor {
+  background: linear-gradient(135deg, #9a3412 0%, #7c2d12 100%);
+  border-color: #f97316;
+}
+
+.stat-card.mape-poor::before {
+  background: #f97316;
+}
+
+.stat-card.mape-poor .stat-label {
+  color: #fdba74;
+}
+
+.stat-card.mape-poor .stat-value {
+  color: #ffffff;
+}
+
+.stat-card.mape-poor .stat-unit {
+  color: #fdba74;
+}
+
+/* Kötü (≥ 40%) - Kırmızı */
+.stat-card.mape-bad {
+  background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+  border-color: #ef4444;
+}
+
+.stat-card.mape-bad::before {
+  background: #ef4444;
+}
+
+.stat-card.mape-bad .stat-label {
+  color: #fca5a5;
+}
+
+.stat-card.mape-bad .stat-value {
+  color: #ffffff;
+}
+
+.stat-card.mape-bad .stat-unit {
+  color: #fca5a5;
+}
+
 /* Main Chart - Full Width Focus */
 .main-chart {
   background: #1e293b;
@@ -563,3 +674,57 @@ body {
   font-size: 0.9rem;
   font-weight: 400;
 }
+
+/* Week Selector Styles */
+.week-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.week-selector-label {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.week-selector-dropdown {
+  background: linear-gradient(135deg, #1e293b 0%, #1a2332 100%);
+  border: 1px solid #334155;
+  color: #e4e4e7;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  min-width: 300px;
+}
+
+.week-selector-dropdown:hover {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+.week-selector-dropdown:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.week-selector-dropdown option {
+  background: #1e293b;
+  color: #e4e4e7;
+  padding: 8px;
+}
+
+.week-selector-error {
+  color: #ef4444;
+  font-size: 0.9rem;
+}
+
