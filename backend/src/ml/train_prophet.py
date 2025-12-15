@@ -1,105 +1,42 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-EPİAŞ MCP Fiyat Tahmini - Prophet Model Eğitimi
-================================================
+EPİAŞ MCP Fiyat Tahmini - Multivariate Prophet Model Eğitimi
+=============================================================
+
+GÜNCELLEME: Multivariate versiyona geçildi!
 
 Bu script:
-1. SQLite veri tabanından 2 yıllık MCP verilerini çeker
-2. Türkiye resmi tatillerini otomatik ekler
-3. Ramazan ve Kurban Bayramı tarihlerini manuel ekler
-4. Prophet modelini eğitir ve kaydeder
-5. Model performansını değerlendirir
+1. features.py modülünü kullanarak birleştirilmiş veri yükler
+2. Consumption, generation, renewable_ratio gibi exogenous regressor'lar ekler
+3. Türkiye resmi tatillerini otomatik ekler
+4. Ramazan ve Kurban Bayramı tarihlerini manuel ekler
+5. Prophet modelini eğitir ve kaydeder
+6. Model performansını değerlendirir
+
+Eski univariate model: train_prophet_legacy.py olarak yedeklendi
 """
 
 import pandas as pd
 import numpy as np
 from prophet import Prophet
-import sqlite3
-import json
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import os
+import warnings
+warnings.filterwarnings('ignore')
 
-# Veri tabanı yolu
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Feature engineering modülünü import et
+from features import (
+    load_combined_data, 
+    engineer_features, 
+    get_prophet_features,
+    train_test_split_timeseries
+)
+
+# Model yolu
 MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../models/prophet_model.json')
 
-def load_data_from_db(end_date=None):
-    """
-    SQLite veri tabanından MCP verilerini yükler
-
-    Args:
-        end_date (str, optional): Bu tarihe KADAR veri yükle (dahil değil!).
-                                  Format: 'YYYY-MM-DD' veya 'YYYY-MM-DD HH:MM:SS'
-                                  None ise tüm veriyi yükler.
-    Returns:
-        pd.DataFrame: 'ds' (tarih-saat) ve 'y' (fiyat) kolonları
-    """
-    print("[*] Veri tabanından MCP verileri yükleniyor...")
-
-    if end_date:
-        print(f"[*] Data leakage önleme: {end_date} tarihine KADAR veri kullanılacak (dahil değil)")
-
-    conn = sqlite3.connect(DB_PATH)
-
-    # MCP verilerini çek (date kolonu zaten ISO8601 formatında tam tarih-saat içeriyor)
-    if end_date:
-        query = """
-            SELECT
-                date as ds,
-                price as y
-            FROM mcp_data
-            WHERE date < ?
-            ORDER BY date
-        """
-        df = pd.read_sql_query(query, conn, params=[end_date])
-    else:
-        query = """
-            SELECT
-                date as ds,
-                price as y
-            FROM mcp_data
-            ORDER BY date
-        """
-        df = pd.read_sql_query(query, conn)
-
-    conn.close()
-
-    # Tarih formatını düzelt ve timezone kaldır (Prophet timezone desteklemiyor)
-    df['ds'] = pd.to_datetime(df['ds']).dt.tz_localize(None)
-
-    print(f"[+] {len(df)} kayit yuklendi")
-    print(f"[*] Tarih araligi: {df['ds'].min()} -> {df['ds'].max()}")
-    print(f"[*] Fiyat araligi: {df['y'].min():.2f} TRY -> {df['y'].max():.2f} TRY")
-    print(f"[*] Ortalama fiyat: {df['y'].mean():.2f} TRY")
-
-    # FEATURE ENGINEERING: Ekstra bilgiler ekle
-    print("\n[*] Feature engineering yapiliyor...")
-
-    # 1. Saat bilgisi (0-23)
-    df['hour'] = df['ds'].dt.hour
-
-    # 2. Hafta sonu mu? (Cumartesi=5, Pazar=6)
-    df['is_weekend'] = (df['ds'].dt.dayofweek >= 5).astype(int)
-
-    # 3. Peak saat mi? (Sabah 8-10, Akşam 18-21)
-    df['is_peak_hour'] = df['hour'].isin([8, 9, 10, 18, 19, 20, 21]).astype(int)
-
-    # 4. Gündüz mü? (Güneş var, 10:00-16:00)
-    df['is_daytime'] = df['hour'].isin(range(10, 16)).astype(int)
-
-    # 5. Haftanın günü (0=Pazartesi, 6=Pazar)
-    df['day_of_week'] = df['ds'].dt.dayofweek
-
-    print(f"[+] Feature'lar eklendi:")
-    print(f"   - hour (saat): 0-23")
-    print(f"   - is_weekend: {df['is_weekend'].sum()} hafta sonu kaydi")
-    print(f"   - is_peak_hour: {df['is_peak_hour'].sum()} peak saat kaydi")
-    print(f"   - is_daytime: {df['is_daytime'].sum()} gunduz kaydi")
-    print(f"   - day_of_week: 0-6 (Pazartesi-Pazar)")
-
-    return df
 
 def create_turkish_holidays():
     """
@@ -108,7 +45,7 @@ def create_turkish_holidays():
     Returns:
         pd.DataFrame: Tatil tarihleri ve isimleri
     """
-    print("\n[*] Turk tatilleri olusturuluyor...")
+    print("\n[*] Türk tatilleri oluşturuluyor...")
 
     holidays = pd.DataFrame({
         'holiday': [
@@ -146,84 +83,108 @@ def create_turkish_holidays():
         'upper_window': 1,  # Bayram öncesi gün etkisini de yakala
     })
 
-    print(f"[+] {len(holidays)} bayram gunu eklendi:")
-    print(f"   - Ramazan Bayrami: {len(holidays[holidays['holiday']=='Ramazan_Bayrami'])} gun")
-    print(f"   - Kurban Bayrami: {len(holidays[holidays['holiday']=='Kurban_Bayrami'])} gun")
+    print(f"[+] {len(holidays)} bayram günü eklendi:")
+    print(f"   - Ramazan Bayramı: {len(holidays[holidays['holiday']=='Ramazan_Bayrami'])} gün")
+    print(f"   - Kurban Bayramı: {len(holidays[holidays['holiday']=='Kurban_Bayrami'])} gün")
 
     return holidays
 
+
 def train_prophet_model(df, holidays):
     """
-    Prophet modelini eğitir
+    Multivariate Prophet modelini eğitir
 
     Args:
-        df: Eğitim verisi (feature'lar dahil: hour, is_weekend, is_peak_hour, is_daytime, day_of_week)
+        df: Eğitim verisi (feature'lar dahil)
         holidays: Tatil günleri
 
     Returns:
         Prophet: Eğitilmiş model
     """
-    print("\n[*] Prophet modeli egitiliyor...")
+    print("\n[*] Multivariate Prophet modeli eğitiliyor...")
 
     model = Prophet(
         # Tatil günleri
         holidays=holidays,
 
         # Mevsimsellik ayarları
-        daily_seasonality=True,   # Gün içi saatlik desenleri yakala (00:00-23:00)
-        weekly_seasonality=True,  # Hafta sonu etkisini yakala (Pazar 0 TRY fiyatları)
-        yearly_seasonality=True,  # Mevsimsel desenleri yakala (yaz/kış)
+        daily_seasonality=True,   # Gün içi saatlik desenleri yakala
+        weekly_seasonality=True,  # Hafta sonu etkisini yakala
+        yearly_seasonality=True,  # Mevsimsel desenleri yakala
 
         # Değişim noktaları (trend değişiklikleri)
-        changepoint_prior_scale=0.05,  # Trend esnekliği (düşük = daha stabil)
+        changepoint_prior_scale=0.1,  # Biraz artırıldı, daha esnek trend
 
         # Bayram etkisi gücü
-        holidays_prior_scale=10.0,  # Yüksek = bayramlar güçlü etki
+        holidays_prior_scale=10.0,
 
         # Mevsimsellik esnekliği
         seasonality_prior_scale=10.0,
 
         # Tahmin aralığı genişliği
-        interval_width=0.95,  # %95 güven aralığı
+        interval_width=0.95,
     )
 
-    # Türkiye resmi tatillerini ekle (23 Nisan, 1 Mayıs, 19 Mayıs, 30 Ağustos, 29 Ekim)
+    # Türkiye resmi tatillerini ekle
     model.add_country_holidays(country_name='TR')
 
-    # FEATURE ENGINEERING: Ekstra bilgileri regressor olarak ekle
-    print("   [*] Custom regressor'lar ekleniyor...")
-    model.add_regressor('hour', prior_scale=5.0)  # Saat bilgisi (gece vs gündüz)
-    model.add_regressor('is_weekend', prior_scale=15.0)  # Hafta sonu etkisi güçlü
-    model.add_regressor('is_peak_hour', prior_scale=10.0)  # Peak saat etkisi
-    model.add_regressor('is_daytime', prior_scale=12.0)  # Güneş enerjisi etkisi
-    model.add_regressor('day_of_week', prior_scale=3.0)  # Haftanın günü
+    # =============================================
+    # MULTIVARIATE REGRESSORS - YENİ EKLENDİ!
+    # =============================================
+    
+    regressors = get_prophet_features()
+    print(f"   [*] {len(regressors)} regressor ekleniyor...")
+    
+    # Prior scale değerleri: Yüksek = daha güçlü etki
+    prior_scales = {
+        'hour': 5.0,
+        'is_weekend': 15.0,
+        'is_peak_hour': 10.0,
+        'is_daytime': 12.0,
+        'day_of_week': 3.0,
+        # YENİ - Multivariate regressors
+        'consumption': 20.0,          # ⭐ Talep - en önemli
+        'supply_demand_gap': 15.0,    # ⭐ Arz-talep dengesi
+        'renewable_ratio': 12.0,      # Yenilenebilir oranı
+        'fossil_ratio': 10.0,         # Fosil yakıt oranı
+        'price_lag_24h': 8.0,         # Dünün fiyatı
+    }
+    
+    for reg in regressors:
+        prior = prior_scales.get(reg, 5.0)
+        model.add_regressor(reg, prior_scale=prior)
+        print(f"      + {reg} (prior_scale={prior})")
 
-    print("   [*] Egitim basliyor (bu birkac dakika surebilir)...")
-    model.fit(df)
+    print("   [*] Eğitim başlıyor (bu birkaç dakika sürebilir)...")
+    
+    # Prophet'e fit için sadece gerekli kolonları ver
+    train_df = df[['ds', 'y'] + regressors].copy()
+    model.fit(train_df)
 
-    print("[+] Model egitimi tamamlandi!")
+    print("[+] Model eğitimi tamamlandı!")
 
     return model
 
+
 def evaluate_model(model, df):
     """
-    Modeli mevcut veri üzerinde değerlendirir
+    Modeli test seti üzerinde değerlendirir
 
     Args:
         model: Eğitilmiş Prophet modeli
-        df: Test verisi
+        df: Tüm veri seti
+
+    Returns:
+        tuple: (mae, rmse, mape)
     """
-    print("\n[*] Model performansi degerlendiriliyor...")
+    print("\n[*] Model performansı değerlendiriliyor...")
 
     # Train/test split (son 30 gün test)
-    split_date = df['ds'].max() - timedelta(days=30)
-    test = df[df['ds'] > split_date]
+    train, test = train_test_split_timeseries(df, test_days=30)
 
-    print(f"   Test seti: {len(test)} kayit ({test['ds'].min()} -> {test['ds'].max()})")
-
-    # Mevcut model ile test seti için tahmin (yeniden eğitim yapmadan)
-    # NOT: Model regressorlar kullanıyor, test verisinde de bu kolonlar olmalı
-    test_features = test[['ds', 'hour', 'is_weekend', 'is_peak_hour', 'is_daytime', 'day_of_week']].copy()
+    # Test seti için tahmin yap
+    regressors = get_prophet_features()
+    test_features = test[['ds'] + regressors].copy()
     forecast = model.predict(test_features)
 
     # Performans metrikleri
@@ -233,35 +194,33 @@ def evaluate_model(model, df):
     mae = np.mean(np.abs(y_true - y_pred))
     rmse = np.sqrt(np.mean((y_true - y_pred)**2))
 
-    # MAPE hesapla (düşük fiyatları filtrele - outlier protection)
-    # 500 TRY altı fiyatlar anormal (güneş patlaması/hafta sonu anomali)
-    # Bu değerleri MAPE hesabına dahil etmek %795 gibi yanıltıcı sonuçlar verir
+    # MAPE hesapla (düşük fiyatları filtrele)
     mask = y_true >= 500
 
     if mask.sum() > 0:
         mape = np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask])) * 100
-        print(f"   MAPE hesabinda kullanilan: {mask.sum()} / {len(y_true)} kayit (500+ TRY)")
-        print(f"   Filtrelenen dusuk fiyat: {len(y_true) - mask.sum()} kayit (<500 TRY)")
+        print(f"   MAPE hesabında kullanılan: {mask.sum()} / {len(y_true)} kayıt (500+ TRY)")
+        print(f"   Filtrelenen düşük fiyat: {len(y_true) - mask.sum()} kayıt (<500 TRY)")
     else:
         mape = 0.0
-        print(f"   UYARI: Tum test verileri 500 TRY altinda, MAPE hesaplanamadi!")
+        print(f"   UYARI: Tüm test verileri 500 TRY altında!")
 
-    print(f"\n[*] Performans Metrikleri (Son 30 Gun):")
-    print(f"   MAE (Ortalama Mutlak Hata): {mae:.2f} TRY")
-    print(f"   RMSE (Kok Ortalama Kare Hata): {rmse:.2f} TRY")
-    print(f"   MAPE (Ortalama Yuzde Hata): {mape:.2f}%")
+    print(f"\n[*] Performans Metrikleri (Son 30 Gün):")
+    print(f"   MAE  (Ortalama Mutlak Hata): {mae:.2f} TRY")
+    print(f"   RMSE (Kök Ort. Kare Hata):   {rmse:.2f} TRY")
+    print(f"   MAPE (Ortalama Yüzde Hata):  {mape:.2f}%")
 
     # Görselleştirme
     plt.figure(figsize=(15, 6))
-    plt.plot(test['ds'], y_true, label='Gercek', color='blue', alpha=0.7)
+    plt.plot(test['ds'], y_true, label='Gerçek', color='blue', alpha=0.7)
     plt.plot(test['ds'], y_pred, label='Tahmin', color='red', alpha=0.7)
     plt.fill_between(test['ds'],
                      forecast['yhat_lower'],
                      forecast['yhat_upper'],
-                     alpha=0.2, color='red', label='%95 Guven Araligi')
+                     alpha=0.2, color='red', label='%95 Güven Aralığı')
     plt.xlabel('Tarih')
     plt.ylabel('Fiyat (TRY/MWh)')
-    plt.title('Prophet Model Performansi - Son 30 Gun')
+    plt.title('Multivariate Prophet Model Performansı - Son 30 Gün')
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.xticks(rotation=45)
@@ -269,9 +228,11 @@ def evaluate_model(model, df):
 
     chart_path = os.path.join(os.path.dirname(__file__), '../../models/test_performance.png')
     plt.savefig(chart_path, dpi=150)
+    plt.close()
     print(f"\n[*] Grafik kaydedildi: {chart_path}")
 
     return mae, rmse, mape
+
 
 def save_model(model):
     """
@@ -282,12 +243,12 @@ def save_model(model):
     """
     print(f"\n[*] Model kaydediliyor: {MODEL_PATH}")
 
-    # Model parametrelerini kaydet
     from prophet.serialize import model_to_json
     with open(MODEL_PATH, 'w') as f:
         f.write(model_to_json(model))
 
-    print("[+] Model basariyla kaydedildi!")
+    print("[+] Model başarıyla kaydedildi!")
+
 
 def main(end_date=None):
     """
@@ -296,36 +257,50 @@ def main(end_date=None):
     Args:
         end_date (str, optional): Bu tarihe KADAR veri kullan (dahil değil!)
                                   Format: 'YYYY-MM-DD'
+    
+    Returns:
+        tuple: (model, mae, rmse, mape)
     """
-    print("="*60)
-    print("EPIAS MCP Fiyat Tahmini - Prophet Model Egitimi")
-    print("="*60)
+    print("=" * 60)
+    print("EPİAŞ MCP Fiyat Tahmini - MULTIVARIATE Prophet Eğitimi")
+    print("=" * 60)
 
-    # 1. Veri yükleme
-    df = load_data_from_db(end_date=end_date)
+    # 1. Birleştirilmiş veri yükleme (MCP + Consumption + Generation)
+    df = load_combined_data(end_date=end_date)
 
-    # 2. Tatil günlerini oluştur
+    # 2. Feature engineering
+    df = engineer_features(df)
+    
+    print(f"\n[*] Veri Özeti:")
+    print(f"   - Toplam kayıt: {len(df)}")
+    print(f"   - Fiyat aralığı: {df['y'].min():.2f} - {df['y'].max():.2f} TRY")
+    print(f"   - Ortalama fiyat: {df['y'].mean():.2f} TRY")
+
+    # 3. Tatil günlerini oluştur
     holidays = create_turkish_holidays()
 
-    # 3. Modeli eğit
+    # 4. Modeli eğit
     model = train_prophet_model(df, holidays)
 
-    # 4. Performansı değerlendir
+    # 5. Performansı değerlendir
     mae, rmse, mape = evaluate_model(model, df)
 
-    # 5. Modeli kaydet
+    # 6. Modeli kaydet
     save_model(model)
 
-    print("\n" + "="*60)
-    print("[+] Egitim tamamlandi!")
-    print("="*60)
-    print(f"[*] Model Ozeti:")
+    print("\n" + "=" * 60)
+    print("[+] Eğitim tamamlandı!")
+    print("=" * 60)
+    print(f"[*] Model Özeti:")
+    print(f"   - Tip: Multivariate Prophet")
     print(f"   - Toplam veri: {len(df)} saat")
-    print(f"   - Test performansi: MAE={mae:.2f} TRY, MAPE={mape:.2f}%")
-    print(f"   - Model dosyasi: {MODEL_PATH}")
-    print("="*60)
+    print(f"   - Regressor sayısı: {len(get_prophet_features())}")
+    print(f"   - Test performansı: MAE={mae:.2f} TRY, MAPE={mape:.2f}%")
+    print(f"   - Model dosyası: {MODEL_PATH}")
+    print("=" * 60)
 
     return model, mae, rmse, mape
+
 
 if __name__ == "__main__":
     import sys
