@@ -10,6 +10,11 @@ export type ForecastData = {
   actual?: number | null;
   lower_bound?: number;
   upper_bound?: number;
+  lower?: number;
+  upper?: number;
+  prophet?: number;
+  lstm?: number;
+  xgboost?: number;
 }
 
 export type ComparisonData = {
@@ -172,6 +177,16 @@ export const api = {
     } catch (error) {
       console.error('Error fetching week data:', error);
       throw new Error('Hafta verileri yüklenemedi');
+    }
+  },
+
+  async getWeeklyPerformance(): Promise<WeeklyPerformance[]> {
+    try {
+      const response = await axios.get(`${API_BASE}/weekly-performance`);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching weekly performance:', error);
+      return [];
     }
   }
 };

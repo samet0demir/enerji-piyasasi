@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import type { ForecastsResponse } from '../services/api';
+import type { ForecastsResponse, WeeklyPerformance } from '../services/api';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import WeekSelector from '../components/WeekSelector';
 import '../App.css';
@@ -10,6 +10,7 @@ export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
+  const [weeklyPerformance, setWeeklyPerformance] = useState<WeeklyPerformance[]>([]);
 
   // Date range filter for table
   const [startDate, setStartDate] = useState('');
@@ -24,6 +25,15 @@ export function Dashboard() {
     if (mape < 40) return 'mape-poor';       // Zayıf - Turuncu
     return 'mape-bad';                       // Kötü - Kırmızı
   };
+
+  // Haftalık performans verisini çek (bir kere)
+  useEffect(() => {
+    const fetchPerformance = async () => {
+      const perf = await api.getWeeklyPerformance();
+      setWeeklyPerformance(perf);
+    };
+    fetchPerformance();
+  }, []);
 
   // Seçili hafta değiştiğinde veri çek
   useEffect(() => {
@@ -121,9 +131,9 @@ export function Dashboard() {
     adet: count
   }));
 
-  // Performance trend - Eskiden yeniye sırala ve daha açıklayıcı tarih formatı
-  const trendData = [...data.historical_trend]
-    .reverse() // En eski haftayı sola al
+  // Performance trend - API'den gelen haftalık performans verisi
+  const trendData = [...weeklyPerformance]
+    .sort((a, b) => a.week_start.localeCompare(b.week_start)) // En eski haftayı sola al
     .map(w => {
       const startDate = new Date(w.week_start);
       const endDate = new Date(w.week_end);
@@ -198,19 +208,23 @@ export function Dashboard() {
         </div>
         {lastWeekPerf && (
           <>
-            <div className={`stat-card ${getMapeColorClass(lastWeekPerf.mape)}`}>
+            <div className={`stat-card ${getMapeColorClass(lastWeekPerf.mape ?? 100)}`}>
               <div className="stat-label">Model MAPE</div>
-              <div className="stat-value">{lastWeekPerf.mape.toFixed(1)}%</div>
+              <div className="stat-value">{typeof lastWeekPerf.mape === 'number' ? lastWeekPerf.mape.toFixed(1) : '--'}%</div>
               <div className="stat-unit">
-                {lastWeekPerf.mape < 10 ? '✓ Mükemmel' :
-                 lastWeekPerf.mape < 20 ? '✓ İyi' :
-                 lastWeekPerf.mape < 30 ? '~ Orta' :
-                 lastWeekPerf.mape < 40 ? '⚠ Zayıf' : '✗ Kötü'}
+                {typeof lastWeekPerf.mape === 'number' ? (
+                  lastWeekPerf.mape < 10 ? '✓ Mükemmel' :
+                    lastWeekPerf.mape < 20 ? '✓ İyi' :
+                      lastWeekPerf.mape < 30 ? '~ Orta' :
+                        lastWeekPerf.mape < 40 ? '⚠ Zayıf' : '✗ Kötü'
+                ) : 'Veri Yok'}
               </div>
             </div>
             <div className="stat-card">
               <div className="stat-label">MAE / RMSE</div>
-              <div className="stat-value">{Math.round(lastWeekPerf.mae)} / {Math.round(lastWeekPerf.rmse)} ₺</div>
+              <div className="stat-value">
+                {typeof lastWeekPerf.mae === 'number' ? Math.round(lastWeekPerf.mae) : '--'} / {typeof lastWeekPerf.rmse === 'number' ? Math.round(lastWeekPerf.rmse) : '--'} ₺
+              </div>
               <div className="stat-unit">{lastWeekPerf.total_predictions} tahmin</div>
             </div>
           </>
@@ -218,43 +232,45 @@ export function Dashboard() {
       </div>
 
       {/* MAIN: Tahmin vs Gerçek - Tam Genişlik */}
-      {hourlyComparisonData.length > 0 && (
-        <div className="main-chart">
-          <div className="chart-header">
-            <div>
-              <h2>📊 Geçen Hafta: Tahmin vs Gerçek Performansı (Saatlik Detay)</h2>
-              <p className="chart-subtitle">
-                {data.last_week_comparison.length} saatlik veri noktası |
-                Ortalama Hata: {Math.round(data.last_week_comparison.reduce((s, i) => s + Math.abs(i.error), 0) / data.last_week_comparison.length)} ₺ |
-                En Büyük Hata: {Math.round(Math.max(...data.last_week_comparison.map(i => Math.abs(i.error))))} ₺
-              </p>
+      {
+        hourlyComparisonData.length > 0 && (
+          <div className="main-chart">
+            <div className="chart-header">
+              <div>
+                <h2>📊 Geçen Hafta: Tahmin vs Gerçek Performansı (Saatlik Detay)</h2>
+                <p className="chart-subtitle">
+                  {data.last_week_comparison.length} saatlik veri noktası |
+                  Ortalama Hata: {Math.round(data.last_week_comparison.reduce((s, i) => s + Math.abs(i.error), 0) / data.last_week_comparison.length)} ₺ |
+                  En Büyük Hata: {Math.round(Math.max(...data.last_week_comparison.map(i => Math.abs(i.error))))} ₺
+                </p>
+              </div>
             </div>
+            <ResponsiveContainer width="100%" height={380}>
+              <LineChart data={hourlyComparisonData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis
+                  dataKey="index"
+                  stroke="#94a3b8"
+                  style={{ fontSize: '11px' }}
+                  label={{ value: 'Saat', position: 'insideBottom', offset: -5, fill: '#64748b' }}
+                />
+                <YAxis
+                  stroke="#94a3b8"
+                  style={{ fontSize: '11px' }}
+                  label={{ value: 'Fiyat (₺/MWh)', angle: -90, position: 'insideLeft', fill: '#64748b' }}
+                />
+                <Tooltip
+                  contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
+                  formatter={(value: any) => `${value} ₺`}
+                />
+                <Legend wrapperStyle={{ color: '#94a3b8', fontSize: '13px' }} />
+                <Line type="monotone" dataKey="Tahmin" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="Gerçek" stroke="#10b981" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
-          <ResponsiveContainer width="100%" height={380}>
-            <LineChart data={hourlyComparisonData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis
-                dataKey="index"
-                stroke="#94a3b8"
-                style={{ fontSize: '11px' }}
-                label={{ value: 'Saat', position: 'insideBottom', offset: -5, fill: '#64748b' }}
-              />
-              <YAxis
-                stroke="#94a3b8"
-                style={{ fontSize: '11px' }}
-                label={{ value: 'Fiyat (₺/MWh)', angle: -90, position: 'insideLeft', fill: '#64748b' }}
-              />
-              <Tooltip
-                contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
-                formatter={(value: any) => `${value} ₺`}
-              />
-              <Legend wrapperStyle={{ color: '#94a3b8', fontSize: '13px' }} />
-              <Line type="monotone" dataKey="Tahmin" stroke="#3b82f6" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="Gerçek" stroke="#10b981" strokeWidth={2} dot={false} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+        )
+      }
 
       {/* Data Explorer - Date Range Table */}
       <div className="data-explorer">
@@ -317,8 +333,8 @@ export function Dashboard() {
                     const accuracy = 100 - Math.abs(item.error_percent);
                     const status =
                       accuracy > 90 ? '🟢 Mükemmel' :
-                      accuracy > 80 ? '🟡 İyi' :
-                      accuracy > 70 ? '🟠 Orta' : '🔴 Zayıf';
+                        accuracy > 80 ? '🟡 İyi' :
+                          accuracy > 70 ? '🟠 Orta' : '🔴 Zayıf';
 
                     return (
                       <tr key={idx}>
@@ -363,23 +379,30 @@ export function Dashboard() {
           </ResponsiveContainer>
         </div>
 
-        {/* Bu Hafta Tahminleri */}
+        {/* Model Bileşenleri Karşılaştırması */}
         <div className="chart-card">
-          <h3>📈 Bu Haftanın Tahminleri</h3>
+          <h3>🤖 Model Bileşenleri (Bu Hafta)</h3>
           <p className="chart-subtitle">
-            {new Date(data.current_week.start).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })} -
-            {new Date(data.current_week.end).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}
+            Prophet + XGBoost + LSTM Ensemble
           </p>
           <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={dailyForecastData}>
+            <LineChart data={data.current_week.forecasts.slice(24, 96).map((f: any, idx: number) => ({
+              saat: idx + 25,
+              Ensemble: Math.round(f.predicted || 0),
+              Prophet: Math.round(f.prophet || 0),
+              LSTM: Math.round(f.lstm || 0)
+            }))}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="gün" stroke="#94a3b8" style={{ fontSize: '11px' }} />
-              <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} />
+              <XAxis dataKey="saat" stroke="#94a3b8" style={{ fontSize: '10px' }} />
+              <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} domain={[1500, 4000]} />
               <Tooltip
                 contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
-                formatter={(value: any) => [`${value} ₺`, 'Fiyat']}
+                formatter={(value: any, name: string) => [`${value.toLocaleString()} ₺`, name]}
               />
-              <Line type="monotone" dataKey="fiyat" stroke="#10b981" strokeWidth={2.5} dot={{ fill: '#10b981', r: 4 }} />
+              <Legend />
+              <Line type="monotone" dataKey="Ensemble" stroke="#10b981" strokeWidth={2.5} dot={false} name="Ensemble (Final)" />
+              <Line type="monotone" dataKey="Prophet" stroke="#3b82f6" strokeWidth={1.5} dot={false} name="Prophet" />
+              <Line type="monotone" dataKey="LSTM" stroke="#f59e0b" strokeWidth={1.5} dot={false} name="LSTM" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -404,6 +427,6 @@ export function Dashboard() {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 }

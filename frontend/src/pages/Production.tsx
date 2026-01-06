@@ -129,11 +129,31 @@ export function Production() {
     { name: 'Jeotermal', data: generationChartData.map(d => ({ tarih: d.tarih, değer: d.Jeotermal })), color: COLORS['Jeotermal'] }
   ];
 
-  // İstatistikler
-  const latestData = generationChartData[generationChartData.length - 1];
-  const totalProduction = latestData ? Object.entries(latestData)
-    .filter(([key]) => key !== 'tarih')
-    .reduce((sum, [, val]) => sum + (val as number), 0) : 0;
+  // İstatistikler - HAFTALIK ORTALAMA (tüm günlerin ortalaması)
+  const weeklyAvg = {
+    Güneş: 0, Rüzgar: 0, Hidro: 0, Doğalgaz: 0, Linyit: 0, Jeotermal: 0
+  };
+
+  generationChartData.forEach(d => {
+    weeklyAvg.Güneş += d.Güneş;
+    weeklyAvg.Rüzgar += d.Rüzgar;
+    weeklyAvg.Hidro += d.Hidro;
+    weeklyAvg.Doğalgaz += d.Doğalgaz;
+    weeklyAvg.Linyit += d.Linyit;
+    weeklyAvg.Jeotermal += d.Jeotermal;
+  });
+
+  const dayCount = generationChartData.length || 1;
+  const avgData = {
+    Güneş: Math.round(weeklyAvg.Güneş / dayCount),
+    Rüzgar: Math.round(weeklyAvg.Rüzgar / dayCount),
+    Hidro: Math.round(weeklyAvg.Hidro / dayCount),
+    Doğalgaz: Math.round(weeklyAvg.Doğalgaz / dayCount),
+    Linyit: Math.round(weeklyAvg.Linyit / dayCount),
+    Jeotermal: Math.round(weeklyAvg.Jeotermal / dayCount)
+  };
+
+  const totalProduction = Object.values(avgData).reduce((sum, val) => sum + val, 0);
 
   return (
     <div className="page-content">
@@ -144,7 +164,7 @@ export function Production() {
           <p className="page-subtitle">Kaynak Bazında Elektrik Üretim Verileri (Son 7 Gün)</p>
         </div>
         <div className="update-time">
-          Toplam Üretim: {totalProduction.toLocaleString()} MWh/gün (ortalama)
+          Toplam Üretim: {totalProduction.toLocaleString()} MWh/gün (haftalık ort.)
         </div>
       </div>
 
@@ -156,10 +176,10 @@ export function Production() {
         />
       </div>
 
-      {/* Stats Grid */}
+      {/* Stats Grid - HAFTALIK ORTALAMA */}
       <div className="stats-grid">
-        {latestData && Object.entries(latestData)
-          .filter(([key]) => key !== 'tarih')
+        {Object.entries(avgData)
+          .filter(([, value]) => value > 0)
           .map(([source, value]) => {
             const percentage = ((value as number) / totalProduction * 100).toFixed(1);
             return (
@@ -168,7 +188,7 @@ export function Production() {
                   {source}
                 </div>
                 <div className="stat-value">{(value as number).toLocaleString()} MWh</div>
-                <div className="stat-unit">%{percentage} pay</div>
+                <div className="stat-unit">%{percentage} pay (haftalık ort.)</div>
               </div>
             );
           })}
