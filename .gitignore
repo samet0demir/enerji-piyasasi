@@ -23,8 +23,16 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Database
-# *.db  # Commented out for GitHub Actions automation (we need to commit energy.db)
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Test files (temporary)
+backend/check_*.js
+backend/energy.db
+
+# Database backups
 *.db-shm
 *.db-wal
 
