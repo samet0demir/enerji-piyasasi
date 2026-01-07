@@ -260,17 +260,37 @@ class EnsembleModel:
             'models_used': 3 if self.use_lstm else 2
         }
     
-    def forecast_future(self, df, days=7):
-        """Gelecek için tahmin yapar"""
+    def forecast_future(self, df, days=7, start_date=None):
+        """
+        Gelecek için tahmin yapar
+        
+        Args:
+            df: Feature'lar içeren DataFrame
+            days: Tahmin günü sayısı
+            start_date: Başlangıç tarihi (opsiyonel, YYYY-MM-DD formatında)
+                        Verilmezse verinin son tarihinden itibaren başlar
+        """
         print(f"\n[*] {days} günlük tahmin yapılıyor...")
         
         # Gelecek tarihler
-        last_date = df['ds'].max()
-        future_dates = pd.date_range(
-            start=last_date + timedelta(hours=1),
-            periods=days * 24,
-            freq='H'
-        )
+        if start_date:
+            # Belirtilen tarihten başla (00:00)
+            from datetime import datetime as dt
+            start = dt.strptime(start_date, '%Y-%m-%d')
+            future_dates = pd.date_range(
+                start=start,
+                periods=days * 24,
+                freq='H'
+            )
+            print(f"   [*] Başlangıç: {start_date} (hafta başı)")
+        else:
+            # Verinin son tarihinden itibaren
+            last_date = df['ds'].max()
+            future_dates = pd.date_range(
+                start=last_date + timedelta(hours=1),
+                periods=days * 24,
+                freq='H'
+            )
         
         future_df = pd.DataFrame({'ds': future_dates})
         
@@ -312,8 +332,8 @@ def export_forecasts_json(ensemble_model, df, current_week_forecasts, last_week_
             'lower': float(row['lower_bound']),
             'upper': float(row['upper_bound'])
         }
-        # LSTM varsa ekle
-        if 'lstm_component' in row and row['lstm_component'] != 0:
+        # LSTM varsa ekle (0 değeri de dahil - dashboard grafiği için gerekli)
+        if 'lstm_component' in row:
             forecast_item['lstm'] = float(row['lstm_component'])
         current_week_data.append(forecast_item)
     

@@ -36,17 +36,7 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
 
       if (data.success) {
         setWeeks(data.weeks);
-
-        // Eğer hiç seçili hafta yoksa, en son tamamlanmış haftayı seç
-        if (!selectedWeek && data.weeks.length > 0) {
-          const lastCompleteWeek = data.weeks.find((w: Week) => w.is_complete);
-          if (lastCompleteWeek) {
-            onWeekChange(lastCompleteWeek.week_start);
-          } else {
-            // Tamamlanmış hafta yoksa en eskisini seç
-            onWeekChange(data.weeks[data.weeks.length - 1].week_start);
-          }
-        }
+        // Artık otomatik hafta seçmiyoruz - kullanıcı "Güncel Hafta" ile başlayabilir
       } else {
         setError('Haftalar yüklenemedi');
       }
@@ -61,12 +51,12 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
   const formatDateRange = (start: string, end: string) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
-    const months = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 
     if (startDate.getMonth() === endDate.getMonth()) {
       return `${startDate.getDate()}-${endDate.getDate()} ${months[startDate.getMonth()]}`;
     } else {
-      return `${startDate.getDate()} ${months[startDate.getMonth()]}-${endDate.getDate()} ${months[endDate.getMonth()]}`;
+      return `${startDate.getDate()} ${months[startDate.getMonth()]} - ${endDate.getDate()} ${months[endDate.getMonth()]}`;
     }
   };
 
@@ -95,12 +85,13 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
         id="week-select"
         className="week-selector-dropdown"
         value={selectedWeek || ''}
-        onChange={(e) => onWeekChange(e.target.value)}
+        onChange={(e) => onWeekChange(e.target.value || null as any)}
       >
+        <option value="">📊 Güncel Hafta (Tahminler)</option>
         {weeks.map((week) => (
           <option key={week.week_start} value={week.week_start}>
             {formatDateRange(week.week_start, week.week_end)}
-            {!week.is_complete && ` (Devam ediyor... %${week.completion_percentage})`}
+            {!week.is_complete && ` (Devam ediyor...)`}
           </option>
         ))}
       </select>

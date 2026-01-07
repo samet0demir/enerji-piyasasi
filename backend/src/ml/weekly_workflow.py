@@ -114,7 +114,7 @@ def run_weekly_cycle():
         print(f"\n❌ Prophet model eğitimi HATA: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        raise e
 
     # =====================================================================
     # ADIM 3: XGBoost Residual model eğitimi
@@ -132,13 +132,33 @@ def run_weekly_cycle():
         print(f"\n❌ XGBoost model eğitimi HATA: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        raise e
 
     # =====================================================================
-    # ADIM 4: Bu hafta tahmini (Ensemble)
+    # ADIM 4: LSTM Deep Learning Model eğitimi (Opsiyonel)
     # =====================================================================
     print("\n" + "="*70)
-    print("ADIM 4: Bu hafta tahmini (Ensemble Model)")
+    print("ADIM 4: LSTM Deep Learning Model eğitimi")
+    print("="*70)
+
+    lstm_trained = False
+    try:
+        from train_lstm import main as train_lstm
+        model, scaler_data, metrics = train_lstm()
+        lstm_mae, lstm_rmse, lstm_mape = metrics
+        lstm_trained = True
+        print(f"\n✅ LSTM model eğitimi tamamlandı!")
+        print(f"   Test MAPE: {lstm_mape:.2f}%")
+    except Exception as e:
+        print(f"\n⚠️  LSTM model eğitimi atlandı: {e}")
+        print(f"   (TensorFlow yüklü değilse veya GPU yoksa normal)")
+        # LSTM opsiyonel - hata olsa bile devam et
+
+    # =====================================================================
+    # ADIM 5: Bu hafta tahmini (Ensemble)
+    # =====================================================================
+    print("\n" + "="*70)
+    print("ADIM 5: Bu hafta tahmini (Ensemble Model)")
     print("="*70)
     print(f"🔮 Tahmin aralığı: {this_week_monday} - {this_week_sunday}")
 
@@ -154,8 +174,8 @@ def run_weekly_cycle():
         ensemble = EnsembleModel()
         ensemble.load_models()
         
-        # 7 günlük tahmin
-        forecasts = ensemble.forecast_future(df, days=7)
+        # 7 günlük tahmin (bu haftanın Pazartesi'sinden başla)
+        forecasts = ensemble.forecast_future(df, days=7, start_date=this_week_monday)
         
         print(f"\n✅ {len(forecasts)} saatlik tahmin üretildi")
         print(f"   Ortalama: {forecasts['predicted_price'].mean():.2f} TRY")
@@ -174,13 +194,13 @@ def run_weekly_cycle():
         print(f"\n❌ Tahmin yapma HATA: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        raise e
 
     # =====================================================================
-    # ADIM 5: JSON Export
+    # ADIM 6: JSON Export
     # =====================================================================
     print("\n" + "="*70)
-    print("ADIM 5: JSON Export (Frontend için)")
+    print("ADIM 6: JSON Export (Frontend için)")
     print("="*70)
 
     try:
@@ -199,7 +219,8 @@ def run_weekly_cycle():
     print("✅ HAFTALİK İŞ AKIŞI TAMAMLANDI!")
     print("="*70)
     print(f"📅 Yeni hafta tahmini hazır: {this_week_monday} - {this_week_sunday}")
-    print(f"🤖 Model: Prophet + XGBoost Ensemble")
+    model_type = "Prophet + XGBoost + LSTM Ensemble" if lstm_trained else "Prophet + XGBoost Ensemble"
+    print(f"🤖 Model: {model_type}")
     print(f"📊 Geçen hafta performansı kaydedildi")
     print(f"📁 JSON dosyası frontend için güncellendi")
     print("="*70)

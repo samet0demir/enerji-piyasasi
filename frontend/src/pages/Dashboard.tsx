@@ -385,26 +385,36 @@ export function Dashboard() {
           <p className="chart-subtitle">
             Prophet + XGBoost + LSTM Ensemble
           </p>
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={data.current_week.forecasts.slice(24, 96).map((f: any, idx: number) => ({
-              saat: idx + 25,
-              Ensemble: Math.round(f.predicted || 0),
-              Prophet: Math.round(f.prophet || 0),
-              LSTM: Math.round(f.lstm || 0)
-            }))}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="saat" stroke="#94a3b8" style={{ fontSize: '10px' }} />
-              <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} domain={[1500, 4000]} />
-              <Tooltip
-                contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
-                formatter={(value: any, name: string) => [`${value.toLocaleString()} ₺`, name]}
-              />
-              <Legend />
-              <Line type="monotone" dataKey="Ensemble" stroke="#10b981" strokeWidth={2.5} dot={false} name="Ensemble (Final)" />
-              <Line type="monotone" dataKey="Prophet" stroke="#3b82f6" strokeWidth={1.5} dot={false} name="Prophet" />
-              <Line type="monotone" dataKey="LSTM" stroke="#f59e0b" strokeWidth={1.5} dot={false} name="LSTM" />
-            </LineChart>
-          </ResponsiveContainer>
+          {/* Model bileşenleri sadece JSON'dan (seçili hafta yokken) gelir */}
+          {data.current_week.forecasts[24]?.prophet ? (
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={data.current_week.forecasts.slice(24, 96).map((f: any, idx: number) => ({
+                saat: idx + 25,
+                Ensemble: Math.round(f.predicted || 0),
+                Prophet: Math.round(f.prophet || 0),
+                LSTM: Math.round(f.lstm || 0)
+              }))}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis dataKey="saat" stroke="#94a3b8" style={{ fontSize: '10px' }} />
+                <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} domain={[1500, 4000]} />
+                <Tooltip
+                  contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
+                  formatter={(value: any, name: string) => [`${value.toLocaleString()} ₺`, name]}
+                />
+                <Legend />
+                <Line type="monotone" dataKey="Ensemble" stroke="#10b981" strokeWidth={2.5} dot={false} name="Ensemble (Final)" />
+                <Line type="monotone" dataKey="Prophet" stroke="#3b82f6" strokeWidth={1.5} dot={false} name="Prophet" />
+                <Line type="monotone" dataKey="LSTM" stroke="#f59e0b" strokeWidth={1.5} dot={false} name="LSTM" />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <div style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}>
+              <div style={{ textAlign: 'center' }}>
+                <p>📊 Model bileşenleri sadece güncel hafta için gösterilir.</p>
+                <p style={{ fontSize: '12px', marginTop: '8px' }}>Güncel tahminleri görmek için hafta seçimini kaldırın.</p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Performance Trend */}

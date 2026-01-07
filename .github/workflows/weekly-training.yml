@@ -96,5 +96,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: prophet-model-${{ github.run_number }}
-          path: backend/src/ml/models/prophet_model.json
+          path: backend/models/prophet_model.json
           retention-days: 90
