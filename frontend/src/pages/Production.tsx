@@ -59,7 +59,7 @@ export function Production() {
   if (error || generation.length === 0) {
     return (
       <div className="error-container">
-        <h2>⚠️ Hata!</h2>
+        <h2>Hata</h2>
         <p>{error || 'Üretim verileri yüklenemedi'}</p>
       </div>
     );
@@ -160,7 +160,7 @@ export function Production() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <h2 className="page-title">⚡ Üretim Analizi</h2>
+          <h2 className="page-title">Uretim Analizi</h2>
           <p className="page-subtitle">Kaynak Bazında Elektrik Üretim Verileri (Son 7 Gün)</p>
         </div>
         <div className="update-time">
@@ -198,7 +198,7 @@ export function Production() {
       <div className="main-chart">
         <div className="chart-header">
           <div>
-            <h2>📊 Üretim Kaynakları Dağılımı (Günlük Ortalama)</h2>
+            <h2>Uretim Kaynaklari Dagilimi (Gunluk Ortalama)</h2>
             <p className="chart-subtitle">
               Kaynak bazında saatlik ortalama elektrik üretimi (MWh)
             </p>
@@ -228,7 +228,7 @@ export function Production() {
       <div className="charts-grid-secondary">
         {/* Toplam Üretim Trendi - Tam Genişlik */}
         <div className="chart-card" style={{ gridColumn: 'span 3' }}>
-          <h3>📈 Toplam Üretim Trendi</h3>
+          <h3>Toplam Uretim Trendi</h3>
           <p className="chart-subtitle">Günlük toplam elektrik üretimi</p>
           <ResponsiveContainer width="100%" height={320}>
             <LineChart data={totalGeneration}>
@@ -246,7 +246,7 @@ export function Production() {
 
         {/* Kaynak Payları - Pie Chart */}
         <div className="chart-card" style={{ gridColumn: 'span 3' }}>
-          <h3>🥧 Ortalama Kaynak Payları</h3>
+          <h3>Ortalama Kaynak Paylari</h3>
           <p className="chart-subtitle">Son 7 günün ortalaması</p>
           <ResponsiveContainer width="100%" height={350}>
             <PieChart>

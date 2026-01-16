@@ -15,6 +15,10 @@ export type ForecastData = {
   prophet?: number;
   lstm?: number;
   xgboost?: number;
+  // Database model components
+  prophet_component?: number | null;
+  xgboost_component?: number | null;
+  lstm_component?: number | null;
 }
 
 export type ComparisonData = {
@@ -150,7 +154,11 @@ export const api = {
           forecasts: data.mcp.data.map((item: any) => ({
             datetime: item.datetime,
             predicted: item.predicted_price,
-            actual: item.actual_price
+            actual: item.actual_price,
+            // Model bileşenleri (veritabanından)
+            prophet: item.prophet_component,
+            xgboost: item.xgboost_component,
+            lstm: item.lstm_component
           }))
         },
         last_week_performance: data.performance ? {

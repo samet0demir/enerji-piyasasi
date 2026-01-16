@@ -36,7 +36,10 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
 
       if (data.success) {
         setWeeks(data.weeks);
-        // Artık otomatik hafta seçmiyoruz - kullanıcı "Güncel Hafta" ile başlayabilir
+        // İlk haftayı otomatik seç (eğer henüz seçim yapılmadıysa)
+        if (!selectedWeek && data.weeks.length > 0) {
+          onWeekChange(data.weeks[0].week_start);
+        }
       } else {
         setError('Haftalar yüklenemedi');
       }
@@ -87,7 +90,6 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
         value={selectedWeek || ''}
         onChange={(e) => onWeekChange(e.target.value || null as any)}
       >
-        <option value="">📊 Güncel Hafta (Tahminler)</option>
         {weeks.map((week) => (
           <option key={week.week_start} value={week.week_start}>
             {formatDateRange(week.week_start, week.week_end)}

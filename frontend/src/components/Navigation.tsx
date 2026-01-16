@@ -9,26 +9,26 @@ export function Navigation() {
   return (
     <nav className="navigation">
       <div className="nav-brand">
-        <h1>⚡ EPİAŞ Analiz</h1>
+        <h1>EPIAS Analiz</h1>
       </div>
       <div className="nav-links">
         <Link
           to="/"
           className={`nav-link ${isActive('/') ? 'active' : ''}`}
         >
-          📊 Genel Bakış
+          Genel Bakis
         </Link>
         <Link
           to="/production"
           className={`nav-link ${isActive('/production') ? 'active' : ''}`}
         >
-          ⚡ Üretim Analizi
+          Uretim Analizi
         </Link>
         <Link
           to="/consumption"
           className={`nav-link ${isActive('/consumption') ? 'active' : ''}`}
         >
-          📈 Tüketim Analizi
+          Tuketim Analizi
         </Link>
       </div>
     </nav>

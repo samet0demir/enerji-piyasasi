@@ -87,10 +87,10 @@ def run_backfill_for_date(target_monday):
         traceback.print_exc()
 
 def main():
-    # Eksik haftalar
+    # Eksik haftalar - Ocak 2026
     missing_weeks = [
-        '2025-12-22',
-        '2025-12-29'
+        '2026-01-05',  # 5-11 Ocak 2026
+        '2026-01-12'   # 12-18 Ocak 2026
     ]
     
     print("Mevcut verileri korumak için işlem başlatılıyor...")

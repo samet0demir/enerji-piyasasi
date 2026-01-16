@@ -18,8 +18,8 @@ function App() {
 
         {/* Footer */}
         <footer className="footer">
-          <p>📡 Veri Kaynağı: EPİAŞ Şeffaflık Platformu</p>
-          <p>🤖 Model: Facebook Prophet | Otomatik Güncelleme: Her Gece 02:00</p>
+          <p>Veri Kaynagi: EPIAS Seffaflik Platformu</p>
+          <p>Model: Facebook Prophet | Otomatik Guncelleme: Her Gece 02:00</p>
           <p className="footer-note">GitHub Actions ile otomatik tahmin & karşılaştırma sistemi</p>
         </footer>
       </div>

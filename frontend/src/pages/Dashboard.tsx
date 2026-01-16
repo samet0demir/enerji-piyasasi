@@ -75,7 +75,7 @@ export function Dashboard() {
   if (error || !data) {
     return (
       <div className="error-container">
-        <h2>⚠️ Hata!</h2>
+        <h2>Hata</h2>
         <p>{error || 'Veriler yüklenemedi'}</p>
       </div>
     );
@@ -176,7 +176,7 @@ export function Dashboard() {
       {/* Header with update time */}
       <div className="page-header">
         <div>
-          <h2 className="page-title">📊 Genel Bakış & Tahmin Performansı</h2>
+          <h2 className="page-title">Genel Bakis ve Tahmin Performansi</h2>
           <p className="page-subtitle">AI Tabanlı Enerji Fiyat Tahmini & Karşılaştırma</p>
         </div>
         <div className="update-time">
@@ -213,10 +213,10 @@ export function Dashboard() {
               <div className="stat-value">{typeof lastWeekPerf.mape === 'number' ? lastWeekPerf.mape.toFixed(1) : '--'}%</div>
               <div className="stat-unit">
                 {typeof lastWeekPerf.mape === 'number' ? (
-                  lastWeekPerf.mape < 10 ? '✓ Mükemmel' :
-                    lastWeekPerf.mape < 20 ? '✓ İyi' :
-                      lastWeekPerf.mape < 30 ? '~ Orta' :
-                        lastWeekPerf.mape < 40 ? '⚠ Zayıf' : '✗ Kötü'
+                  lastWeekPerf.mape < 10 ? 'Mukemmel' :
+                    lastWeekPerf.mape < 20 ? 'Iyi' :
+                      lastWeekPerf.mape < 30 ? 'Orta' :
+                        lastWeekPerf.mape < 40 ? 'Zayif' : 'Kotu'
                 ) : 'Veri Yok'}
               </div>
             </div>
@@ -237,7 +237,7 @@ export function Dashboard() {
           <div className="main-chart">
             <div className="chart-header">
               <div>
-                <h2>📊 Geçen Hafta: Tahmin vs Gerçek Performansı (Saatlik Detay)</h2>
+                <h2>Gecen Hafta: Tahmin vs Gercek Performansi (Saatlik Detay)</h2>
                 <p className="chart-subtitle">
                   {data.last_week_comparison.length} saatlik veri noktası |
                   Ortalama Hata: {Math.round(data.last_week_comparison.reduce((s, i) => s + Math.abs(i.error), 0) / data.last_week_comparison.length)} ₺ |
@@ -275,7 +275,7 @@ export function Dashboard() {
       {/* Data Explorer - Date Range Table */}
       <div className="data-explorer">
         <div className="explorer-header">
-          <h3>🔍 Veri Gezgini - Detaylı Karşılaştırma</h3>
+          <h3>Veri Gezgini - Detayli Karsilastirma</h3>
           <div className="date-controls">
             <label>
               Başlangıç:
@@ -299,13 +299,13 @@ export function Dashboard() {
               onClick={() => setShowTable(!showTable)}
               className="toggle-btn"
             >
-              {showTable ? '📊 Grafik Görünümü' : '📋 Tablo Görünümü'}
+              {showTable ? 'Grafik Gorunumu' : 'Tablo Gorunumu'}
             </button>
             <button
               onClick={() => { setStartDate(''); setEndDate(''); }}
               className="reset-btn"
             >
-              🔄 Sıfırla
+              Sifirla
             </button>
           </div>
         </div>
@@ -332,9 +332,9 @@ export function Dashboard() {
                   {filteredTableData.map((item, idx) => {
                     const accuracy = 100 - Math.abs(item.error_percent);
                     const status =
-                      accuracy > 90 ? '🟢 Mükemmel' :
-                        accuracy > 80 ? '🟡 İyi' :
-                          accuracy > 70 ? '🟠 Orta' : '🔴 Zayıf';
+                      accuracy > 90 ? 'Mukemmel' :
+                        accuracy > 80 ? 'Iyi' :
+                          accuracy > 70 ? 'Orta' : 'Zayif';
 
                     return (
                       <tr key={idx}>
@@ -363,7 +363,7 @@ export function Dashboard() {
       <div className="charts-grid-secondary">
         {/* Hata Dağılımı */}
         <div className="chart-card">
-          <h3>📉 Hata Dağılımı Analizi</h3>
+          <h3>Hata Dagilimi Analizi</h3>
           <p className="chart-subtitle">Tahmin hatalarının aralıklara göre dağılımı</p>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={errorDistribution}>
@@ -381,46 +381,76 @@ export function Dashboard() {
 
         {/* Model Bileşenleri Karşılaştırması */}
         <div className="chart-card">
-          <h3>🤖 Model Bileşenleri (Bu Hafta)</h3>
+          <h3>Model Bilesenleri</h3>
           <p className="chart-subtitle">
-            Prophet + XGBoost + LSTM Ensemble
+            Prophet + XGBoost + LSTM Ensemble vs Gerçek
           </p>
-          {/* Model bileşenleri sadece JSON'dan (seçili hafta yokken) gelir */}
-          {data.current_week.forecasts[24]?.prophet ? (
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={data.current_week.forecasts.slice(24, 96).map((f: any, idx: number) => ({
-                saat: idx + 25,
-                Ensemble: Math.round(f.predicted || 0),
-                Prophet: Math.round(f.prophet || 0),
-                LSTM: Math.round(f.lstm || 0)
-              }))}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="saat" stroke="#94a3b8" style={{ fontSize: '10px' }} />
-                <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} domain={[1500, 4000]} />
-                <Tooltip
-                  contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
-                  formatter={(value: any, name: string) => [`${value.toLocaleString()} ₺`, name]}
-                />
-                <Legend />
-                <Line type="monotone" dataKey="Ensemble" stroke="#10b981" strokeWidth={2.5} dot={false} name="Ensemble (Final)" />
-                <Line type="monotone" dataKey="Prophet" stroke="#3b82f6" strokeWidth={1.5} dot={false} name="Prophet" />
-                <Line type="monotone" dataKey="LSTM" stroke="#f59e0b" strokeWidth={1.5} dot={false} name="LSTM" />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}>
-              <div style={{ textAlign: 'center' }}>
-                <p>📊 Model bileşenleri sadece güncel hafta için gösterilir.</p>
-                <p style={{ fontSize: '12px', marginTop: '8px' }}>Güncel tahminleri görmek için hafta seçimini kaldırın.</p>
+          {/* Model bileşenleri: DB'den veya JSON'dan gelir */}
+          {(() => {
+            // Veritabanından gelen bileşen verileri var mı kontrol et
+            const hasDbComponents = data.current_week.forecasts.some(f => f.prophet !== null && f.prophet !== undefined);
+            // JSON'dan gelen bileşen verileri var mı kontrol et (eski format)
+            const hasJsonComponents = (data.current_week.forecasts[24] as any)?.prophet !== undefined;
+
+            if (hasDbComponents || hasJsonComponents) {
+              // Bileşen verilerini hazırla
+              const componentData = data.current_week.forecasts
+                .filter((f, idx) => idx >= 24 && idx < 120) // 2-5. günler (daha iyi görünüm)
+                .map((f: any, idx: number) => ({
+                  saat: idx + 25,
+                  Ensemble: Math.round(f.predicted || 0),
+                  Prophet: Math.round(f.prophet || 0),
+                  LSTM: Math.round(f.lstm || 0),
+                  Gerçek: f.actual ? Math.round(f.actual) : null
+                }))
+                .filter(d => d.Prophet > 0 || d.LSTM > 0); // Sadece veri olan noktalar
+
+              if (componentData.length === 0) {
+                return (
+                  <div style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <p>Model bilesen verileri mevcut degil.</p>
+                      <p style={{ fontSize: '12px', marginTop: '8px' }}>Bu hafta için ayrıntılı model verileri kaydedilmemiş.</p>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <ResponsiveContainer width="100%" height={260}>
+                  <LineChart data={componentData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                    <XAxis dataKey="saat" stroke="#94a3b8" style={{ fontSize: '10px' }} />
+                    <YAxis stroke="#94a3b8" style={{ fontSize: '11px' }} />
+                    <Tooltip
+                      contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '6px', color: '#f1f5f9' }}
+                      formatter={(value: any, name: string) => [value ? `${value.toLocaleString()} ₺` : 'N/A', name]}
+                    />
+                    <Legend />
+                    <Line type="monotone" dataKey="Ensemble" stroke="#10b981" strokeWidth={2.5} dot={false} name="Ensemble (Final)" />
+                    <Line type="monotone" dataKey="Prophet" stroke="#3b82f6" strokeWidth={1.5} dot={false} name="Prophet" />
+                    <Line type="monotone" dataKey="LSTM" stroke="#f59e0b" strokeWidth={1.5} dot={false} name="LSTM" />
+                    <Line type="monotone" dataKey="Gerçek" stroke="#ef4444" strokeWidth={2} dot={false} name="Gerçek Fiyat" />
+                  </LineChart>
+                </ResponsiveContainer>
+              );
+            }
+
+            return (
+              <div style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <p>📊 Model bileşen verileri mevcut değil.</p>
+                  <p style={{ fontSize: '12px', marginTop: '8px' }}>Bu hafta için ayrıntılı model verileri kaydedilmemiş.</p>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
 
         {/* Performance Trend */}
         {trendData.length > 0 && (
           <div className="chart-card">
-            <h3>📊 Model Performans Trendi</h3>
+            <h3>Model Performans Trendi</h3>
             <p className="chart-subtitle">Haftalık MAPE değerleri</p>
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={trendData}>

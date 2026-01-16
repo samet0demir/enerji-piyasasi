@@ -50,7 +50,7 @@ export function Consumption() {
   if (error || consumption.length === 0) {
     return (
       <div className="error-container">
-        <h2>⚠️ Hata!</h2>
+        <h2>Hata</h2>
         <p>{error || 'Tüketim verileri yüklenemedi'}</p>
       </div>
     );
@@ -144,7 +144,7 @@ export function Consumption() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <h2 className="page-title">📈 Tüketim Analizi</h2>
+          <h2 className="page-title">Tuketim Analizi</h2>
           <p className="page-subtitle">Elektrik Tüketim Verileri & Trend Analizi (Son 7 Gün)</p>
         </div>
         <div className="update-time">
@@ -188,7 +188,7 @@ export function Consumption() {
       <div className="main-chart">
         <div className="chart-header">
           <div>
-            <h2>📊 Günlük Tüketim Trendi (Min - Ortalama - Max)</h2>
+            <h2>Gunluk Tuketim Trendi (Min - Ortalama - Max)</h2>
             <p className="chart-subtitle">
               Her günün minimum, ortalama ve maksimum tüketim değerleri
             </p>
@@ -215,7 +215,7 @@ export function Consumption() {
       <div className="charts-grid-secondary">
         {/* Saatlik Profil - Tam Genişlik */}
         <div className="chart-card" style={{ gridColumn: 'span 3' }}>
-          <h3>🕐 Saatlik Tüketim Profili</h3>
+          <h3>Saatlik Tuketim Profili</h3>
           <p className="chart-subtitle">24 saatlik ortalama tüketim dağılımı</p>
           <ResponsiveContainer width="100%" height={320}>
             <BarChart data={hourlyData}>
@@ -233,7 +233,7 @@ export function Consumption() {
 
         {/* Peak Saatler */}
         <div className="chart-card" style={{ gridColumn: 'span 3' }}>
-          <h3>⬆️ Peak Saatler (En Yüksek Tüketim)</h3>
+          <h3>Peak Saatler (En Yuksek Tuketim)</h3>
           <p className="chart-subtitle">En yüksek 6 saat</p>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={peakHours} layout="vertical">
@@ -251,7 +251,7 @@ export function Consumption() {
 
         {/* Off-Peak Saatler */}
         <div className="chart-card" style={{ gridColumn: 'span 3' }}>
-          <h3>⬇️ Off-Peak Saatler (En Düşük Tüketim)</h3>
+          <h3>Off-Peak Saatler (En Dusuk Tuketim)</h3>
           <p className="chart-subtitle">En düşük 6 saat</p>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={offPeakHours} layout="vertical">
@@ -269,7 +269,7 @@ export function Consumption() {
 
         {/* Günlük Basit Trend */}
         <div className="chart-card" style={{ gridColumn: 'span 2' }}>
-          <h3>📈 Günlük Ortalama Trend</h3>
+          <h3>Gunluk Ortalama Trend</h3>
           <p className="chart-subtitle">Son 7 günün ortalama tüketimi</p>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={consumptionChartData}>
@@ -288,7 +288,7 @@ export function Consumption() {
         {/* Hafta İçi vs Hafta Sonu */}
         {weekdayWeekendData.length > 0 && (
           <div className="chart-card">
-            <h3>📅 Hafta İçi vs Hafta Sonu</h3>
+            <h3>Hafta Ici vs Hafta Sonu</h3>
             <p className="chart-subtitle">Ortalama tüketim karşılaştırması</p>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={weekdayWeekendData}>

@@ -151,7 +151,7 @@ def save_forecast_to_db(forecast, week_start, week_end):
     Tahminleri forecast_history tablosuna kaydeder
 
     Args:
-        forecast: Tahmin dataframe'i
+        forecast: Tahmin dataframe'i (prophet_component, xgboost_component, lstm_component içerebilir)
         week_start (str): Haftanın başlangıcı (Pazartesi) - Format: 'YYYY-MM-DD'
         week_end (str): Haftanın bitişi (Pazar) - Format: 'YYYY-MM-DD'
     """
@@ -164,19 +164,27 @@ def save_forecast_to_db(forecast, week_start, week_end):
     delete_query = "DELETE FROM forecast_history WHERE week_start = ?"
     conn.execute(delete_query, (week_start,))
 
-    # Yeni tahminleri ekle
+    # Yeni tahminleri ekle (bileşen değerleri opsiyonel)
     insert_query = """
-        INSERT INTO forecast_history (week_start, week_end, forecast_datetime, predicted_price)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO forecast_history (
+            week_start, week_end, forecast_datetime, predicted_price,
+            prophet_component, xgboost_component, lstm_component
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     """
 
     inserted = 0
     for _, row in forecast.iterrows():
         # Tarihi string'e çevir (timezone'suz)
         forecast_dt = row['ds'].strftime('%Y-%m-%d %H:%M:%S')
-        predicted = float(row['yhat'])
+        predicted = float(row['yhat'] if 'yhat' in row else row.get('predicted_price', 0))
+        
+        # Bileşen değerlerini al (varsa)
+        prophet = float(row['prophet_component']) if 'prophet_component' in row else None
+        xgboost = float(row['xgboost_component']) if 'xgboost_component' in row else None
+        lstm = float(row['lstm_component']) if 'lstm_component' in row else None
 
-        conn.execute(insert_query, (week_start, week_end, forecast_dt, predicted))
+        conn.execute(insert_query, (week_start, week_end, forecast_dt, predicted, prophet, xgboost, lstm))
         inserted += 1
 
     conn.commit()

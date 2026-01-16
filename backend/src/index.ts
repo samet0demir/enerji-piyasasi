@@ -601,14 +601,17 @@ app.get('/api/weeks/:week_start/data', (req: Request, res: Response) => {
   try {
     const { week_start } = req.params;
 
-    // 1. MCP Tahmin + Gerçek verilerini çek
+    // 1. MCP Tahmin + Gerçek verilerini çek (model bileşenlerini de dahil et)
     const mcpQuery = db.prepare(`
       SELECT
         forecast_datetime as datetime,
         predicted_price,
         actual_price,
         absolute_error,
-        percentage_error
+        percentage_error,
+        prophet_component,
+        xgboost_component,
+        lstm_component
       FROM forecast_history
       WHERE week_start = ?
       ORDER BY forecast_datetime ASC
