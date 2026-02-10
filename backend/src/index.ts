@@ -597,9 +597,19 @@ app.get('/api/weeks/available', (req: Request, res: Response) => {
 });
 
 // Seçili hafta için detaylı veri getir (MCP + Generation + Consumption)
-app.get('/api/weeks/:week_start/data', (req: Request, res: Response) => {
+
+// Seçili hafta için detaylı veri getir (MCP + Generation + Consumption)
+app.get('/api/weeks/:week_start/data', async (req: Request, res: Response) => {
   try {
+
     const { week_start } = req.params;
+
+    // Log the request
+    try {
+      const fs = require('fs');
+      const logPath = require('path').join(__dirname, '../access.log');
+      fs.appendFileSync(logPath, `${new Date().toISOString()} - Request for week: ${week_start}\n`);
+    } catch (e) { }
 
     // 1. MCP Tahmin + Gerçek verilerini çek (model bileşenlerini de dahil et)
     const mcpQuery = db.prepare(`
@@ -698,11 +708,29 @@ app.get('/api/weeks/:week_start/data', (req: Request, res: Response) => {
       performance: performance || null
     });
 
-  } catch (error) {
+
+
+  } catch (error: any) {
+    // Error logging to file
+    try {
+      const { appendFileSync } = await import('fs');
+      const { join } = await import('path');
+      const logPath = join(__dirname, '../error.log');
+      const errorMsg = `${new Date().toISOString()} - Error in getWeekData: ${error instanceof Error ? error.stack : error}\n`;
+      appendFileSync(logPath, errorMsg);
+
+    } catch (e) {
+      console.error('Logging failed', e);
+    }
+
+    const realError = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Backend Error:', realError);
+
     res.status(500).json({
       success: false,
-      message: 'Failed to fetch week data',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: `Failed to fetch week data: ${realError}`,
+      error: realError,
+      stack: error instanceof Error ? error.stack : undefined
     });
   }
 });

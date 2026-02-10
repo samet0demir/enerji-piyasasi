@@ -109,10 +109,14 @@ export function initDatabase() {
       week_start DATE NOT NULL,
       week_end DATE NOT NULL,
       forecast_datetime TEXT NOT NULL,
+
       predicted_price REAL NOT NULL,
       actual_price REAL,
       absolute_error REAL,
       percentage_error REAL,
+      prophet_component REAL,
+      xgboost_component REAL,
+      lstm_component REAL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(week_start, forecast_datetime)
     )

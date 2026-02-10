@@ -18,7 +18,7 @@ from datetime import datetime, timedelta
 import sys
 
 # Model ve database yolu
-MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../models/prophet_model.json')
+MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../models/prophet_model_v2.json')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '../../models')
 # Database path configuration
 try:
@@ -60,6 +60,11 @@ def make_forecast(model, days=7):
     future['is_peak_hour'] = future['hour'].isin([8, 9, 10, 18, 19, 20, 21]).astype(int)
     future['is_daytime'] = future['hour'].isin(range(10, 16)).astype(int)
     future['day_of_week'] = future['ds'].dt.dayofweek
+
+    # Extreme low risk regressor (v2 model için gerekli)
+    future['is_sunday'] = future['ds'].dt.dayofweek == 6
+    future['is_midday'] = future['hour'].isin([10, 11, 12, 13, 14])
+    future['extreme_low_risk'] = (future['is_sunday'] & future['is_midday']).astype(int)
 
     # Tahmin yap
     forecast = model.predict(future)

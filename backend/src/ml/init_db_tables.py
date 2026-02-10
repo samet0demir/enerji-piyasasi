@@ -8,6 +8,7 @@ Creates forecast_history and weekly_performance tables if they don't exist.
 
 import sqlite3
 import os
+import sys
 
 # Database path configuration
 try:

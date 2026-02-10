@@ -18,10 +18,23 @@ except ImportError:
     from db_config import DB_PATH
 MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../models/prophet_model_v2.json')
 
-def load_data():
+def load_data(end_date=None):
+    """
+    Veri yukle
+
+    Args:
+        end_date (str, optional): Bu tarihe KADAR veri kullan (dahil degil!)
+                                  Format: 'YYYY-MM-DD'
+    """
     conn = sqlite3.connect(DB_PATH)
-    query = "SELECT date as ds, price as y FROM mcp_data ORDER BY date"
-    df = pd.read_sql_query(query, conn)
+
+    if end_date:
+        query = "SELECT date as ds, price as y FROM mcp_data WHERE date < ? ORDER BY date"
+        df = pd.read_sql_query(query, conn, params=[end_date])
+    else:
+        query = "SELECT date as ds, price as y FROM mcp_data ORDER BY date"
+        df = pd.read_sql_query(query, conn)
+
     conn.close()
     df['ds'] = pd.to_datetime(df['ds']).dt.tz_localize(None)
     return df
@@ -65,15 +78,25 @@ def add_extreme_low_regressor(df):
 
     return df
 
-def train_improved_model():
-    """Iyilestirilmis model egitimi"""
+def train_improved_model(end_date=None):
+    """
+    Iyilestirilmis model egitimi
+
+    Args:
+        end_date (str, optional): Bu tarihe KADAR veri kullan (dahil degil!)
+
+    Returns:
+        tuple: (model, mae, rmse, mape)
+    """
     print("="*60)
     print("Iyilestirilmis Prophet Model Egitimi (v2)")
     print("="*60)
 
     # Veri yukle
-    df = load_data()
+    df = load_data(end_date=end_date)
     print(f"\n[*] Veri yuklendi: {len(df)} kayit")
+    if end_date:
+        print(f"    Data leakage önleme: {end_date} tarihine KADAR")
 
     # Extreme low regressor ekle
     df = add_extreme_low_regressor(df)
@@ -105,6 +128,31 @@ def train_improved_model():
 
     print("[+] Egitim tamamlandi!")
 
+    # Performans degerlendirme (basit MAPE hesapla)
+    from sklearn.model_selection import train_test_split
+
+    # Train/test split (son 168 saat = 1 hafta test)
+    train_df = df[:-168] if len(df) > 168 else df
+    test_df = df[-168:] if len(df) > 168 else df[:0]
+
+    if len(test_df) > 0:
+        # Test verisine tahmin yap
+        test_forecast = model.predict(test_df[['ds', 'extreme_low_risk']])
+        y_true = test_df['y'].values
+        y_pred = test_forecast['yhat'].values
+
+        # Metrikler
+        mae = np.mean(np.abs(y_true - y_pred))
+        rmse = np.sqrt(np.mean((y_true - y_pred)**2))
+        mape = np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+    else:
+        mae, rmse, mape = 0, 0, 0
+
+    print(f"\n[*] Test Performansi:")
+    print(f"    MAE: {mae:.2f} TRY")
+    print(f"    RMSE: {rmse:.2f} TRY")
+    print(f"    MAPE: {mape:.2f}%")
+
     # Model kaydet
     from prophet.serialize import model_to_json
     with open(MODEL_PATH, 'w') as f:
@@ -113,7 +161,11 @@ def train_improved_model():
     print(f"\n[+] Model kaydedildi: {MODEL_PATH}")
     print("="*60)
 
-    return model
+    return model, mae, rmse, mape
+
+def main(end_date=None):
+    """Ana fonksiyon (catchup script uyumlu)"""
+    return train_improved_model(end_date=end_date)
 
 if __name__ == "__main__":
-    model = train_improved_model()
+    model, mae, rmse, mape = train_improved_model()

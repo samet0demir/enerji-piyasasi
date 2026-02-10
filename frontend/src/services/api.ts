@@ -182,9 +182,11 @@ export const api = {
       };
 
       return forecastsResponse;
-    } catch (error) {
+
+    } catch (error: any) {
       console.error('Error fetching week data:', error);
-      throw new Error('Hafta verileri yüklenemedi');
+      const errorMessage = error.response?.data?.message || error.message || 'Bilinmeyen hata';
+      throw new Error(`Hafta verileri yüklenemedi: ${errorMessage}`);
     }
   },
 

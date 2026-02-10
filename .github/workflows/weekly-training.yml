@@ -56,8 +56,8 @@ jobs:
       - name: Run model training
         working-directory: ./backend
         run: |
-          echo "Starting weekly model training..."
-          python src/ml/weekly_workflow.py
+          echo "Starting weekly model training (Prophet v2)..."
+          python src/ml/weekly_workflow_v2.py
           echo "Training completed!"
 
       - name: Check for changes

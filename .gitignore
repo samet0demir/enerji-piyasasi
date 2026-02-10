@@ -29,11 +29,20 @@ __pycache__/
 *.pyo
 
 # Test files (temporary)
+<<<<<<< Updated upstream
 backend/data/energy.db
 backend/data/energy.db.corrupted.backup
 backend/data/energy-dev.db
 backend/data/energy-dev.db-shm
 backend/data/energy-dev.db-wal
+=======
+backend/check_*.js
+backend/energy.db
+
+# Database files & backups
+backend/data/energy.db
+backend/data/energy.db.corrupted.backup
+>>>>>>> Stashed changes
 backend/data/backups/
 *.db-shm
 *.db-wal
