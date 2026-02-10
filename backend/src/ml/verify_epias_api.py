@@ -2,15 +2,22 @@
 # -*- coding: utf-8 -*-
 """
 EPİAŞ API Dogrulama - Veritabanindaki degerler API ile ayni mi?
+EPİAş API Dogrulama - Veritabanindaki degerler API ile ayni mi?
 """
 
 import requests
 import sqlite3
 import os
 import time
+import sys
 from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 
 # EPİAŞ credentials (environment variables'dan al)
 EPIAS_USERNAME = os.getenv('EPIAS_USERNAME', 'your_username')

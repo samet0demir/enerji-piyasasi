@@ -8,11 +8,15 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import os
+import sys
 
-# Database
-script_dir = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(script_dir, '../../data/energy.db')
-conn = sqlite3.connect(db_path)
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
+conn = sqlite3.connect(DB_PATH)
 
 def compare_week(week_start, week_end, week_name):
     """Bir haftanın tahmin vs gerçek karşılaştırması"""

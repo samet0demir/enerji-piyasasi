@@ -9,8 +9,14 @@ import numpy as np
 import sqlite3
 from datetime import timedelta
 import os
+import sys
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 
 # v2 model egitimi yaptik, simdi manuel test yapalim
 # Model dosyasini yukleyemiyoruz (bug), ama egitim scriptini import edebiliriz

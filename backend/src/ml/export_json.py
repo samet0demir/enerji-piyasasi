@@ -15,9 +15,14 @@ import sqlite3
 import json
 import os
 from datetime import datetime, timedelta
+import sys
 
-# Veri tabanı ve output yolu
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), '../../public/forecasts.json')
 
 def get_current_week_monday():

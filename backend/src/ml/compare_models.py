@@ -10,8 +10,14 @@ from prophet.serialize import model_from_json
 import sqlite3
 from datetime import timedelta
 import os
+import sys
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 MODEL_V1 = os.path.join(os.path.dirname(__file__), '../../models/prophet_model.json')
 MODEL_V2 = os.path.join(os.path.dirname(__file__), '../../models/prophet_model_v2.json')
 

@@ -7,9 +7,16 @@ Ekstrem dusuk fiyatlarin dogrulamasi - EPİAŞ verisinde hata var mi?
 import pandas as pd
 import sqlite3
 import os
+import sys
 from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
+
 
 def analyze_extreme_prices():
     """Ekstrem dusuk fiyatlari detayli analiz et"""

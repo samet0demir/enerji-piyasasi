@@ -19,9 +19,14 @@ import numpy as np
 import sqlite3
 import os
 from datetime import datetime, timedelta
+import sys
 
-# Veri tabanı yolu
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 
 
 def load_combined_data(end_date=None):

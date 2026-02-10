@@ -8,8 +8,17 @@ import type { MCPItem, GenerationItem, ConsumptionItem } from '../types/epias.js
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Database dosya yolu
-const dbPath = path.join(__dirname, '../../data/energy.db');
+// Yolu .env'den al, yoksa varsayılanı kullan (prod için)
+// Local development'ta DB_PATH=data/energy-dev.db olmalı
+import dotenv from 'dotenv';
+dotenv.config({ path: path.join(__dirname, '../../.env') });
+
+const dbPathRel = process.env.DB_PATH || '../../data/energy.db';
+const dbPath = path.isAbsolute(dbPathRel)
+  ? dbPathRel
+  : path.join(__dirname, dbPathRel.startsWith('data/') ? '../../' + dbPathRel : dbPathRel);
+
+console.log(`🔌 Connecting to database at: ${dbPath}`);
 
 // Database bağlantısı oluştur
 export const db = new Database(dbPath);

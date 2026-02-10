@@ -9,9 +9,13 @@ Creates forecast_history and weekly_performance tables if they don't exist.
 import sqlite3
 import os
 
-# Database path
-script_dir = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(script_dir, '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    # If running from ml/ directory directly
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 
 def init_forecast_tables():
     """Create forecast_history and weekly_performance tables"""

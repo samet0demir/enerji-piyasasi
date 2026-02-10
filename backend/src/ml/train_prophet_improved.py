@@ -10,7 +10,12 @@ from prophet import Prophet
 import sqlite3
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../../data/energy.db')
+# Database path configuration
+try:
+    from db_config import DB_PATH
+except ImportError:
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from db_config import DB_PATH
 MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../models/prophet_model_v2.json')
 
 def load_data():
