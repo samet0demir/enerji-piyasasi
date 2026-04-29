@@ -144,9 +144,15 @@ def train_improved_model(end_date=None):
         # Metrikler
         mae = np.mean(np.abs(y_true - y_pred))
         rmse = np.sqrt(np.mean((y_true - y_pred)**2))
-        mape = np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+
+        # Sifira bolme hatasini onlemek icin maskeleme
+        non_zero_mask = y_true != 0
+        if np.any(non_zero_mask):
+            mape = np.mean(np.abs((y_true[non_zero_mask] - y_pred[non_zero_mask]) / y_true[non_zero_mask])) * 100
+        else:
+            mape = np.nan
     else:
-        mae, rmse, mape = 0, 0, 0
+        mae, rmse, mape = 0, 0, np.nan
 
     print(f"\n[*] Test Performansi:")
     print(f"    MAE: {mae:.2f} TRY")

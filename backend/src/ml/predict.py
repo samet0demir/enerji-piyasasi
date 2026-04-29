@@ -172,26 +172,42 @@ def save_forecast_to_db(forecast, week_start, week_end):
     conn = sqlite3.connect(DB_PATH)
 
     # Schema migration: eksik sütunları ekle (eski DB şeması uyumluluğu)
-    cursor = conn.execute("PRAGMA table_info(forecast_history)")
-    existing_columns = {row[1] for row in cursor.fetchall()}
-    for col in ['prophet_component', 'xgboost_component', 'lstm_component']:
-        if col not in existing_columns:
-            conn.execute(f"ALTER TABLE forecast_history ADD COLUMN {col} REAL")
-            print(f"   [migration] '{col}' sütunu eklendi")
-    conn.commit()
+    try:
+        cursor = conn.execute("PRAGMA table_info(forecast_history)")
+        existing_columns = {row[1] for row in cursor.fetchall()}
+        for col in ['prophet_component', 'xgboost_component', 'lstm_component']:
+            if col not in existing_columns:
+                conn.execute(f"ALTER TABLE forecast_history ADD COLUMN {col} REAL")
+                print(f"   [migration] '{col}' sütunu eklendi")
+        conn.commit()
+    except sqlite3.OperationalError as e:
+        print(f"   [migration-error] Şema güncellenirken hata oluştu: {e}")
+        # Hata olsa bile devam et (eğer tabloda yoksa insert patlayabilir, ama migration hatası yüzünden çökmesin)
 
     # Önce bu hafta için eski kayıtları sil (varsa)
     delete_query = "DELETE FROM forecast_history WHERE week_start = ?"
     conn.execute(delete_query, (week_start,))
 
-    # Yeni tahminleri ekle (bileşen değerleri opsiyonel)
-    insert_query = """
-        INSERT INTO forecast_history (
-            week_start, week_end, forecast_datetime, predicted_price,
-            prophet_component, xgboost_component, lstm_component
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """
+    # Şemanın son halini kontrol et (migration başarısız olmuş olabilir)
+    cursor = conn.execute("PRAGMA table_info(forecast_history)")
+    final_columns = {row[1] for row in cursor.fetchall()}
+    has_components = all(c in final_columns for c in ['prophet_component', 'xgboost_component', 'lstm_component'])
+
+    if has_components:
+        insert_query = """
+            INSERT INTO forecast_history (
+                week_start, week_end, forecast_datetime, predicted_price,
+                prophet_component, xgboost_component, lstm_component
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """
+    else:
+        insert_query = """
+            INSERT INTO forecast_history (
+                week_start, week_end, forecast_datetime, predicted_price
+            )
+            VALUES (?, ?, ?, ?)
+        """
 
     inserted = 0
     for _, row in forecast.iterrows():
@@ -199,12 +215,15 @@ def save_forecast_to_db(forecast, week_start, week_end):
         forecast_dt = row['ds'].strftime('%Y-%m-%d %H:%M:%S')
         predicted = float(row['yhat'] if 'yhat' in row else row.get('predicted_price', 0))
         
-        # Bileşen değerlerini al (varsa)
-        prophet = float(row['prophet_component']) if 'prophet_component' in row else None
-        xgboost = float(row['xgboost_component']) if 'xgboost_component' in row else None
-        lstm = float(row['lstm_component']) if 'lstm_component' in row else None
-
-        conn.execute(insert_query, (week_start, week_end, forecast_dt, predicted, prophet, xgboost, lstm))
+        if has_components:
+            # Bileşen değerlerini al (varsa)
+            prophet = float(row['prophet_component']) if 'prophet_component' in row else None
+            xgboost = float(row['xgboost_component']) if 'xgboost_component' in row else None
+            lstm = float(row['lstm_component']) if 'lstm_component' in row else None
+            conn.execute(insert_query, (week_start, week_end, forecast_dt, predicted, prophet, xgboost, lstm))
+        else:
+            conn.execute(insert_query, (week_start, week_end, forecast_dt, predicted))
+            
         inserted += 1
 
     conn.commit()
