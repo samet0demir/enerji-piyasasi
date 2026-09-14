@@ -1,2037 +1,2045 @@
 {
-  "generated_at": "2026-09-07T08:44:38.696334",
+  "generated_at": "2026-09-14T09:22:20.254921",
   "current_week": {
-    "start": "2026-09-07",
-    "end": "2026-09-13",
+    "start": "2026-09-14",
+    "end": "2026-09-20",
     "forecasts": [
       {
-        "datetime": "2026-09-07 00:00:00",
-        "predicted": 2854.03,
+        "datetime": "2026-09-14 00:00:00",
+        "predicted": 2683.67,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 01:00:00",
-        "predicted": 2812.78,
+        "datetime": "2026-09-14 01:00:00",
+        "predicted": 2641.44,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 02:00:00",
-        "predicted": 2778.48,
+        "datetime": "2026-09-14 02:00:00",
+        "predicted": 2605.94,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 03:00:00",
-        "predicted": 2716.97,
+        "datetime": "2026-09-14 03:00:00",
+        "predicted": 2543.85,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 04:00:00",
-        "predicted": 2654.55,
+        "datetime": "2026-09-14 04:00:00",
+        "predicted": 2481.63,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 05:00:00",
-        "predicted": 2653.17,
+        "datetime": "2026-09-14 05:00:00",
+        "predicted": 2480.42,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 06:00:00",
-        "predicted": 2742.85,
+        "datetime": "2026-09-14 06:00:00",
+        "predicted": 2569.21,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 07:00:00",
-        "predicted": 2876.95,
+        "datetime": "2026-09-14 07:00:00",
+        "predicted": 2701.08,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 08:00:00",
-        "predicted": 2956.75,
+        "datetime": "2026-09-14 08:00:00",
+        "predicted": 2778.21,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 09:00:00",
-        "predicted": 2907.95,
+        "datetime": "2026-09-14 09:00:00",
+        "predicted": 2727.63,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 10:00:00",
-        "predicted": 2742.77,
+        "datetime": "2026-09-14 10:00:00",
+        "predicted": 2562.18,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 11:00:00",
-        "predicted": 2554.14,
+        "datetime": "2026-09-14 11:00:00",
+        "predicted": 2374.33,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 12:00:00",
-        "predicted": 2449.65,
+        "datetime": "2026-09-14 12:00:00",
+        "predicted": 2270.63,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 13:00:00",
-        "predicted": 2483.66,
+        "datetime": "2026-09-14 13:00:00",
+        "predicted": 2305.0,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 14:00:00",
-        "predicted": 2641.01,
+        "datetime": "2026-09-14 14:00:00",
+        "predicted": 2462.76,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 15:00:00",
-        "predicted": 2872.61,
+        "datetime": "2026-09-14 15:00:00",
+        "predicted": 2695.65,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 16:00:00",
-        "predicted": 3137.58,
+        "datetime": "2026-09-14 16:00:00",
+        "predicted": 2962.98,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 17:00:00",
-        "predicted": 3410.51,
+        "datetime": "2026-09-14 17:00:00",
+        "predicted": 3238.46,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 18:00:00",
-        "predicted": 3657.68,
+        "datetime": "2026-09-14 18:00:00",
+        "predicted": 3487.14,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 19:00:00",
-        "predicted": 3822.75,
+        "datetime": "2026-09-14 19:00:00",
+        "predicted": 3652.17,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 20:00:00",
-        "predicted": 3851.12,
+        "datetime": "2026-09-14 20:00:00",
+        "predicted": 3679.56,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 21:00:00",
-        "predicted": 3735.89,
+        "datetime": "2026-09-14 21:00:00",
+        "predicted": 3563.58,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 22:00:00",
-        "predicted": 3537.6,
+        "datetime": "2026-09-14 22:00:00",
+        "predicted": 3365.37,
         "actual": null
       },
       {
-        "datetime": "2026-09-07 23:00:00",
-        "predicted": 3349.01,
+        "datetime": "2026-09-14 23:00:00",
+        "predicted": 3177.29,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 00:00:00",
-        "predicted": 3229.97,
+        "datetime": "2026-09-15 00:00:00",
+        "predicted": 3058.35,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 01:00:00",
-        "predicted": 3170.37,
+        "datetime": "2026-09-15 01:00:00",
+        "predicted": 2998.07,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 02:00:00",
-        "predicted": 3115.95,
+        "datetime": "2026-09-15 02:00:00",
+        "predicted": 2942.76,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 03:00:00",
-        "predicted": 3032.79,
+        "datetime": "2026-09-15 03:00:00",
+        "predicted": 2859.31,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 04:00:00",
-        "predicted": 2947.41,
+        "datetime": "2026-09-15 04:00:00",
+        "predicted": 2774.42,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 05:00:00",
-        "predicted": 2921.99,
+        "datetime": "2026-09-15 05:00:00",
+        "predicted": 2749.47,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 06:00:00",
-        "predicted": 2986.81,
+        "datetime": "2026-09-15 06:00:00",
+        "predicted": 2813.68,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 07:00:00",
-        "predicted": 3095.47,
+        "datetime": "2026-09-15 07:00:00",
+        "predicted": 2920.39,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 08:00:00",
-        "predicted": 3149.51,
+        "datetime": "2026-09-15 08:00:00",
+        "predicted": 2972.03,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 09:00:00",
-        "predicted": 3074.87,
+        "datetime": "2026-09-15 09:00:00",
+        "predicted": 2895.86,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 10:00:00",
-        "predicted": 2884.01,
+        "datetime": "2026-09-15 10:00:00",
+        "predicted": 2704.99,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 11:00:00",
-        "predicted": 2670.11,
+        "datetime": "2026-09-15 11:00:00",
+        "predicted": 2492.1,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 12:00:00",
-        "predicted": 2540.96,
+        "datetime": "2026-09-15 12:00:00",
+        "predicted": 2363.99,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 13:00:00",
-        "predicted": 2551.15,
+        "datetime": "2026-09-15 13:00:00",
+        "predicted": 2374.77,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 14:00:00",
-        "predicted": 2685.72,
+        "datetime": "2026-09-15 14:00:00",
+        "predicted": 2509.98,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 15:00:00",
-        "predicted": 2895.76,
+        "datetime": "2026-09-15 15:00:00",
+        "predicted": 2721.53,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 16:00:00",
-        "predicted": 3140.57,
+        "datetime": "2026-09-15 16:00:00",
+        "predicted": 2968.9,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 17:00:00",
-        "predicted": 3394.86,
+        "datetime": "2026-09-15 17:00:00",
+        "predicted": 3225.95,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 18:00:00",
-        "predicted": 3625.04,
+        "datetime": "2026-09-15 18:00:00",
+        "predicted": 3457.84,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 19:00:00",
-        "predicted": 3774.89,
+        "datetime": "2026-09-15 19:00:00",
+        "predicted": 3607.84,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 20:00:00",
-        "predicted": 3789.88,
+        "datetime": "2026-09-15 20:00:00",
+        "predicted": 3622.04,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 21:00:00",
-        "predicted": 3663.17,
+        "datetime": "2026-09-15 21:00:00",
+        "predicted": 3494.77,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 22:00:00",
-        "predicted": 3455.33,
+        "datetime": "2026-09-15 22:00:00",
+        "predicted": 3287.19,
         "actual": null
       },
       {
-        "datetime": "2026-09-08 23:00:00",
-        "predicted": 3259.13,
+        "datetime": "2026-09-15 23:00:00",
+        "predicted": 3091.69,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 00:00:00",
-        "predicted": 3134.42,
+        "datetime": "2026-09-16 00:00:00",
+        "predicted": 2967.25,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 01:00:00",
-        "predicted": 3071.04,
+        "datetime": "2026-09-16 01:00:00",
+        "predicted": 2903.38,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 02:00:00",
-        "predicted": 3014.7,
+        "datetime": "2026-09-16 02:00:00",
+        "predicted": 2846.32,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 03:00:00",
-        "predicted": 2931.38,
+        "datetime": "2026-09-16 03:00:00",
+        "predicted": 2762.89,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 04:00:00",
-        "predicted": 2847.51,
+        "datetime": "2026-09-16 04:00:00",
+        "predicted": 2679.69,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 05:00:00",
-        "predicted": 2825.18,
+        "datetime": "2026-09-16 05:00:00",
+        "predicted": 2657.99,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 06:00:00",
-        "predicted": 2894.52,
+        "datetime": "2026-09-16 06:00:00",
+        "predicted": 2726.89,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 07:00:00",
-        "predicted": 3009.0,
+        "datetime": "2026-09-16 07:00:00",
+        "predicted": 2839.59,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 08:00:00",
-        "predicted": 3070.0,
+        "datetime": "2026-09-16 08:00:00",
+        "predicted": 2898.36,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 09:00:00",
-        "predicted": 3003.31,
+        "datetime": "2026-09-16 09:00:00",
+        "predicted": 2830.31,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 10:00:00",
-        "predicted": 2821.21,
+        "datetime": "2026-09-16 10:00:00",
+        "predicted": 2648.37,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 11:00:00",
-        "predicted": 2616.71,
+        "datetime": "2026-09-16 11:00:00",
+        "predicted": 2445.04,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 12:00:00",
-        "predicted": 2497.44,
+        "datetime": "2026-09-16 12:00:00",
+        "predicted": 2326.96,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 13:00:00",
-        "predicted": 2517.8,
+        "datetime": "2026-09-16 13:00:00",
+        "predicted": 2348.06,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 14:00:00",
-        "predicted": 2662.64,
+        "datetime": "2026-09-16 14:00:00",
+        "predicted": 2493.69,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 15:00:00",
-        "predicted": 2882.9,
+        "datetime": "2026-09-16 15:00:00",
+        "predicted": 2715.61,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 16:00:00",
-        "predicted": 3137.71,
+        "datetime": "2026-09-16 16:00:00",
+        "predicted": 2973.12,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 17:00:00",
-        "predicted": 3401.62,
+        "datetime": "2026-09-16 17:00:00",
+        "predicted": 3239.92,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 18:00:00",
-        "predicted": 3640.91,
+        "datetime": "2026-09-16 18:00:00",
+        "predicted": 3481.05,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 19:00:00",
-        "predicted": 3799.22,
+        "datetime": "2026-09-16 19:00:00",
+        "predicted": 3639.61,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 20:00:00",
-        "predicted": 3821.87,
+        "datetime": "2026-09-16 20:00:00",
+        "predicted": 3661.59,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 21:00:00",
-        "predicted": 3701.96,
+        "datetime": "2026-09-16 21:00:00",
+        "predicted": 3541.21,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 22:00:00",
-        "predicted": 3499.94,
+        "datetime": "2026-09-16 22:00:00",
+        "predicted": 3339.54,
         "actual": null
       },
       {
-        "datetime": "2026-09-09 23:00:00",
-        "predicted": 3308.52,
+        "datetime": "2026-09-16 23:00:00",
+        "predicted": 3148.88,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 00:00:00",
-        "predicted": 3187.49,
+        "datetime": "2026-09-17 00:00:00",
+        "predicted": 3028.19,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 01:00:00",
-        "predicted": 3126.66,
+        "datetime": "2026-09-17 01:00:00",
+        "predicted": 2966.9,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 02:00:00",
-        "predicted": 3071.69,
+        "datetime": "2026-09-17 02:00:00",
+        "predicted": 2911.25,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 03:00:00",
-        "predicted": 2988.59,
+        "datetime": "2026-09-17 03:00:00",
+        "predicted": 2828.06,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 04:00:00",
-        "predicted": 2903.8,
+        "datetime": "2026-09-17 04:00:00",
+        "predicted": 2743.93,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 05:00:00",
-        "predicted": 2879.42,
+        "datetime": "2026-09-17 05:00:00",
+        "predicted": 2720.18,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 06:00:00",
-        "predicted": 2945.65,
+        "datetime": "2026-09-17 06:00:00",
+        "predicted": 2785.94,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 07:00:00",
-        "predicted": 3056.01,
+        "datetime": "2026-09-17 07:00:00",
+        "predicted": 2894.48,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 08:00:00",
-        "predicted": 3111.96,
+        "datetime": "2026-09-17 08:00:00",
+        "predicted": 2948.15,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 09:00:00",
-        "predicted": 3039.38,
+        "datetime": "2026-09-17 09:00:00",
+        "predicted": 2874.14,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 10:00:00",
-        "predicted": 2850.65,
+        "datetime": "2026-09-17 10:00:00",
+        "predicted": 2685.48,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 11:00:00",
-        "predicted": 2638.89,
+        "datetime": "2026-09-17 11:00:00",
+        "predicted": 2474.8,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 12:00:00",
-        "predicted": 2511.82,
+        "datetime": "2026-09-17 12:00:00",
+        "predicted": 2348.83,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 13:00:00",
-        "predicted": 2524.0,
+        "datetime": "2026-09-17 13:00:00",
+        "predicted": 2361.63,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 14:00:00",
-        "predicted": 2660.39,
+        "datetime": "2026-09-17 14:00:00",
+        "predicted": 2498.68,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 15:00:00",
-        "predicted": 2872.06,
+        "datetime": "2026-09-17 15:00:00",
+        "predicted": 2711.87,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 16:00:00",
-        "predicted": 3118.24,
+        "datetime": "2026-09-17 16:00:00",
+        "predicted": 2960.62,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 17:00:00",
-        "predicted": 3373.64,
+        "datetime": "2026-09-17 17:00:00",
+        "predicted": 3218.75,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 18:00:00",
-        "predicted": 3604.63,
+        "datetime": "2026-09-17 18:00:00",
+        "predicted": 3451.43,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 19:00:00",
-        "predicted": 3754.97,
+        "datetime": "2026-09-17 19:00:00",
+        "predicted": 3601.88,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 20:00:00",
-        "predicted": 3770.11,
+        "datetime": "2026-09-17 20:00:00",
+        "predicted": 3616.18,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 21:00:00",
-        "predicted": 3643.21,
+        "datetime": "2026-09-17 21:00:00",
+        "predicted": 3488.66,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 22:00:00",
-        "predicted": 3434.82,
+        "datetime": "2026-09-17 22:00:00",
+        "predicted": 3280.47,
         "actual": null
       },
       {
-        "datetime": "2026-09-10 23:00:00",
-        "predicted": 3237.72,
+        "datetime": "2026-09-17 23:00:00",
+        "predicted": 3083.99,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 00:00:00",
-        "predicted": 3111.76,
+        "datetime": "2026-09-18 00:00:00",
+        "predicted": 2958.22,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 01:00:00",
-        "predicted": 3046.79,
+        "datetime": "2026-09-18 01:00:00",
+        "predicted": 2892.67,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 02:00:00",
-        "predicted": 2988.52,
+        "datetime": "2026-09-18 02:00:00",
+        "predicted": 2833.59,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 03:00:00",
-        "predicted": 2902.94,
+        "datetime": "2026-09-18 03:00:00",
+        "predicted": 2747.81,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 04:00:00",
-        "predicted": 2816.52,
+        "datetime": "2026-09-18 04:00:00",
+        "predicted": 2661.95,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 05:00:00",
-        "predicted": 2791.32,
+        "datetime": "2026-09-18 05:00:00",
+        "predicted": 2637.29,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 06:00:00",
-        "predicted": 2857.51,
+        "datetime": "2026-09-18 06:00:00",
+        "predicted": 2702.95,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 07:00:00",
-        "predicted": 2968.58,
+        "datetime": "2026-09-18 07:00:00",
+        "predicted": 2812.14,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 08:00:00",
-        "predicted": 3025.92,
+        "datetime": "2026-09-18 08:00:00",
+        "predicted": 2867.15,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 09:00:00",
-        "predicted": 2955.32,
+        "datetime": "2026-09-18 09:00:00",
+        "predicted": 2795.1,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 10:00:00",
-        "predicted": 2769.09,
+        "datetime": "2026-09-18 10:00:00",
+        "predicted": 2608.94,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 11:00:00",
-        "predicted": 2560.23,
+        "datetime": "2026-09-18 11:00:00",
+        "predicted": 2401.18,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 12:00:00",
-        "predicted": 2436.38,
+        "datetime": "2026-09-18 12:00:00",
+        "predicted": 2278.45,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 13:00:00",
-        "predicted": 2451.96,
+        "datetime": "2026-09-18 13:00:00",
+        "predicted": 2294.72,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 14:00:00",
-        "predicted": 2591.83,
+        "datetime": "2026-09-18 14:00:00",
+        "predicted": 2435.31,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 15:00:00",
-        "predicted": 2806.9,
+        "datetime": "2026-09-18 15:00:00",
+        "predicted": 2652.0,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 16:00:00",
-        "predicted": 3056.31,
+        "datetime": "2026-09-18 16:00:00",
+        "predicted": 2904.08,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 17:00:00",
-        "predicted": 3314.61,
+        "datetime": "2026-09-18 17:00:00",
+        "predicted": 3165.25,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 18:00:00",
-        "predicted": 3548.07,
+        "datetime": "2026-09-18 18:00:00",
+        "predicted": 3400.53,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 19:00:00",
-        "predicted": 3700.3,
+        "datetime": "2026-09-18 19:00:00",
+        "predicted": 3553.03,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 20:00:00",
-        "predicted": 3716.64,
+        "datetime": "2026-09-18 20:00:00",
+        "predicted": 3568.7,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 21:00:00",
-        "predicted": 3590.15,
+        "datetime": "2026-09-18 21:00:00",
+        "predicted": 3441.77,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 22:00:00",
-        "predicted": 3381.28,
+        "datetime": "2026-09-18 22:00:00",
+        "predicted": 3233.29,
         "actual": null
       },
       {
-        "datetime": "2026-09-11 23:00:00",
-        "predicted": 3182.71,
+        "datetime": "2026-09-18 23:00:00",
+        "predicted": 3035.54,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 00:00:00",
-        "predicted": 3054.22,
+        "datetime": "2026-09-19 00:00:00",
+        "predicted": 2907.44,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 01:00:00",
-        "predicted": 2985.59,
+        "datetime": "2026-09-19 01:00:00",
+        "predicted": 2838.45,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 02:00:00",
-        "predicted": 2922.48,
+        "datetime": "2026-09-19 02:00:00",
+        "predicted": 2774.75,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 03:00:00",
-        "predicted": 2830.88,
+        "datetime": "2026-09-19 03:00:00",
+        "predicted": 2683.17,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 04:00:00",
-        "predicted": 2737.22,
+        "datetime": "2026-09-19 04:00:00",
+        "predicted": 2590.29,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 05:00:00",
-        "predicted": 2703.58,
+        "datetime": "2026-09-19 05:00:00",
+        "predicted": 2557.41,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 06:00:00",
-        "predicted": 2760.17,
+        "datetime": "2026-09-19 06:00:00",
+        "predicted": 2613.66,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 07:00:00",
-        "predicted": 2860.49,
+        "datetime": "2026-09-19 07:00:00",
+        "predicted": 2712.31,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 08:00:00",
-        "predicted": 2906.02,
+        "datetime": "2026-09-19 08:00:00",
+        "predicted": 2755.71,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 09:00:00",
-        "predicted": 2822.64,
+        "datetime": "2026-09-19 09:00:00",
+        "predicted": 2671.05,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 10:00:00",
-        "predicted": 2622.73,
+        "datetime": "2026-09-19 10:00:00",
+        "predicted": 2471.38,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 11:00:00",
-        "predicted": 2399.44,
+        "datetime": "2026-09-19 11:00:00",
+        "predicted": 2249.34,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 12:00:00",
-        "predicted": 2260.54,
+        "datetime": "2026-09-19 12:00:00",
+        "predicted": 2111.7,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 13:00:00",
-        "predicted": 2260.58,
+        "datetime": "2026-09-19 13:00:00",
+        "predicted": 2112.54,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 14:00:00",
-        "predicted": 2384.59,
+        "datetime": "2026-09-19 14:00:00",
+        "predicted": 2237.38,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 15:00:00",
-        "predicted": 2583.67,
+        "datetime": "2026-09-19 15:00:00",
+        "predicted": 2438.16,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 16:00:00",
-        "predicted": 2817.12,
+        "datetime": "2026-09-19 16:00:00",
+        "predicted": 2674.34,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 17:00:00",
-        "predicted": 3059.71,
+        "datetime": "2026-09-19 17:00:00",
+        "predicted": 2919.83,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 18:00:00",
-        "predicted": 3277.88,
+        "datetime": "2026-09-19 18:00:00",
+        "predicted": 3139.85,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 19:00:00",
-        "predicted": 3415.46,
+        "datetime": "2026-09-19 19:00:00",
+        "predicted": 3277.69,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 20:00:00",
-        "predicted": 3417.99,
+        "datetime": "2026-09-19 20:00:00",
+        "predicted": 3279.53,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 21:00:00",
-        "predicted": 3278.72,
+        "datetime": "2026-09-19 21:00:00",
+        "predicted": 3139.77,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 22:00:00",
-        "predicted": 3058.29,
+        "datetime": "2026-09-19 22:00:00",
+        "predicted": 2919.66,
         "actual": null
       },
       {
-        "datetime": "2026-09-12 23:00:00",
-        "predicted": 2849.59,
+        "datetime": "2026-09-19 23:00:00",
+        "predicted": 2711.69,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 00:00:00",
-        "predicted": 2712.57,
+        "datetime": "2026-09-20 00:00:00",
+        "predicted": 2574.96,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 01:00:00",
-        "predicted": 2637.17,
+        "datetime": "2026-09-20 01:00:00",
+        "predicted": 2499.07,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 02:00:00",
-        "predicted": 2569.23,
+        "datetime": "2026-09-20 02:00:00",
+        "predicted": 2430.39,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 03:00:00",
-        "predicted": 2474.86,
+        "datetime": "2026-09-20 03:00:00",
+        "predicted": 2335.87,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 04:00:00",
-        "predicted": 2380.61,
+        "datetime": "2026-09-20 04:00:00",
+        "predicted": 2242.23,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 05:00:00",
-        "predicted": 2348.67,
+        "datetime": "2026-09-20 05:00:00",
+        "predicted": 2210.87,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 06:00:00",
-        "predicted": 2409.33,
+        "datetime": "2026-09-20 06:00:00",
+        "predicted": 2271.0,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 07:00:00",
-        "predicted": 2516.17,
+        "datetime": "2026-09-20 07:00:00",
+        "predicted": 2375.96,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 08:00:00",
-        "predicted": 2570.68,
+        "datetime": "2026-09-20 08:00:00",
+        "predicted": 2428.12,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 09:00:00",
-        "predicted": 2498.75,
+        "datetime": "2026-09-20 09:00:00",
+        "predicted": 2354.71,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 10:00:00",
-        "predicted": 1655.13,
+        "datetime": "2026-09-20 10:00:00",
+        "predicted": 1509.37,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 11:00:00",
-        "predicted": 1448.21,
+        "datetime": "2026-09-20 11:00:00",
+        "predicted": 1303.48,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 12:00:00",
-        "predicted": 1328.03,
+        "datetime": "2026-09-20 12:00:00",
+        "predicted": 1184.35,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 13:00:00",
-        "predicted": 1349.1,
+        "datetime": "2026-09-20 13:00:00",
+        "predicted": 1206.0,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 14:00:00",
-        "predicted": 1496.3,
+        "datetime": "2026-09-20 14:00:00",
+        "predicted": 1353.83,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 15:00:00",
-        "predicted": 2378.26,
+        "datetime": "2026-09-20 15:00:00",
+        "predicted": 2239.03,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 16:00:00",
-        "predicted": 2638.83,
+        "datetime": "2026-09-20 16:00:00",
+        "predicted": 2502.15,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 17:00:00",
-        "predicted": 2910.24,
+        "datetime": "2026-09-20 17:00:00",
+        "predicted": 2776.29,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 18:00:00",
-        "predicted": 3158.74,
+        "datetime": "2026-09-20 18:00:00",
+        "predicted": 3026.47,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 19:00:00",
-        "predicted": 3327.94,
+        "datetime": "2026-09-20 19:00:00",
+        "predicted": 3195.79,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 20:00:00",
-        "predicted": 3363.15,
+        "datetime": "2026-09-20 20:00:00",
+        "predicted": 3230.19,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 21:00:00",
-        "predicted": 3257.39,
+        "datetime": "2026-09-20 21:00:00",
+        "predicted": 3123.82,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 22:00:00",
-        "predicted": 3071.03,
+        "datetime": "2026-09-20 22:00:00",
+        "predicted": 2937.7,
         "actual": null
       },
       {
-        "datetime": "2026-09-13 23:00:00",
-        "predicted": 2896.7,
+        "datetime": "2026-09-20 23:00:00",
+        "predicted": 2764.03,
         "actual": null
       }
     ]
   },
   "last_week_performance": {
-    "week": "2026-08-31 - 2026-09-06",
-    "mape": 29.15,
-    "mae": 456.13,
-    "rmse": 599.54,
+    "week": "2026-09-07 - 2026-09-13",
+    "mape": 66.55,
+    "mae": 629.92,
+    "rmse": 827.21,
     "total_predictions": 168
   },
   "last_week_comparison": [
     {
-      "datetime": "2026-08-31 00:00:00",
-      "predicted": 2925.22,
-      "actual": 1999.99,
-      "error": 925.23,
-      "error_percent": 46.26
+      "datetime": "2026-09-07 00:00:00",
+      "predicted": 2854.03,
+      "actual": 3475.01,
+      "error": 620.98,
+      "error_percent": 17.87
     },
     {
-      "datetime": "2026-08-31 01:00:00",
-      "predicted": 2884.73,
-      "actual": 1518.41,
-      "error": 1366.32,
-      "error_percent": 89.98
+      "datetime": "2026-09-07 01:00:00",
+      "predicted": 2812.78,
+      "actual": 2250.0,
+      "error": 562.78,
+      "error_percent": 25.01
     },
     {
-      "datetime": "2026-08-31 02:00:00",
-      "predicted": 2851.41,
-      "actual": 2238.29,
-      "error": 613.12,
-      "error_percent": 27.39
+      "datetime": "2026-09-07 02:00:00",
+      "predicted": 2778.48,
+      "actual": 1500.01,
+      "error": 1278.47,
+      "error_percent": 85.23
     },
     {
-      "datetime": "2026-08-31 03:00:00",
-      "predicted": 2790.7,
-      "actual": 2470.0,
-      "error": 320.7,
-      "error_percent": 12.98
+      "datetime": "2026-09-07 03:00:00",
+      "predicted": 2716.97,
+      "actual": 1699.97,
+      "error": 1017.0,
+      "error_percent": 59.82
     },
     {
-      "datetime": "2026-08-31 04:00:00",
-      "predicted": 2728.63,
-      "actual": 2200.01,
-      "error": 528.62,
-      "error_percent": 24.03
+      "datetime": "2026-09-07 04:00:00",
+      "predicted": 2654.55,
+      "actual": 1699.97,
+      "error": 954.58,
+      "error_percent": 56.15
     },
     {
-      "datetime": "2026-08-31 05:00:00",
-      "predicted": 2727.41,
-      "actual": 2055.0,
-      "error": 672.41,
-      "error_percent": 32.72
+      "datetime": "2026-09-07 05:00:00",
+      "predicted": 2653.17,
+      "actual": 1699.97,
+      "error": 953.2,
+      "error_percent": 56.07
     },
     {
-      "datetime": "2026-08-31 06:00:00",
-      "predicted": 2817.73,
-      "actual": 3000.0,
-      "error": 182.27,
-      "error_percent": 6.08
-    },
-    {
-      "datetime": "2026-08-31 07:00:00",
-      "predicted": 2953.39,
-      "actual": 2300.0,
-      "error": 653.39,
-      "error_percent": 28.41
-    },
-    {
-      "datetime": "2026-08-31 08:00:00",
-      "predicted": 3035.5,
-      "actual": 2330.01,
-      "error": 705.49,
-      "error_percent": 30.28
-    },
-    {
-      "datetime": "2026-08-31 09:00:00",
-      "predicted": 2988.91,
-      "actual": 2500.0,
-      "error": 488.91,
-      "error_percent": 19.56
-    },
-    {
-      "datetime": "2026-08-31 10:00:00",
-      "predicted": 2824.99,
-      "actual": 1499.98,
-      "error": 1325.01,
-      "error_percent": 88.34
-    },
-    {
-      "datetime": "2026-08-31 11:00:00",
-      "predicted": 2636.44,
-      "actual": 2238.3,
-      "error": 398.14,
-      "error_percent": 17.79
-    },
-    {
-      "datetime": "2026-08-31 12:00:00",
-      "predicted": 2531.26,
-      "actual": 1499.98,
-      "error": 1031.28,
-      "error_percent": 68.75
-    },
-    {
-      "datetime": "2026-08-31 13:00:00",
-      "predicted": 2564.51,
-      "actual": 3000.0,
-      "error": 435.49,
-      "error_percent": 14.52
-    },
-    {
-      "datetime": "2026-08-31 14:00:00",
-      "predicted": 2721.39,
-      "actual": 2500.0,
-      "error": 221.39,
-      "error_percent": 8.86
-    },
-    {
-      "datetime": "2026-08-31 15:00:00",
-      "predicted": 2952.68,
-      "actual": 1499.98,
-      "error": 1452.7,
-      "error_percent": 96.85
-    },
-    {
-      "datetime": "2026-08-31 16:00:00",
-      "predicted": 3217.25,
-      "actual": 3000.0,
-      "error": 217.25,
-      "error_percent": 7.24
-    },
-    {
-      "datetime": "2026-08-31 17:00:00",
-      "predicted": 3489.66,
-      "actual": 3700.0,
-      "error": 210.34,
-      "error_percent": 5.68
-    },
-    {
-      "datetime": "2026-08-31 18:00:00",
-      "predicted": 3736.52,
-      "actual": 3300.0,
-      "error": 436.52,
-      "error_percent": 13.23
-    },
-    {
-      "datetime": "2026-08-31 19:00:00",
-      "predicted": 3901.83,
-      "actual": 3975.0,
-      "error": 73.17,
-      "error_percent": 1.84
-    },
-    {
-      "datetime": "2026-08-31 20:00:00",
-      "predicted": 3930.9,
-      "actual": 3800.01,
-      "error": 130.89,
-      "error_percent": 3.44
-    },
-    {
-      "datetime": "2026-08-31 21:00:00",
-      "predicted": 3816.44,
-      "actual": 3649.99,
-      "error": 166.45,
-      "error_percent": 4.56
-    },
-    {
-      "datetime": "2026-08-31 22:00:00",
-      "predicted": 3618.57,
-      "actual": 3400.01,
-      "error": 218.56,
-      "error_percent": 6.43
-    },
-    {
-      "datetime": "2026-08-31 23:00:00",
-      "predicted": 3430.04,
-      "actual": 3050.0,
-      "error": 380.04,
-      "error_percent": 12.46
-    },
-    {
-      "datetime": "2026-09-01 00:00:00",
-      "predicted": 3311.06,
-      "actual": 3846.0,
-      "error": 534.94,
-      "error_percent": 13.91
-    },
-    {
-      "datetime": "2026-09-01 01:00:00",
-      "predicted": 3251.82,
-      "actual": 3532.69,
-      "error": 280.87,
-      "error_percent": 7.95
-    },
-    {
-      "datetime": "2026-09-01 02:00:00",
-      "predicted": 3197.99,
-      "actual": 3397.24,
-      "error": 199.25,
-      "error_percent": 5.87
-    },
-    {
-      "datetime": "2026-09-01 03:00:00",
-      "predicted": 3115.22,
-      "actual": 3023.6,
-      "error": 91.62,
-      "error_percent": 3.03
-    },
-    {
-      "datetime": "2026-09-01 04:00:00",
-      "predicted": 3029.81,
-      "actual": 2900.01,
-      "error": 129.8,
-      "error_percent": 4.48
-    },
-    {
-      "datetime": "2026-09-01 05:00:00",
-      "predicted": 3004.18,
-      "actual": 3509.0,
-      "error": 504.82,
-      "error_percent": 14.39
-    },
-    {
-      "datetime": "2026-09-01 06:00:00",
-      "predicted": 3069.27,
-      "actual": 3147.96,
-      "error": 78.69,
-      "error_percent": 2.5
-    },
-    {
-      "datetime": "2026-09-01 07:00:00",
-      "predicted": 3179.15,
-      "actual": 3075.43,
-      "error": 103.72,
-      "error_percent": 3.37
-    },
-    {
-      "datetime": "2026-09-01 08:00:00",
-      "predicted": 3235.16,
-      "actual": 3860.01,
-      "error": 624.85,
-      "error_percent": 16.19
-    },
-    {
-      "datetime": "2026-09-01 09:00:00",
-      "predicted": 3162.43,
-      "actual": 3333.34,
-      "error": 170.91,
-      "error_percent": 5.13
-    },
-    {
-      "datetime": "2026-09-01 10:00:00",
-      "predicted": 2972.55,
-      "actual": 2787.76,
-      "error": 184.79,
-      "error_percent": 6.63
-    },
-    {
-      "datetime": "2026-09-01 11:00:00",
-      "predicted": 2758.47,
-      "actual": 2438.25,
-      "error": 320.22,
-      "error_percent": 13.13
-    },
-    {
-      "datetime": "2026-09-01 12:00:00",
-      "predicted": 2628.41,
+      "datetime": "2026-09-07 06:00:00",
+      "predicted": 2742.85,
       "actual": 1555.99,
-      "error": 1072.42,
-      "error_percent": 68.92
+      "error": 1186.86,
+      "error_percent": 76.28
     },
     {
-      "datetime": "2026-09-01 13:00:00",
-      "predicted": 2637.65,
-      "actual": 3023.6,
-      "error": 385.95,
-      "error_percent": 12.76
+      "datetime": "2026-09-07 07:00:00",
+      "predicted": 2876.95,
+      "actual": 500.01,
+      "error": 2376.94,
+      "error_percent": 475.38
     },
     {
-      "datetime": "2026-09-01 14:00:00",
-      "predicted": 2771.59,
+      "datetime": "2026-09-07 08:00:00",
+      "predicted": 2956.75,
+      "actual": 2288.29,
+      "error": 668.46,
+      "error_percent": 29.21
+    },
+    {
+      "datetime": "2026-09-07 09:00:00",
+      "predicted": 2907.95,
+      "actual": 1699.97,
+      "error": 1207.98,
+      "error_percent": 71.06
+    },
+    {
+      "datetime": "2026-09-07 10:00:00",
+      "predicted": 2742.77,
+      "actual": 700.0,
+      "error": 2042.77,
+      "error_percent": 291.82
+    },
+    {
+      "datetime": "2026-09-07 11:00:00",
+      "predicted": 2554.14,
+      "actual": 1256.0,
+      "error": 1298.14,
+      "error_percent": 103.36
+    },
+    {
+      "datetime": "2026-09-07 12:00:00",
+      "predicted": 2449.65,
+      "actual": 500.01,
+      "error": 1949.64,
+      "error_percent": 389.92
+    },
+    {
+      "datetime": "2026-09-07 13:00:00",
+      "predicted": 2483.66,
+      "actual": 1400.0,
+      "error": 1083.66,
+      "error_percent": 77.4
+    },
+    {
+      "datetime": "2026-09-07 14:00:00",
+      "predicted": 2641.01,
+      "actual": 1699.97,
+      "error": 941.04,
+      "error_percent": 55.36
+    },
+    {
+      "datetime": "2026-09-07 15:00:00",
+      "predicted": 2872.61,
+      "actual": 1848.42,
+      "error": 1024.19,
+      "error_percent": 55.41
+    },
+    {
+      "datetime": "2026-09-07 16:00:00",
+      "predicted": 3137.58,
+      "actual": 2875.0,
+      "error": 262.58,
+      "error_percent": 9.13
+    },
+    {
+      "datetime": "2026-09-07 17:00:00",
+      "predicted": 3410.51,
+      "actual": 3977.77,
+      "error": 567.26,
+      "error_percent": 14.26
+    },
+    {
+      "datetime": "2026-09-07 18:00:00",
+      "predicted": 3657.68,
+      "actual": 3827.42,
+      "error": 169.74,
+      "error_percent": 4.43
+    },
+    {
+      "datetime": "2026-09-07 19:00:00",
+      "predicted": 3822.75,
+      "actual": 4000.01,
+      "error": 177.26,
+      "error_percent": 4.43
+    },
+    {
+      "datetime": "2026-09-07 20:00:00",
+      "predicted": 3851.12,
+      "actual": 3977.77,
+      "error": 126.65,
+      "error_percent": 3.18
+    },
+    {
+      "datetime": "2026-09-07 21:00:00",
+      "predicted": 3735.89,
+      "actual": 3529.99,
+      "error": 205.9,
+      "error_percent": 5.83
+    },
+    {
+      "datetime": "2026-09-07 22:00:00",
+      "predicted": 3537.6,
+      "actual": 3323.7,
+      "error": 213.9,
+      "error_percent": 6.44
+    },
+    {
+      "datetime": "2026-09-07 23:00:00",
+      "predicted": 3349.01,
+      "actual": 3099.0,
+      "error": 250.01,
+      "error_percent": 8.07
+    },
+    {
+      "datetime": "2026-09-08 00:00:00",
+      "predicted": 3229.97,
+      "actual": 2893.99,
+      "error": 335.98,
+      "error_percent": 11.61
+    },
+    {
+      "datetime": "2026-09-08 01:00:00",
+      "predicted": 3170.37,
+      "actual": 2475.0,
+      "error": 695.37,
+      "error_percent": 28.1
+    },
+    {
+      "datetime": "2026-09-08 02:00:00",
+      "predicted": 3115.95,
+      "actual": 1999.97,
+      "error": 1115.98,
+      "error_percent": 55.8
+    },
+    {
+      "datetime": "2026-09-08 03:00:00",
+      "predicted": 3032.79,
+      "actual": 1999.97,
+      "error": 1032.82,
+      "error_percent": 51.64
+    },
+    {
+      "datetime": "2026-09-08 04:00:00",
+      "predicted": 2947.41,
+      "actual": 1282.0,
+      "error": 1665.41,
+      "error_percent": 129.91
+    },
+    {
+      "datetime": "2026-09-08 05:00:00",
+      "predicted": 2921.99,
+      "actual": 1928.99,
+      "error": 993.0,
+      "error_percent": 51.48
+    },
+    {
+      "datetime": "2026-09-08 06:00:00",
+      "predicted": 2986.81,
+      "actual": 2000.01,
+      "error": 986.8,
+      "error_percent": 49.34
+    },
+    {
+      "datetime": "2026-09-08 07:00:00",
+      "predicted": 3095.47,
+      "actual": 1999.98,
+      "error": 1095.49,
+      "error_percent": 54.78
+    },
+    {
+      "datetime": "2026-09-08 08:00:00",
+      "predicted": 3149.51,
+      "actual": 2350.0,
+      "error": 799.51,
+      "error_percent": 34.02
+    },
+    {
+      "datetime": "2026-09-08 09:00:00",
+      "predicted": 3074.87,
+      "actual": 1484.24,
+      "error": 1590.63,
+      "error_percent": 107.17
+    },
+    {
+      "datetime": "2026-09-08 10:00:00",
+      "predicted": 2884.01,
+      "actual": 720.0,
+      "error": 2164.01,
+      "error_percent": 300.56
+    },
+    {
+      "datetime": "2026-09-08 11:00:00",
+      "predicted": 2670.11,
+      "actual": 800.01,
+      "error": 1870.1,
+      "error_percent": 233.76
+    },
+    {
+      "datetime": "2026-09-08 12:00:00",
+      "predicted": 2540.96,
+      "actual": 300.0,
+      "error": 2240.96,
+      "error_percent": 746.99
+    },
+    {
+      "datetime": "2026-09-08 13:00:00",
+      "predicted": 2551.15,
+      "actual": 955.99,
+      "error": 1595.16,
+      "error_percent": 166.86
+    },
+    {
+      "datetime": "2026-09-08 14:00:00",
+      "predicted": 2685.72,
+      "actual": 1281.99,
+      "error": 1403.73,
+      "error_percent": 109.5
+    },
+    {
+      "datetime": "2026-09-08 15:00:00",
+      "predicted": 2895.76,
+      "actual": 1499.99,
+      "error": 1395.77,
+      "error_percent": 93.05
+    },
+    {
+      "datetime": "2026-09-08 16:00:00",
+      "predicted": 3140.57,
+      "actual": 2000.0,
+      "error": 1140.57,
+      "error_percent": 57.03
+    },
+    {
+      "datetime": "2026-09-08 17:00:00",
+      "predicted": 3394.86,
+      "actual": 3400.01,
+      "error": 5.15,
+      "error_percent": 0.15
+    },
+    {
+      "datetime": "2026-09-08 18:00:00",
+      "predicted": 3625.04,
       "actual": 3300.0,
-      "error": 528.41,
-      "error_percent": 16.01
+      "error": 325.04,
+      "error_percent": 9.85
     },
     {
-      "datetime": "2026-09-01 15:00:00",
-      "predicted": 2981.19,
-      "actual": 2505.0,
-      "error": 476.19,
-      "error_percent": 19.01
+      "datetime": "2026-09-08 19:00:00",
+      "predicted": 3774.89,
+      "actual": 4100.0,
+      "error": 325.11,
+      "error_percent": 7.93
     },
     {
-      "datetime": "2026-09-01 16:00:00",
-      "predicted": 3225.49,
-      "actual": 3649.99,
-      "error": 424.5,
-      "error_percent": 11.63
-    },
-    {
-      "datetime": "2026-09-01 17:00:00",
-      "predicted": 3479.2,
-      "actual": 3890.99,
-      "error": 411.79,
-      "error_percent": 10.58
-    },
-    {
-      "datetime": "2026-09-01 18:00:00",
-      "predicted": 3709.05,
-      "actual": 4138.16,
-      "error": 429.11,
-      "error_percent": 10.37
-    },
-    {
-      "datetime": "2026-09-01 19:00:00",
-      "predicted": 3859.14,
-      "actual": 4295.0,
-      "error": 435.86,
-      "error_percent": 10.15
-    },
-    {
-      "datetime": "2026-09-01 20:00:00",
-      "predicted": 3874.87,
-      "actual": 3900.0,
-      "error": 25.13,
-      "error_percent": 0.64
-    },
-    {
-      "datetime": "2026-09-01 21:00:00",
-      "predicted": 3749.0,
-      "actual": 3876.01,
-      "error": 127.01,
+      "datetime": "2026-09-08 20:00:00",
+      "predicted": 3789.88,
+      "actual": 3918.42,
+      "error": 128.54,
       "error_percent": 3.28
     },
     {
-      "datetime": "2026-09-01 22:00:00",
-      "predicted": 3541.68,
-      "actual": 3400.0,
-      "error": 141.68,
-      "error_percent": 4.17
+      "datetime": "2026-09-08 21:00:00",
+      "predicted": 3663.17,
+      "actual": 3840.0,
+      "error": 176.83,
+      "error_percent": 4.6
     },
     {
-      "datetime": "2026-09-01 23:00:00",
-      "predicted": 3345.67,
-      "actual": 3489.01,
-      "error": 143.34,
-      "error_percent": 4.11
+      "datetime": "2026-09-08 22:00:00",
+      "predicted": 3455.33,
+      "actual": 3237.85,
+      "error": 217.48,
+      "error_percent": 6.72
     },
     {
-      "datetime": "2026-09-02 00:00:00",
-      "predicted": 3221.18,
-      "actual": 3850.0,
-      "error": 628.82,
-      "error_percent": 16.33
-    },
-    {
-      "datetime": "2026-09-02 01:00:00",
-      "predicted": 3158.35,
-      "actual": 3394.47,
-      "error": 236.12,
-      "error_percent": 6.96
-    },
-    {
-      "datetime": "2026-09-02 02:00:00",
-      "predicted": 3102.8,
+      "datetime": "2026-09-08 23:00:00",
+      "predicted": 3259.13,
       "actual": 2999.99,
-      "error": 102.81,
-      "error_percent": 3.43
+      "error": 259.14,
+      "error_percent": 8.64
     },
     {
-      "datetime": "2026-09-02 03:00:00",
-      "predicted": 3020.11,
-      "actual": 3250.0,
-      "error": 229.89,
-      "error_percent": 7.07
+      "datetime": "2026-09-09 00:00:00",
+      "predicted": 3134.42,
+      "actual": 3301.61,
+      "error": 167.19,
+      "error_percent": 5.06
     },
     {
-      "datetime": "2026-09-02 04:00:00",
-      "predicted": 2936.45,
-      "actual": 3300.0,
-      "error": 363.55,
-      "error_percent": 11.02
+      "datetime": "2026-09-09 01:00:00",
+      "predicted": 3071.04,
+      "actual": 3191.0,
+      "error": 119.96,
+      "error_percent": 3.76
     },
     {
-      "datetime": "2026-09-02 05:00:00",
-      "predicted": 2914.17,
-      "actual": 3396.25,
-      "error": 482.08,
-      "error_percent": 14.19
+      "datetime": "2026-09-09 02:00:00",
+      "predicted": 3014.7,
+      "actual": 2830.0,
+      "error": 184.7,
+      "error_percent": 6.53
     },
     {
-      "datetime": "2026-09-02 06:00:00",
-      "predicted": 2984.06,
-      "actual": 3777.77,
-      "error": 793.71,
-      "error_percent": 21.01
-    },
-    {
-      "datetime": "2026-09-02 07:00:00",
-      "predicted": 3100.05,
-      "actual": 2293.29,
-      "error": 806.76,
-      "error_percent": 35.18
-    },
-    {
-      "datetime": "2026-09-02 08:00:00",
-      "predicted": 3163.31,
-      "actual": 3499.99,
-      "error": 336.68,
-      "error_percent": 9.62
-    },
-    {
-      "datetime": "2026-09-02 09:00:00",
-      "predicted": 3098.82,
-      "actual": 2899.01,
-      "error": 199.81,
-      "error_percent": 6.89
-    },
-    {
-      "datetime": "2026-09-02 10:00:00",
-      "predicted": 2918.01,
+      "datetime": "2026-09-09 03:00:00",
+      "predicted": 2931.38,
       "actual": 2900.01,
-      "error": 18.0,
-      "error_percent": 0.62
+      "error": 31.37,
+      "error_percent": 1.08
     },
     {
-      "datetime": "2026-09-02 11:00:00",
-      "predicted": 2713.62,
-      "actual": 2900.0,
-      "error": 186.38,
-      "error_percent": 6.43
+      "datetime": "2026-09-09 04:00:00",
+      "predicted": 2847.51,
+      "actual": 2739.99,
+      "error": 107.52,
+      "error_percent": 3.92
     },
     {
-      "datetime": "2026-09-02 12:00:00",
-      "predicted": 2593.72,
-      "actual": 1800.0,
-      "error": 793.72,
-      "error_percent": 44.1
+      "datetime": "2026-09-09 05:00:00",
+      "predicted": 2825.18,
+      "actual": 2849.53,
+      "error": 24.35,
+      "error_percent": 0.85
     },
     {
-      "datetime": "2026-09-02 13:00:00",
-      "predicted": 2613.4,
-      "actual": 3119.99,
-      "error": 506.59,
-      "error_percent": 16.24
+      "datetime": "2026-09-09 06:00:00",
+      "predicted": 2894.52,
+      "actual": 2901.0,
+      "error": 6.48,
+      "error_percent": 0.22
     },
     {
-      "datetime": "2026-09-02 14:00:00",
-      "predicted": 2757.87,
-      "actual": 3217.67,
-      "error": 459.8,
-      "error_percent": 14.29
+      "datetime": "2026-09-09 07:00:00",
+      "predicted": 3009.0,
+      "actual": 1999.97,
+      "error": 1009.03,
+      "error_percent": 50.45
     },
     {
-      "datetime": "2026-09-02 15:00:00",
-      "predicted": 2977.95,
-      "actual": 3600.0,
-      "error": 622.05,
-      "error_percent": 17.28
-    },
-    {
-      "datetime": "2026-09-02 16:00:00",
-      "predicted": 3232.48,
-      "actual": 3370.01,
-      "error": 137.53,
-      "error_percent": 4.08
-    },
-    {
-      "datetime": "2026-09-02 17:00:00",
-      "predicted": 3496.03,
-      "actual": 3899.99,
-      "error": 403.96,
-      "error_percent": 10.36
-    },
-    {
-      "datetime": "2026-09-02 18:00:00",
-      "predicted": 3735.18,
-      "actual": 3800.01,
-      "error": 64.83,
-      "error_percent": 1.71
-    },
-    {
-      "datetime": "2026-09-02 19:00:00",
-      "predicted": 3893.89,
-      "actual": 4099.99,
-      "error": 206.1,
-      "error_percent": 5.03
-    },
-    {
-      "datetime": "2026-09-02 20:00:00",
-      "predicted": 3917.44,
-      "actual": 3900.0,
-      "error": 17.44,
-      "error_percent": 0.45
-    },
-    {
-      "datetime": "2026-09-02 21:00:00",
-      "predicted": 3798.48,
-      "actual": 3500.0,
-      "error": 298.48,
-      "error_percent": 8.53
-    },
-    {
-      "datetime": "2026-09-02 22:00:00",
-      "predicted": 3597.08,
-      "actual": 3487.45,
-      "error": 109.63,
-      "error_percent": 3.14
-    },
-    {
-      "datetime": "2026-09-02 23:00:00",
-      "predicted": 3405.91,
-      "actual": 3262.97,
-      "error": 142.94,
-      "error_percent": 4.38
-    },
-    {
-      "datetime": "2026-09-03 00:00:00",
-      "predicted": 3285.14,
-      "actual": 3700.0,
-      "error": 414.86,
-      "error_percent": 11.21
-    },
-    {
-      "datetime": "2026-09-03 01:00:00",
-      "predicted": 3224.86,
-      "actual": 3314.56,
-      "error": 89.7,
-      "error_percent": 2.71
-    },
-    {
-      "datetime": "2026-09-03 02:00:00",
-      "predicted": 3170.67,
-      "actual": 2899.0,
-      "error": 271.67,
-      "error_percent": 9.37
-    },
-    {
-      "datetime": "2026-09-03 03:00:00",
-      "predicted": 3088.15,
-      "actual": 3000.0,
-      "error": 88.15,
-      "error_percent": 2.94
-    },
-    {
-      "datetime": "2026-09-03 04:00:00",
-      "predicted": 3003.5,
-      "actual": 3000.0,
-      "error": 3.5,
-      "error_percent": 0.12
-    },
-    {
-      "datetime": "2026-09-03 05:00:00",
-      "predicted": 2979.08,
-      "actual": 2974.42,
-      "error": 4.66,
-      "error_percent": 0.16
-    },
-    {
-      "datetime": "2026-09-03 06:00:00",
-      "predicted": 3045.74,
+      "datetime": "2026-09-09 08:00:00",
+      "predicted": 3070.0,
       "actual": 2874.99,
-      "error": 170.75,
-      "error_percent": 5.94
+      "error": 195.01,
+      "error_percent": 6.78
     },
     {
-      "datetime": "2026-09-03 07:00:00",
-      "predicted": 3157.46,
-      "actual": 1999.0,
-      "error": 1158.46,
-      "error_percent": 57.95
+      "datetime": "2026-09-09 09:00:00",
+      "predicted": 3003.31,
+      "actual": 1999.98,
+      "error": 1003.33,
+      "error_percent": 50.17
     },
     {
-      "datetime": "2026-09-03 08:00:00",
-      "predicted": 3215.52,
+      "datetime": "2026-09-09 10:00:00",
+      "predicted": 2821.21,
+      "actual": 1999.97,
+      "error": 821.24,
+      "error_percent": 41.06
+    },
+    {
+      "datetime": "2026-09-09 11:00:00",
+      "predicted": 2616.71,
+      "actual": 1999.98,
+      "error": 616.73,
+      "error_percent": 30.84
+    },
+    {
+      "datetime": "2026-09-09 12:00:00",
+      "predicted": 2497.44,
+      "actual": 1249.99,
+      "error": 1247.45,
+      "error_percent": 99.8
+    },
+    {
+      "datetime": "2026-09-09 13:00:00",
+      "predicted": 2517.8,
+      "actual": 1999.98,
+      "error": 517.82,
+      "error_percent": 25.89
+    },
+    {
+      "datetime": "2026-09-09 14:00:00",
+      "predicted": 2662.64,
+      "actual": 1999.97,
+      "error": 662.67,
+      "error_percent": 33.13
+    },
+    {
+      "datetime": "2026-09-09 15:00:00",
+      "predicted": 2882.9,
+      "actual": 2900.01,
+      "error": 17.11,
+      "error_percent": 0.59
+    },
+    {
+      "datetime": "2026-09-09 16:00:00",
+      "predicted": 3137.71,
+      "actual": 3500.0,
+      "error": 362.29,
+      "error_percent": 10.35
+    },
+    {
+      "datetime": "2026-09-09 17:00:00",
+      "predicted": 3401.62,
+      "actual": 3850.0,
+      "error": 448.38,
+      "error_percent": 11.65
+    },
+    {
+      "datetime": "2026-09-09 18:00:00",
+      "predicted": 3640.91,
+      "actual": 3743.06,
+      "error": 102.15,
+      "error_percent": 2.73
+    },
+    {
+      "datetime": "2026-09-09 19:00:00",
+      "predicted": 3799.22,
+      "actual": 4100.0,
+      "error": 300.78,
+      "error_percent": 7.34
+    },
+    {
+      "datetime": "2026-09-09 20:00:00",
+      "predicted": 3821.87,
+      "actual": 3782.43,
+      "error": 39.44,
+      "error_percent": 1.04
+    },
+    {
+      "datetime": "2026-09-09 21:00:00",
+      "predicted": 3701.96,
+      "actual": 3534.65,
+      "error": 167.31,
+      "error_percent": 4.73
+    },
+    {
+      "datetime": "2026-09-09 22:00:00",
+      "predicted": 3499.94,
+      "actual": 3299.99,
+      "error": 199.95,
+      "error_percent": 6.06
+    },
+    {
+      "datetime": "2026-09-09 23:00:00",
+      "predicted": 3308.52,
+      "actual": 3404.24,
+      "error": 95.72,
+      "error_percent": 2.81
+    },
+    {
+      "datetime": "2026-09-10 00:00:00",
+      "predicted": 3187.49,
+      "actual": 3528.99,
+      "error": 341.5,
+      "error_percent": 9.68
+    },
+    {
+      "datetime": "2026-09-10 01:00:00",
+      "predicted": 3126.66,
+      "actual": 3339.47,
+      "error": 212.81,
+      "error_percent": 6.37
+    },
+    {
+      "datetime": "2026-09-10 02:00:00",
+      "predicted": 3071.69,
       "actual": 2999.99,
-      "error": 215.53,
-      "error_percent": 7.18
+      "error": 71.7,
+      "error_percent": 2.39
     },
     {
-      "datetime": "2026-09-03 09:00:00",
-      "predicted": 3144.95,
-      "actual": 2300.01,
-      "error": 844.94,
-      "error_percent": 36.74
+      "datetime": "2026-09-10 03:00:00",
+      "predicted": 2988.59,
+      "actual": 3249.99,
+      "error": 261.4,
+      "error_percent": 8.04
     },
     {
-      "datetime": "2026-09-03 10:00:00",
-      "predicted": 2957.31,
-      "actual": 1900.01,
-      "error": 1057.3,
-      "error_percent": 55.65
+      "datetime": "2026-09-10 04:00:00",
+      "predicted": 2903.8,
+      "actual": 2901.99,
+      "error": 1.81,
+      "error_percent": 0.06
     },
     {
-      "datetime": "2026-09-03 11:00:00",
-      "predicted": 2745.44,
-      "actual": 2305.01,
-      "error": 440.43,
-      "error_percent": 19.11
+      "datetime": "2026-09-10 05:00:00",
+      "predicted": 2879.42,
+      "actual": 3300.0,
+      "error": 420.58,
+      "error_percent": 12.74
     },
     {
-      "datetime": "2026-09-03 12:00:00",
-      "predicted": 2617.53,
-      "actual": 1499.97,
-      "error": 1117.56,
-      "error_percent": 74.51
+      "datetime": "2026-09-10 06:00:00",
+      "predicted": 2945.65,
+      "actual": 3300.0,
+      "error": 354.35,
+      "error_percent": 10.74
     },
     {
-      "datetime": "2026-09-03 13:00:00",
-      "predicted": 2628.79,
-      "actual": 2288.29,
-      "error": 340.5,
-      "error_percent": 14.88
+      "datetime": "2026-09-10 07:00:00",
+      "predicted": 3056.01,
+      "actual": 2409.99,
+      "error": 646.02,
+      "error_percent": 26.81
     },
     {
-      "datetime": "2026-09-03 14:00:00",
-      "predicted": 2764.57,
-      "actual": 2300.0,
-      "error": 464.57,
-      "error_percent": 20.2
+      "datetime": "2026-09-10 08:00:00",
+      "predicted": 3111.96,
+      "actual": 3249.99,
+      "error": 138.03,
+      "error_percent": 4.25
     },
     {
-      "datetime": "2026-09-03 15:00:00",
-      "predicted": 2975.79,
-      "actual": 1499.98,
-      "error": 1475.81,
-      "error_percent": 98.39
+      "datetime": "2026-09-10 09:00:00",
+      "predicted": 3039.38,
+      "actual": 2900.01,
+      "error": 139.37,
+      "error_percent": 4.81
     },
     {
-      "datetime": "2026-09-03 16:00:00",
-      "predicted": 3221.45,
-      "actual": 3000.0,
-      "error": 221.45,
-      "error_percent": 7.38
+      "datetime": "2026-09-10 10:00:00",
+      "predicted": 2850.65,
+      "actual": 2100.0,
+      "error": 750.65,
+      "error_percent": 35.75
     },
     {
-      "datetime": "2026-09-03 17:00:00",
-      "predicted": 3476.22,
-      "actual": 3743.0,
-      "error": 266.78,
-      "error_percent": 7.13
+      "datetime": "2026-09-10 11:00:00",
+      "predicted": 2638.89,
+      "actual": 2283.29,
+      "error": 355.6,
+      "error_percent": 15.57
     },
     {
-      "datetime": "2026-09-03 18:00:00",
-      "predicted": 3706.82,
-      "actual": 3394.48,
-      "error": 312.34,
-      "error_percent": 9.2
+      "datetime": "2026-09-10 12:00:00",
+      "predicted": 2511.82,
+      "actual": 2099.97,
+      "error": 411.85,
+      "error_percent": 19.61
     },
     {
-      "datetime": "2026-09-03 19:00:00",
-      "predicted": 3857.32,
-      "actual": 4076.51,
-      "error": 219.19,
-      "error_percent": 5.38
+      "datetime": "2026-09-10 13:00:00",
+      "predicted": 2524.0,
+      "actual": 2500.0,
+      "error": 24.0,
+      "error_percent": 0.96
     },
     {
-      "datetime": "2026-09-03 20:00:00",
-      "predicted": 3873.1,
-      "actual": 3950.0,
-      "error": 76.9,
-      "error_percent": 1.95
+      "datetime": "2026-09-10 14:00:00",
+      "predicted": 2660.39,
+      "actual": 3480.65,
+      "error": 820.26,
+      "error_percent": 23.57
     },
     {
-      "datetime": "2026-09-03 21:00:00",
-      "predicted": 3746.91,
+      "datetime": "2026-09-10 15:00:00",
+      "predicted": 2872.06,
+      "actual": 2900.0,
+      "error": 27.94,
+      "error_percent": 0.96
+    },
+    {
+      "datetime": "2026-09-10 16:00:00",
+      "predicted": 3118.24,
+      "actual": 3524.0,
+      "error": 405.76,
+      "error_percent": 11.51
+    },
+    {
+      "datetime": "2026-09-10 17:00:00",
+      "predicted": 3373.64,
+      "actual": 3983.49,
+      "error": 609.85,
+      "error_percent": 15.31
+    },
+    {
+      "datetime": "2026-09-10 18:00:00",
+      "predicted": 3604.63,
+      "actual": 3995.0,
+      "error": 390.37,
+      "error_percent": 9.77
+    },
+    {
+      "datetime": "2026-09-10 19:00:00",
+      "predicted": 3754.97,
+      "actual": 4487.23,
+      "error": 732.26,
+      "error_percent": 16.32
+    },
+    {
+      "datetime": "2026-09-10 20:00:00",
+      "predicted": 3770.11,
+      "actual": 4000.0,
+      "error": 229.89,
+      "error_percent": 5.75
+    },
+    {
+      "datetime": "2026-09-10 21:00:00",
+      "predicted": 3643.21,
       "actual": 3799.99,
-      "error": 53.08,
-      "error_percent": 1.4
+      "error": 156.78,
+      "error_percent": 4.13
     },
     {
-      "datetime": "2026-09-03 22:00:00",
-      "predicted": 3538.9,
-      "actual": 3314.55,
-      "error": 224.35,
-      "error_percent": 6.77
+      "datetime": "2026-09-10 22:00:00",
+      "predicted": 3434.82,
+      "actual": 3300.0,
+      "error": 134.82,
+      "error_percent": 4.09
     },
     {
-      "datetime": "2026-09-03 23:00:00",
-      "predicted": 3341.84,
-      "actual": 3250.0,
-      "error": 91.84,
-      "error_percent": 2.83
+      "datetime": "2026-09-10 23:00:00",
+      "predicted": 3237.72,
+      "actual": 3346.26,
+      "error": 108.54,
+      "error_percent": 3.24
     },
     {
-      "datetime": "2026-09-04 00:00:00",
-      "predicted": 3215.93,
-      "actual": 3499.0,
-      "error": 283.07,
-      "error_percent": 8.09
+      "datetime": "2026-09-11 00:00:00",
+      "predicted": 3111.76,
+      "actual": 3577.27,
+      "error": 465.51,
+      "error_percent": 13.01
     },
     {
-      "datetime": "2026-09-04 01:00:00",
-      "predicted": 3151.31,
-      "actual": 3189.62,
-      "error": 38.31,
-      "error_percent": 1.2
+      "datetime": "2026-09-11 01:00:00",
+      "predicted": 3046.79,
+      "actual": 3403.55,
+      "error": 356.76,
+      "error_percent": 10.48
     },
     {
-      "datetime": "2026-09-04 02:00:00",
-      "predicted": 3093.62,
-      "actual": 2300.0,
-      "error": 793.62,
-      "error_percent": 34.51
+      "datetime": "2026-09-11 02:00:00",
+      "predicted": 2988.52,
+      "actual": 3177.8,
+      "error": 189.28,
+      "error_percent": 5.96
     },
     {
-      "datetime": "2026-09-04 03:00:00",
-      "predicted": 3008.46,
-      "actual": 2470.99,
-      "error": 537.47,
-      "error_percent": 21.75
+      "datetime": "2026-09-11 03:00:00",
+      "predicted": 2902.94,
+      "actual": 2900.01,
+      "error": 2.93,
+      "error_percent": 0.1
     },
     {
-      "datetime": "2026-09-04 04:00:00",
-      "predicted": 2922.01,
-      "actual": 2475.0,
-      "error": 447.01,
-      "error_percent": 18.06
+      "datetime": "2026-09-11 04:00:00",
+      "predicted": 2816.52,
+      "actual": 2849.99,
+      "error": 33.47,
+      "error_percent": 1.17
     },
     {
-      "datetime": "2026-09-04 05:00:00",
-      "predicted": 2896.62,
-      "actual": 2400.01,
-      "error": 496.61,
-      "error_percent": 20.69
+      "datetime": "2026-09-11 05:00:00",
+      "predicted": 2791.32,
+      "actual": 3299.0,
+      "error": 507.68,
+      "error_percent": 15.39
     },
     {
-      "datetime": "2026-09-04 06:00:00",
-      "predicted": 2963.1,
-      "actual": 2560.93,
-      "error": 402.17,
-      "error_percent": 15.7
+      "datetime": "2026-09-11 06:00:00",
+      "predicted": 2857.51,
+      "actual": 3494.64,
+      "error": 637.13,
+      "error_percent": 18.23
     },
     {
-      "datetime": "2026-09-04 07:00:00",
-      "predicted": 3075.41,
-      "actual": 1998.99,
-      "error": 1076.42,
-      "error_percent": 53.85
+      "datetime": "2026-09-11 07:00:00",
+      "predicted": 2968.58,
+      "actual": 2451.0,
+      "error": 517.58,
+      "error_percent": 21.12
     },
     {
-      "datetime": "2026-09-04 08:00:00",
-      "predicted": 3134.74,
-      "actual": 3000.0,
-      "error": 134.74,
-      "error_percent": 4.49
+      "datetime": "2026-09-11 08:00:00",
+      "predicted": 3025.92,
+      "actual": 2700.0,
+      "error": 325.92,
+      "error_percent": 12.07
     },
     {
-      "datetime": "2026-09-04 09:00:00",
-      "predicted": 3066.06,
-      "actual": 2974.38,
-      "error": 91.68,
-      "error_percent": 3.08
+      "datetime": "2026-09-11 09:00:00",
+      "predicted": 2955.32,
+      "actual": 2283.29,
+      "error": 672.03,
+      "error_percent": 29.43
     },
     {
-      "datetime": "2026-09-04 10:00:00",
-      "predicted": 2880.82,
-      "actual": 2499.0,
-      "error": 381.82,
-      "error_percent": 15.28
+      "datetime": "2026-09-11 10:00:00",
+      "predicted": 2769.09,
+      "actual": 2099.98,
+      "error": 669.11,
+      "error_percent": 31.86
     },
     {
-      "datetime": "2026-09-04 11:00:00",
-      "predicted": 2671.78,
-      "actual": 2305.0,
-      "error": 366.78,
-      "error_percent": 15.91
+      "datetime": "2026-09-11 11:00:00",
+      "predicted": 2560.23,
+      "actual": 2661.0,
+      "error": 100.77,
+      "error_percent": 3.79
     },
     {
-      "datetime": "2026-09-04 12:00:00",
-      "predicted": 2547.02,
+      "datetime": "2026-09-11 12:00:00",
+      "predicted": 2436.38,
       "actual": 1500.0,
-      "error": 1047.02,
-      "error_percent": 69.8
+      "error": 936.38,
+      "error_percent": 62.43
     },
     {
-      "datetime": "2026-09-04 13:00:00",
-      "predicted": 2561.62,
-      "actual": 1699.98,
-      "error": 861.64,
-      "error_percent": 50.69
+      "datetime": "2026-09-11 13:00:00",
+      "predicted": 2451.96,
+      "actual": 1512.63,
+      "error": 939.33,
+      "error_percent": 62.1
     },
     {
-      "datetime": "2026-09-04 14:00:00",
-      "predicted": 2700.82,
-      "actual": 2858.61,
-      "error": 157.79,
-      "error_percent": 5.52
+      "datetime": "2026-09-11 14:00:00",
+      "predicted": 2591.83,
+      "actual": 2500.01,
+      "error": 91.82,
+      "error_percent": 3.67
     },
     {
-      "datetime": "2026-09-04 15:00:00",
-      "predicted": 2915.4,
-      "actual": 3663.99,
-      "error": 748.59,
+      "datetime": "2026-09-11 15:00:00",
+      "predicted": 2806.9,
+      "actual": 2283.3,
+      "error": 523.6,
+      "error_percent": 22.93
+    },
+    {
+      "datetime": "2026-09-11 16:00:00",
+      "predicted": 3056.31,
+      "actual": 3476.07,
+      "error": 419.76,
+      "error_percent": 12.08
+    },
+    {
+      "datetime": "2026-09-11 17:00:00",
+      "predicted": 3314.61,
+      "actual": 3870.99,
+      "error": 556.38,
+      "error_percent": 14.37
+    },
+    {
+      "datetime": "2026-09-11 18:00:00",
+      "predicted": 3548.07,
+      "actual": 3742.99,
+      "error": 194.92,
+      "error_percent": 5.21
+    },
+    {
+      "datetime": "2026-09-11 19:00:00",
+      "predicted": 3700.3,
+      "actual": 4157.24,
+      "error": 456.94,
+      "error_percent": 10.99
+    },
+    {
+      "datetime": "2026-09-11 20:00:00",
+      "predicted": 3716.64,
+      "actual": 3800.01,
+      "error": 83.37,
+      "error_percent": 2.19
+    },
+    {
+      "datetime": "2026-09-11 21:00:00",
+      "predicted": 3590.15,
+      "actual": 3599.83,
+      "error": 9.68,
+      "error_percent": 0.27
+    },
+    {
+      "datetime": "2026-09-11 22:00:00",
+      "predicted": 3381.28,
+      "actual": 3387.0,
+      "error": 5.72,
+      "error_percent": 0.17
+    },
+    {
+      "datetime": "2026-09-11 23:00:00",
+      "predicted": 3182.71,
+      "actual": 3410.14,
+      "error": 227.43,
+      "error_percent": 6.67
+    },
+    {
+      "datetime": "2026-09-12 00:00:00",
+      "predicted": 3054.22,
+      "actual": 3475.6,
+      "error": 421.38,
+      "error_percent": 12.12
+    },
+    {
+      "datetime": "2026-09-12 01:00:00",
+      "predicted": 2985.59,
+      "actual": 3199.99,
+      "error": 214.4,
+      "error_percent": 6.7
+    },
+    {
+      "datetime": "2026-09-12 02:00:00",
+      "predicted": 2922.48,
+      "actual": 3199.99,
+      "error": 277.51,
+      "error_percent": 8.67
+    },
+    {
+      "datetime": "2026-09-12 03:00:00",
+      "predicted": 2830.88,
+      "actual": 3250.0,
+      "error": 419.12,
+      "error_percent": 12.9
+    },
+    {
+      "datetime": "2026-09-12 04:00:00",
+      "predicted": 2737.22,
+      "actual": 3148.72,
+      "error": 411.5,
+      "error_percent": 13.07
+    },
+    {
+      "datetime": "2026-09-12 05:00:00",
+      "predicted": 2703.58,
+      "actual": 3309.84,
+      "error": 606.26,
+      "error_percent": 18.32
+    },
+    {
+      "datetime": "2026-09-12 06:00:00",
+      "predicted": 2760.17,
+      "actual": 3250.0,
+      "error": 489.83,
+      "error_percent": 15.07
+    },
+    {
+      "datetime": "2026-09-12 07:00:00",
+      "predicted": 2860.49,
+      "actual": 2288.28,
+      "error": 572.21,
+      "error_percent": 25.01
+    },
+    {
+      "datetime": "2026-09-12 08:00:00",
+      "predicted": 2906.02,
+      "actual": 1649.08,
+      "error": 1256.94,
+      "error_percent": 76.22
+    },
+    {
+      "datetime": "2026-09-12 09:00:00",
+      "predicted": 2822.64,
+      "actual": 2099.97,
+      "error": 722.67,
+      "error_percent": 34.41
+    },
+    {
+      "datetime": "2026-09-12 10:00:00",
+      "predicted": 2622.73,
+      "actual": 1500.0,
+      "error": 1122.73,
+      "error_percent": 74.85
+    },
+    {
+      "datetime": "2026-09-12 11:00:00",
+      "predicted": 2399.44,
+      "actual": 2099.97,
+      "error": 299.47,
+      "error_percent": 14.26
+    },
+    {
+      "datetime": "2026-09-12 12:00:00",
+      "predicted": 2260.54,
+      "actual": 800.0,
+      "error": 1460.54,
+      "error_percent": 182.57
+    },
+    {
+      "datetime": "2026-09-12 13:00:00",
+      "predicted": 2260.58,
+      "actual": 2099.97,
+      "error": 160.61,
+      "error_percent": 7.65
+    },
+    {
+      "datetime": "2026-09-12 14:00:00",
+      "predicted": 2384.59,
+      "actual": 2099.98,
+      "error": 284.61,
+      "error_percent": 13.55
+    },
+    {
+      "datetime": "2026-09-12 15:00:00",
+      "predicted": 2583.67,
+      "actual": 1880.01,
+      "error": 703.66,
+      "error_percent": 37.43
+    },
+    {
+      "datetime": "2026-09-12 16:00:00",
+      "predicted": 2817.12,
+      "actual": 2980.0,
+      "error": 162.88,
+      "error_percent": 5.47
+    },
+    {
+      "datetime": "2026-09-12 17:00:00",
+      "predicted": 3059.71,
+      "actual": 3600.01,
+      "error": 540.3,
+      "error_percent": 15.01
+    },
+    {
+      "datetime": "2026-09-12 18:00:00",
+      "predicted": 3277.88,
+      "actual": 3900.47,
+      "error": 622.59,
+      "error_percent": 15.96
+    },
+    {
+      "datetime": "2026-09-12 19:00:00",
+      "predicted": 3415.46,
+      "actual": 4500.0,
+      "error": 1084.54,
+      "error_percent": 24.1
+    },
+    {
+      "datetime": "2026-09-12 20:00:00",
+      "predicted": 3417.99,
+      "actual": 4369.99,
+      "error": 952.0,
+      "error_percent": 21.78
+    },
+    {
+      "datetime": "2026-09-12 21:00:00",
+      "predicted": 3278.72,
+      "actual": 3900.47,
+      "error": 621.75,
+      "error_percent": 15.94
+    },
+    {
+      "datetime": "2026-09-12 22:00:00",
+      "predicted": 3058.29,
+      "actual": 3243.52,
+      "error": 185.23,
+      "error_percent": 5.71
+    },
+    {
+      "datetime": "2026-09-12 23:00:00",
+      "predicted": 2849.59,
+      "actual": 3325.01,
+      "error": 475.42,
+      "error_percent": 14.3
+    },
+    {
+      "datetime": "2026-09-13 00:00:00",
+      "predicted": 2712.57,
+      "actual": 3500.0,
+      "error": 787.43,
+      "error_percent": 22.5
+    },
+    {
+      "datetime": "2026-09-13 01:00:00",
+      "predicted": 2637.17,
+      "actual": 3371.24,
+      "error": 734.07,
+      "error_percent": 21.77
+    },
+    {
+      "datetime": "2026-09-13 02:00:00",
+      "predicted": 2569.23,
+      "actual": 3250.0,
+      "error": 680.77,
+      "error_percent": 20.95
+    },
+    {
+      "datetime": "2026-09-13 03:00:00",
+      "predicted": 2474.86,
+      "actual": 3323.7,
+      "error": 848.84,
+      "error_percent": 25.54
+    },
+    {
+      "datetime": "2026-09-13 04:00:00",
+      "predicted": 2380.61,
+      "actual": 2999.99,
+      "error": 619.38,
+      "error_percent": 20.65
+    },
+    {
+      "datetime": "2026-09-13 05:00:00",
+      "predicted": 2348.67,
+      "actual": 3377.24,
+      "error": 1028.57,
+      "error_percent": 30.46
+    },
+    {
+      "datetime": "2026-09-13 06:00:00",
+      "predicted": 2409.33,
+      "actual": 3487.0,
+      "error": 1077.67,
+      "error_percent": 30.91
+    },
+    {
+      "datetime": "2026-09-13 07:00:00",
+      "predicted": 2516.17,
+      "actual": 2089.29,
+      "error": 426.88,
       "error_percent": 20.43
     },
     {
-      "datetime": "2026-09-04 16:00:00",
-      "predicted": 3164.24,
-      "actual": 3471.62,
-      "error": 307.38,
-      "error_percent": 8.85
+      "datetime": "2026-09-13 08:00:00",
+      "predicted": 2570.68,
+      "actual": 1192.01,
+      "error": 1378.67,
+      "error_percent": 115.66
     },
     {
-      "datetime": "2026-09-04 17:00:00",
-      "predicted": 3421.87,
-      "actual": 3394.47,
-      "error": 27.4,
-      "error_percent": 0.81
+      "datetime": "2026-09-13 09:00:00",
+      "predicted": 2498.75,
+      "actual": 216.01,
+      "error": 2282.74,
+      "error_percent": 1056.78
     },
     {
-      "datetime": "2026-09-04 18:00:00",
-      "predicted": 3654.89,
-      "actual": 3383.41,
-      "error": 271.48,
-      "error_percent": 8.02
+      "datetime": "2026-09-13 10:00:00",
+      "predicted": 1655.13,
+      "actual": 171.01,
+      "error": 1484.12,
+      "error_percent": 867.86
     },
     {
-      "datetime": "2026-09-04 19:00:00",
-      "predicted": 3807.24,
-      "actual": 3972.03,
-      "error": 164.79,
-      "error_percent": 4.15
+      "datetime": "2026-09-13 11:00:00",
+      "predicted": 1448.21,
+      "actual": 199.99,
+      "error": 1248.22,
+      "error_percent": 624.14
     },
     {
-      "datetime": "2026-09-04 20:00:00",
-      "predicted": 3824.18,
-      "actual": 3995.0,
-      "error": 170.82,
-      "error_percent": 4.28
+      "datetime": "2026-09-13 12:00:00",
+      "predicted": 1328.03,
+      "actual": 200.01,
+      "error": 1128.02,
+      "error_percent": 563.98
     },
     {
-      "datetime": "2026-09-04 21:00:00",
-      "predicted": 3698.35,
-      "actual": 3739.62,
-      "error": 41.27,
-      "error_percent": 1.1
+      "datetime": "2026-09-13 13:00:00",
+      "predicted": 1349.1,
+      "actual": 256.0,
+      "error": 1093.1,
+      "error_percent": 426.99
     },
     {
-      "datetime": "2026-09-04 22:00:00",
-      "predicted": 3489.81,
-      "actual": 3197.01,
-      "error": 292.8,
-      "error_percent": 9.16
+      "datetime": "2026-09-13 14:00:00",
+      "predicted": 1496.3,
+      "actual": 300.0,
+      "error": 1196.3,
+      "error_percent": 398.77
     },
     {
-      "datetime": "2026-09-04 23:00:00",
-      "predicted": 3291.21,
-      "actual": 3306.04,
-      "error": 14.83,
-      "error_percent": 0.45
+      "datetime": "2026-09-13 15:00:00",
+      "predicted": 2378.26,
+      "actual": 300.0,
+      "error": 2078.26,
+      "error_percent": 692.75
     },
     {
-      "datetime": "2026-09-05 00:00:00",
-      "predicted": 3162.7,
-      "actual": 3624.02,
-      "error": 461.32,
-      "error_percent": 12.73
+      "datetime": "2026-09-13 16:00:00",
+      "predicted": 2638.83,
+      "actual": 950.01,
+      "error": 1688.82,
+      "error_percent": 177.77
     },
     {
-      "datetime": "2026-09-05 01:00:00",
-      "predicted": 3094.35,
-      "actual": 3466.0,
-      "error": 371.65,
-      "error_percent": 10.72
+      "datetime": "2026-09-13 17:00:00",
+      "predicted": 2910.24,
+      "actual": 2750.0,
+      "error": 160.24,
+      "error_percent": 5.83
     },
     {
-      "datetime": "2026-09-05 02:00:00",
-      "predicted": 3031.76,
-      "actual": 3099.0,
-      "error": 67.24,
-      "error_percent": 2.17
+      "datetime": "2026-09-13 18:00:00",
+      "predicted": 3158.74,
+      "actual": 3038.79,
+      "error": 119.95,
+      "error_percent": 3.95
     },
     {
-      "datetime": "2026-09-05 03:00:00",
-      "predicted": 2940.48,
-      "actual": 3000.0,
-      "error": 59.52,
-      "error_percent": 1.98
+      "datetime": "2026-09-13 19:00:00",
+      "predicted": 3327.94,
+      "actual": 3795.01,
+      "error": 467.07,
+      "error_percent": 12.31
     },
     {
-      "datetime": "2026-09-05 04:00:00",
-      "predicted": 2846.7,
-      "actual": 2999.99,
-      "error": 153.29,
-      "error_percent": 5.11
+      "datetime": "2026-09-13 20:00:00",
+      "predicted": 3363.15,
+      "actual": 3674.25,
+      "error": 311.1,
+      "error_percent": 8.47
     },
     {
-      "datetime": "2026-09-05 05:00:00",
-      "predicted": 2812.77,
-      "actual": 2999.99,
-      "error": 187.22,
-      "error_percent": 6.24
+      "datetime": "2026-09-13 21:00:00",
+      "predicted": 3257.39,
+      "actual": 3487.0,
+      "error": 229.61,
+      "error_percent": 6.58
     },
     {
-      "datetime": "2026-09-05 06:00:00",
-      "predicted": 2869.54,
-      "actual": 3183.87,
-      "error": 314.33,
-      "error_percent": 9.87
+      "datetime": "2026-09-13 22:00:00",
+      "predicted": 3071.03,
+      "actual": 3486.99,
+      "error": 415.96,
+      "error_percent": 11.93
     },
     {
-      "datetime": "2026-09-05 07:00:00",
-      "predicted": 2970.99,
-      "actual": 2399.99,
-      "error": 571.0,
-      "error_percent": 23.79
-    },
-    {
-      "datetime": "2026-09-05 08:00:00",
-      "predicted": 3018.38,
-      "actual": 2400.0,
-      "error": 618.38,
-      "error_percent": 25.77
-    },
-    {
-      "datetime": "2026-09-05 09:00:00",
-      "predicted": 2936.78,
-      "actual": 1499.99,
-      "error": 1436.79,
-      "error_percent": 95.79
-    },
-    {
-      "datetime": "2026-09-05 10:00:00",
-      "predicted": 2737.73,
-      "actual": 1000.0,
-      "error": 1737.73,
-      "error_percent": 173.77
-    },
-    {
-      "datetime": "2026-09-05 11:00:00",
-      "predicted": 2514.12,
-      "actual": 1256.0,
-      "error": 1258.12,
-      "error_percent": 100.17
-    },
-    {
-      "datetime": "2026-09-05 12:00:00",
-      "predicted": 2374.15,
-      "actual": 663.28,
-      "error": 1710.87,
-      "error_percent": 257.94
-    },
-    {
-      "datetime": "2026-09-05 13:00:00",
-      "predicted": 2373.07,
-      "actual": 1699.98,
-      "error": 673.09,
-      "error_percent": 39.59
-    },
-    {
-      "datetime": "2026-09-05 14:00:00",
-      "predicted": 2496.26,
-      "actual": 1699.98,
-      "error": 796.28,
-      "error_percent": 46.84
-    },
-    {
-      "datetime": "2026-09-05 15:00:00",
-      "predicted": 2694.7,
-      "actual": 1699.97,
-      "error": 994.73,
-      "error_percent": 58.51
-    },
-    {
-      "datetime": "2026-09-05 16:00:00",
-      "predicted": 2927.44,
-      "actual": 3015.0,
-      "error": 87.56,
-      "error_percent": 2.9
-    },
-    {
-      "datetime": "2026-09-05 17:00:00",
-      "predicted": 3169.22,
-      "actual": 3590.01,
-      "error": 420.79,
-      "error_percent": 11.72
-    },
-    {
-      "datetime": "2026-09-05 18:00:00",
-      "predicted": 3386.82,
-      "actual": 3709.96,
-      "error": 323.14,
-      "error_percent": 8.71
-    },
-    {
-      "datetime": "2026-09-05 19:00:00",
-      "predicted": 3524.38,
-      "actual": 4225.0,
-      "error": 700.62,
-      "error_percent": 16.58
-    },
-    {
-      "datetime": "2026-09-05 20:00:00",
-      "predicted": 3527.38,
-      "actual": 4224.99,
-      "error": 697.61,
-      "error_percent": 16.51
-    },
-    {
-      "datetime": "2026-09-05 21:00:00",
-      "predicted": 3388.66,
-      "actual": 4000.01,
-      "error": 611.35,
-      "error_percent": 15.28
-    },
-    {
-      "datetime": "2026-09-05 22:00:00",
-      "predicted": 3168.47,
-      "actual": 3188.0,
-      "error": 19.53,
-      "error_percent": 0.61
-    },
-    {
-      "datetime": "2026-09-05 23:00:00",
-      "predicted": 2959.66,
-      "actual": 3325.99,
-      "error": 366.33,
-      "error_percent": 11.01
-    },
-    {
-      "datetime": "2026-09-06 00:00:00",
-      "predicted": 2822.54,
-      "actual": 3680.0,
-      "error": 857.46,
-      "error_percent": 23.3
-    },
-    {
-      "datetime": "2026-09-06 01:00:00",
-      "predicted": 2747.37,
-      "actual": 3284.34,
-      "error": 536.97,
-      "error_percent": 16.35
-    },
-    {
-      "datetime": "2026-09-06 02:00:00",
-      "predicted": 2679.89,
-      "actual": 3134.77,
-      "error": 454.88,
-      "error_percent": 14.51
-    },
-    {
-      "datetime": "2026-09-06 03:00:00",
-      "predicted": 2585.82,
-      "actual": 3249.99,
-      "error": 664.17,
-      "error_percent": 20.44
-    },
-    {
-      "datetime": "2026-09-06 04:00:00",
-      "predicted": 2491.44,
-      "actual": 2999.99,
-      "error": 508.55,
-      "error_percent": 16.95
-    },
-    {
-      "datetime": "2026-09-06 05:00:00",
-      "predicted": 2459.22,
-      "actual": 3249.99,
-      "error": 790.77,
-      "error_percent": 24.33
-    },
-    {
-      "datetime": "2026-09-06 06:00:00",
-      "predicted": 2520.08,
-      "actual": 3492.82,
-      "error": 972.74,
-      "error_percent": 27.85
-    },
-    {
-      "datetime": "2026-09-06 07:00:00",
-      "predicted": 2628.08,
-      "actual": 2999.99,
-      "error": 371.91,
-      "error_percent": 12.4
-    },
-    {
-      "datetime": "2026-09-06 08:00:00",
-      "predicted": 2684.51,
-      "actual": 2288.29,
-      "error": 396.22,
-      "error_percent": 17.32
-    },
-    {
-      "datetime": "2026-09-06 09:00:00",
-      "predicted": 2614.45,
-      "actual": 1000.0,
-      "error": 1614.45,
-      "error_percent": 161.44
-    },
-    {
-      "datetime": "2026-09-06 10:00:00",
-      "predicted": 1775.42,
-      "actual": 320.0,
-      "error": 1455.42,
-      "error_percent": 454.82
-    },
-    {
-      "datetime": "2026-09-06 11:00:00",
-      "predicted": 1568.28,
-      "actual": 350.0,
-      "error": 1218.28,
-      "error_percent": 348.08
-    },
-    {
-      "datetime": "2026-09-06 12:00:00",
-      "predicted": 1447.16,
-      "actual": 250.01,
-      "error": 1197.15,
-      "error_percent": 478.84
-    },
-    {
-      "datetime": "2026-09-06 13:00:00",
-      "predicted": 1467.23,
-      "actual": 500.0,
-      "error": 967.23,
-      "error_percent": 193.45
-    },
-    {
-      "datetime": "2026-09-06 14:00:00",
-      "predicted": 1613.75,
-      "actual": 1465.0,
-      "error": 148.75,
-      "error_percent": 10.15
-    },
-    {
-      "datetime": "2026-09-06 15:00:00",
-      "predicted": 2491.56,
-      "actual": 2500.01,
-      "error": 8.45,
-      "error_percent": 0.34
-    },
-    {
-      "datetime": "2026-09-06 16:00:00",
-      "predicted": 2751.57,
-      "actual": 2199.99,
-      "error": 551.58,
-      "error_percent": 25.07
-    },
-    {
-      "datetime": "2026-09-06 17:00:00",
-      "predicted": 3022.31,
-      "actual": 2999.99,
-      "error": 22.32,
-      "error_percent": 0.74
-    },
-    {
-      "datetime": "2026-09-06 18:00:00",
-      "predicted": 3270.39,
-      "actual": 3447.98,
-      "error": 177.59,
-      "error_percent": 5.15
-    },
-    {
-      "datetime": "2026-09-06 19:00:00",
-      "predicted": 3439.72,
-      "actual": 3875.99,
-      "error": 436.27,
-      "error_percent": 11.26
-    },
-    {
-      "datetime": "2026-09-06 20:00:00",
-      "predicted": 3475.55,
-      "actual": 3749.48,
-      "error": 273.93,
-      "error_percent": 7.31
-    },
-    {
-      "datetime": "2026-09-06 21:00:00",
-      "predicted": 3370.48,
-      "actual": 3583.01,
-      "error": 212.53,
-      "error_percent": 5.93
-    },
-    {
-      "datetime": "2026-09-06 22:00:00",
-      "predicted": 3184.48,
-      "actual": 3420.0,
-      "error": 235.52,
-      "error_percent": 6.89
-    },
-    {
-      "datetime": "2026-09-06 23:00:00",
-      "predicted": 3010.16,
-      "actual": 2999.01,
-      "error": 11.15,
-      "error_percent": 0.37
+      "datetime": "2026-09-13 23:00:00",
+      "predicted": 2896.7,
+      "actual": 3352.57,
+      "error": 455.87,
+      "error_percent": 13.6
     }
   ],
   "historical_trend": [
+    {
+      "week": "2026-09-07 - 2026-09-13",
+      "week_start": "2026-09-07",
+      "week_end": "2026-09-13",
+      "mape": 66.55,
+      "mae": 629.92,
+      "rmse": 827.21
+    },
     {
       "week": "2026-08-31 - 2026-09-06",
       "week_start": "2026-08-31",
@@ -2087,14 +2095,6 @@
       "mape": 41.39,
       "mae": 803.39,
       "rmse": 892.85
-    },
-    {
-      "week": "2026-07-13 - 2026-07-19",
-      "week_start": "2026-07-13",
-      "week_end": "2026-07-19",
-      "mape": 35.4,
-      "mae": 798.77,
-      "rmse": 937.88
     }
   ]
 }
