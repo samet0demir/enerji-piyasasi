@@ -70,7 +70,7 @@ describe('API Service', () => {
       const result = await api.getForecasts();
 
       expect(result).toEqual(mockResponse);
-      expect(mockedAxios.get).toHaveBeenCalledWith('/forecasts.json');
+      expect(mockedAxios.get).toHaveBeenCalledWith(expect.stringMatching(/^\/forecasts\.json\?t=\d+$/));
       expect(result.current_week.forecasts).toHaveLength(2);
       expect(result.last_week_performance?.mape).toBe(12.5);
     });
@@ -339,7 +339,7 @@ describe('API Service', () => {
 
       await api.getForecasts();
 
-      expect(mockedAxios.get).toHaveBeenCalledWith('/forecasts.json');
+      expect(mockedAxios.get).toHaveBeenCalledWith(expect.stringMatching(/^\/forecasts\.json\?t=\d+$/));
     });
 
     it('should use correct endpoint for generation', async () => {

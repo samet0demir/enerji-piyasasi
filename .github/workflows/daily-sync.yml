@@ -9,10 +9,13 @@ on:
   # Manuel tetikleme için
   workflow_dispatch:
 
-# Aynı workflow birden fazla çalışmasını önle (önceki iptal edilir)
+# Veritabanını güncelleyen günlük ve haftalık işleri sırayla çalıştır
 concurrency:
-  group: daily-sync
-  cancel-in-progress: true
+  group: energy-data-updates
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   sync-data:
@@ -22,6 +25,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: main
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
@@ -111,13 +116,12 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Remote'tan son değişiklikleri çek (eğer başka commit varsa)
-          git pull --rebase origin main || echo "No remote changes to pull"
-
           git add backend/data/energy.db
           git add backend/logs/*.log || true
           git commit -m "chore: auto-sync EPİAŞ data [skip ci]"
-          git push
+          # Önce commit oluştur; pull hatası varsa işlemi durdur.
+          git pull --rebase origin main
+          git push origin HEAD:main
           echo "✅ Changes committed and pushed successfully"
 
       - name: Upload logs as artifact

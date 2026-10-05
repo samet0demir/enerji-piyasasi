@@ -104,7 +104,7 @@ def run_weekly_cycle():
 
     try:
         from train_prophet_improved import main as train_prophet_v2
-        model, mae, rmse, mape = train_prophet_v2()
+        model, mae, rmse, mape = train_prophet_v2(end_date=this_week_monday)
         print(f"\nBasarili! Prophet v2 model egitimi tamamlandi!")
         print(f"   Test performansi: MAE={mae:.2f} TRY, MAPE={mape:.2f}%")
     except Exception as e:
@@ -128,7 +128,7 @@ def run_weekly_cycle():
         model = load_model()
 
         # 7 günlük tahmin
-        forecasts = make_forecast(model, days=7)
+        forecasts = make_forecast(model, days=7, start_date=this_week_monday)
 
         print(f"\nBasarili! {len(forecasts)} saatlik tahmin uretildi")
         print(f"   Ortalama: {forecasts['yhat'].mean():.2f} TRY")
@@ -154,12 +154,15 @@ def run_weekly_cycle():
 
     try:
         from export_json import main as export_json
-        export_json()
+        data = export_json()
+        from forecast_validation import validate_forecasts
+        validate_forecasts(data)
         print(f"Basarili! JSON export tamamlandi")
     except Exception as e:
         print(f"\nHATA: JSON export BASARISIZ: {e}")
         import traceback
         traceback.print_exc()
+        raise
 
     # =====================================================================
     # ÖZET

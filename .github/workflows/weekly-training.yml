@@ -9,10 +9,13 @@ on:
   # Manuel tetikleme için
   workflow_dispatch:
 
-# Aynı workflow birden fazla çalışmasını önle
+# Veritabanını güncelleyen günlük ve haftalık işleri sırayla çalıştır
 concurrency:
-  group: weekly-training
-  cancel-in-progress: true
+  group: energy-data-updates
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   train-model:
@@ -22,6 +25,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: main
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
@@ -47,6 +52,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Test forecast publication
+        run: python -m unittest discover -s backend/src/ml -p test_forecast_publication.py -v
 
       - name: Create necessary directories
         run: |
@@ -76,11 +84,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Remote'tan son değişiklikleri çek (eğer başka commit varsa)
-          git pull --rebase origin main || echo "No remote changes to pull"
-
           git commit -m "chore: weekly forecast cycle [skip ci]"
-          git push
+          # Önce commit oluştur; pull hatası varsa işlemi durdur.
+          git pull --rebase origin main
+          git push origin HEAD:main
           echo "✅ Changes committed and pushed successfully"
 
       - name: Upload logs as artifact
@@ -96,5 +103,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: prophet-model-${{ github.run_number }}
-          path: backend/models/prophet_model.json
+          path: backend/models/prophet_model_v2.json
           retention-days: 90

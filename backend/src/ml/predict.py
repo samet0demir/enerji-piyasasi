@@ -37,7 +37,7 @@ def load_model():
     print(f"[+] Model basariyla yuklendi: {MODEL_PATH}")
     return model
 
-def make_forecast(model, days=7):
+def make_forecast(model, days=7, start_date=None):
     """
     Gelecek için tahmin yapar
 
@@ -51,7 +51,10 @@ def make_forecast(model, days=7):
     print(f"\n[*] {days} gun ileriye tahmin yapiliyor...")
 
     # Gelecek tarihler için dataframe oluştur (saatlik)
-    future = model.make_future_dataframe(periods=days*24, freq='H')
+    if start_date is None:
+        future = model.make_future_dataframe(periods=days*24, freq='h')
+    else:
+        future = pd.DataFrame({'ds': pd.date_range(start_date, periods=days*24, freq='h')})
 
     # FEATURE ENGINEERING: Gelecek tarihler için de feature'ları ekle
     print("[*] Feature engineering (gelecek tarihler icin)...")

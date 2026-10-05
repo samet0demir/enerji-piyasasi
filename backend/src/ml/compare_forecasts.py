@@ -108,7 +108,12 @@ def compare_week(week_start, week_end):
 
     # Mutlak hatalar
     absolute_errors = np.abs(y_true - y_pred)
-    percentage_errors = (absolute_errors / y_true) * 100
+
+    # Sıfıra bölme hatasını önlemek için safe division
+    percentage_errors = np.full_like(y_true, np.nan, dtype=float)
+    non_zero_mask = y_true != 0
+    if np.any(non_zero_mask):
+        percentage_errors[non_zero_mask] = (absolute_errors[non_zero_mask] / y_true[non_zero_mask]) * 100
 
     # MAE (Mean Absolute Error)
     mae = np.mean(absolute_errors)
@@ -140,7 +145,7 @@ def compare_week(week_start, week_end):
         conn.execute(update_query, (
             row['price'],
             absolute_errors[idx],
-            percentage_errors[idx],
+            float(percentage_errors[idx]) if np.isfinite(percentage_errors[idx]) else None,
             week_start,
             row['forecast_datetime']
         ))

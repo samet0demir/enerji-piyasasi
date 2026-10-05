@@ -1930,35 +1930,35 @@
       "predicted": 2459.33,
       "actual": 0.0,
       "error": 2459.33,
-      "error_percent": Infinity
+      "error_percent": null
     },
     {
       "datetime": "2026-10-04 10:00:00",
       "predicted": 1610.91,
       "actual": 0.0,
       "error": 1610.91,
-      "error_percent": Infinity
+      "error_percent": null
     },
     {
       "datetime": "2026-10-04 11:00:00",
       "predicted": 1406.37,
       "actual": 0.0,
       "error": 1406.37,
-      "error_percent": Infinity
+      "error_percent": null
     },
     {
       "datetime": "2026-10-04 12:00:00",
       "predicted": 1288.82,
       "actual": 0.0,
       "error": 1288.82,
-      "error_percent": Infinity
+      "error_percent": null
     },
     {
       "datetime": "2026-10-04 13:00:00",
       "predicted": 1311.39,
       "actual": 0.0,
       "error": 1311.39,
-      "error_percent": Infinity
+      "error_percent": null
     },
     {
       "datetime": "2026-10-04 14:00:00",

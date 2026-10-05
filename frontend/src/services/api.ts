@@ -26,7 +26,7 @@ export type ComparisonData = {
   predicted: number;
   actual: number;
   error: number;
-  error_percent: number;
+  error_percent: number | null;
 }
 
 export type WeeklyPerformance = {
@@ -75,7 +75,8 @@ const API_BASE = 'http://localhost:5001/api';
 export const api = {
   async getForecasts(): Promise<ForecastsResponse> {
     try {
-      const response = await axios.get(FORECASTS_JSON);
+      const timestamp = new Date().getTime();
+      const response = await axios.get(`${FORECASTS_JSON}?t=${timestamp}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching forecasts:', error);

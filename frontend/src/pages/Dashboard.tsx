@@ -81,8 +81,18 @@ export function Dashboard() {
     );
   }
 
+  if (typeof data !== 'object' || !data.current_week || !data.current_week.forecasts) {
+    console.error('Invalid data format received:', data);
+    return (
+      <div className="error-container">
+        <h2>Veri Formatı Hatası</h2>
+        <p>Sunucudan gelen veri beklenen formatta değil.</p>
+      </div>
+    );
+  }
+
   // Günlük ortalama tahminler (7 gün)
-  const dailyForecastData = data.current_week.forecasts.reduce((acc: any[], item) => {
+  data.current_week.forecasts.reduce((acc: any[], item) => {
     const date = item.datetime.split(' ')[0];
     const existing = acc.find(d => d.date === date);
     if (existing) {
@@ -330,8 +340,10 @@ export function Dashboard() {
                 </thead>
                 <tbody>
                   {filteredTableData.map((item, idx) => {
-                    const accuracy = 100 - Math.abs(item.error_percent);
+                    const errorPercent = item.error_percent;
+                    const accuracy = errorPercent === null ? null : 100 - Math.abs(errorPercent);
                     const status =
+                      accuracy === null ? 'Hesaplanamiyor' :
                       accuracy > 90 ? 'Mukemmel' :
                         accuracy > 80 ? 'Iyi' :
                           accuracy > 70 ? 'Orta' : 'Zayif';
@@ -345,8 +357,8 @@ export function Dashboard() {
                         <td className={`value-cell ${item.error > 0 ? 'negative' : 'positive'}`}>
                           {item.error > 0 ? '+' : ''}{item.error.toFixed(2)}
                         </td>
-                        <td className={`value-cell ${Math.abs(item.error_percent) < 10 ? 'good' : Math.abs(item.error_percent) < 20 ? 'medium' : 'bad'}`}>
-                          {item.error_percent.toFixed(2)}%
+                        <td className={`value-cell ${errorPercent === null ? '' : Math.abs(errorPercent) < 10 ? 'good' : Math.abs(errorPercent) < 20 ? 'medium' : 'bad'}`}>
+                          {errorPercent === null ? '--' : `${errorPercent.toFixed(2)}%`}
                         </td>
                         <td>{status}</td>
                       </tr>
@@ -395,7 +407,7 @@ export function Dashboard() {
             if (hasDbComponents || hasJsonComponents) {
               // Bileşen verilerini hazırla
               const componentData = data.current_week.forecasts
-                .filter((f, idx) => idx >= 24 && idx < 120) // 2-5. günler (daha iyi görünüm)
+                .filter((_f, idx) => idx >= 24 && idx < 120) // 2-5. günler (daha iyi görünüm)
                 .map((f: any, idx: number) => ({
                   saat: idx + 25,
                   Ensemble: Math.round(f.predicted || 0),

@@ -16,6 +16,13 @@ import json
 import os
 from datetime import datetime, timedelta
 import sys
+import numpy as np
+import math
+from forecast_validation import validate_forecasts
+
+
+def round_nullable(value, digits=2):
+    return round(value, digits) if pd.notna(value) and math.isfinite(value) else None
 
 # Database path configuration
 try:
@@ -24,6 +31,7 @@ except ImportError:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from db_config import DB_PATH
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), '../../public/forecasts.json')
+FRONTEND_PATH = os.path.join(os.path.dirname(__file__), '../../../frontend/public/forecasts.json')
 
 def get_current_week_monday():
     """Bugünün ait olduğu haftanın Pazartesi tarihini döndürür"""
@@ -63,14 +71,15 @@ def export_forecasts():
         ORDER BY forecast_datetime
     """
     current_week = pd.read_sql_query(current_week_query, conn, params=[this_week_monday])
+    current_week = current_week.replace([np.inf, -np.inf], np.nan)
 
     current_forecasts = []
     if len(current_week) > 0:
         for _, row in current_week.iterrows():
             current_forecasts.append({
                 'datetime': row['forecast_datetime'],
-                'predicted': round(row['predicted_price'], 2),
-                'actual': round(row['actual_price'], 2) if pd.notna(row['actual_price']) else None
+                'predicted': round_nullable(row['predicted_price'], 2),
+                'actual': round_nullable(row['actual_price'], 2) if pd.notna(row['actual_price']) else None
             })
         print(f"[+] {len(current_forecasts)} tahmin bulundu")
     else:
@@ -84,15 +93,16 @@ def export_forecasts():
         WHERE week_start = ?
     """
     last_week_perf = pd.read_sql_query(last_week_perf_query, conn, params=[last_week_monday])
+    last_week_perf = last_week_perf.replace([np.inf, -np.inf], np.nan)
 
     last_week_performance = None
     if len(last_week_perf) > 0:
         row = last_week_perf.iloc[0]
         last_week_performance = {
             'week': f"{last_week_monday} - {last_week_sunday}",
-            'mape': round(row['mape'], 2),
-            'mae': round(row['mae'], 2),
-            'rmse': round(row['rmse'], 2),
+            'mape': round_nullable(row['mape'], 2),
+            'mae': round_nullable(row['mae'], 2),
+            'rmse': round_nullable(row['rmse'], 2),
             'total_predictions': int(row['total_predictions'])
         }
         print(f"[+] Performans: MAPE {row['mape']:.2f}%, MAE {row['mae']:.2f} TRY")
@@ -108,16 +118,17 @@ def export_forecasts():
         ORDER BY forecast_datetime
     """
     last_week_comp = pd.read_sql_query(last_week_comparison_query, conn, params=[last_week_monday])
+    last_week_comp = last_week_comp.replace([np.inf, -np.inf], np.nan)
 
     last_week_comparison = []
     if len(last_week_comp) > 0:
         for _, row in last_week_comp.iterrows():
             last_week_comparison.append({
                 'datetime': row['forecast_datetime'],
-                'predicted': round(row['predicted_price'], 2),
-                'actual': round(row['actual_price'], 2),
-                'error': round(row['absolute_error'], 2),
-                'error_percent': round(row['percentage_error'], 2)
+                'predicted': round_nullable(row['predicted_price'], 2),
+                'actual': round_nullable(row['actual_price'], 2) if pd.notna(row['actual_price']) else None,
+                'error': round_nullable(row['absolute_error'], 2) if pd.notna(row['absolute_error']) else None,
+                'error_percent': round_nullable(row['percentage_error'], 2) if pd.notna(row['percentage_error']) else None
             })
         print(f"[+] {len(last_week_comparison)} karşılaştırma kaydı bulundu")
     else:
@@ -132,6 +143,7 @@ def export_forecasts():
         LIMIT 8
     """
     trend = pd.read_sql_query(trend_query, conn)
+    trend = trend.replace([np.inf, -np.inf], np.nan)
 
     historical_trend = []
     if len(trend) > 0:
@@ -140,9 +152,9 @@ def export_forecasts():
                 'week': f"{row['week_start']} - {row['week_end']}",
                 'week_start': row['week_start'],
                 'week_end': row['week_end'],
-                'mape': round(row['mape'], 2),
-                'mae': round(row['mae'], 2),
-                'rmse': round(row['rmse'], 2)
+                'mape': round_nullable(row['mape'], 2),
+                'mae': round_nullable(row['mae'], 2),
+                'rmse': round_nullable(row['rmse'], 2)
             })
         print(f"[+] {len(historical_trend)} haftalık performans kaydı bulundu")
     else:
@@ -164,22 +176,26 @@ def export_forecasts():
         'historical_trend': historical_trend
     }
 
+    validate_forecasts(output_data)
+    # Reject non-standard JSON before replacing either published file.
+    json.dumps(output_data, allow_nan=False)
+
     # public klasörünü oluştur
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
     # JSON'u kaydet (backend/public)
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
-        json.dump(output_data, f, ensure_ascii=False, indent=2)
+        json.dump(output_data, f, ensure_ascii=False, indent=2, allow_nan=False)
 
     print(f"[+] JSON dosyası kaydedildi: {OUTPUT_PATH}")
     print(f"   Dosya boyutu: {os.path.getsize(OUTPUT_PATH) / 1024:.2f} KB")
 
     # Frontend'e de kopyala
-    frontend_path = os.path.join(os.path.dirname(__file__), '../../../frontend/public/forecasts.json')
+    frontend_path = FRONTEND_PATH
     os.makedirs(os.path.dirname(frontend_path), exist_ok=True)
 
     with open(frontend_path, 'w', encoding='utf-8') as f:
-        json.dump(output_data, f, ensure_ascii=False, indent=2)
+        json.dump(output_data, f, ensure_ascii=False, indent=2, allow_nan=False)
 
     print(f"[+] Frontend JSON kopyalandı: {frontend_path}")
     print("="*70)
@@ -196,7 +212,7 @@ def main():
         print(f"\n[!] HATA: {e}")
         import traceback
         traceback.print_exc()
-        return None
+        raise
 
 if __name__ == "__main__":
     main()
