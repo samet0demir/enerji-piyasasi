@@ -11,6 +11,12 @@ Prophet time-series modeliyle saatlik tahminler üretiyor, React dashboard'da g�
 
 ---
 
+## Windows'ta tek tıkla çalıştırma
+
+Proje klasöründeki **Baslat.bat** dosyasına çift tıklayın. Arayüz ve backend birlikte açılır; tarayıcı otomatik olarak **http://localhost:5173** adresine gider. İlk çalıştırmada eksik Node.js paketleri kurulacaktır. Tahminleri incelemek için Python veya yeniden model eğitimi gerekmez.
+
+Kapatmak için **Durdur.bat** dosyasına çift tıklayın. Başlatma dosyasına tekrar tıklamak ikinci bir kopya açmaz. Hata durumunda kayıtlar `.local` klasöründedir.
+
 ## Özellikler
 
 - 7 günlük MCP fiyat tahmini (Prophet time-series)
