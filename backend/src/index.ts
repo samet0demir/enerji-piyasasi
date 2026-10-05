@@ -577,7 +577,8 @@ app.get('/api/weeks/available', (req: Request, res: Response) => {
         total_predictions: stats.total_predictions,
         completed_predictions: stats.completed_predictions,
         completion_percentage: Math.round((stats.completed_predictions / stats.total_predictions) * 100),
-        performance: performance || null
+        performance: performance || null,
+        retrospective: !!db.prepare('SELECT 1 FROM forecast_provenance WHERE week_start = ?').get(week.week_start)
       };
     });
 

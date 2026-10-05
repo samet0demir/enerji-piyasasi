@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { api } from '../services/api';
 
 interface Week {
   week_start: string;
@@ -7,6 +8,7 @@ interface Week {
   total_predictions: number;
   completed_predictions: number;
   completion_percentage: number;
+  retrospective?: boolean;
   performance: {
     mape: number;
     mae: number;
@@ -31,8 +33,7 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
   const fetchAvailableWeeks = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5001/api/weeks/available');
-      const data = await response.json();
+      const data = { success: true, weeks: await api.getAvailableWeeks() };
 
       if (data.success) {
         setWeeks(data.weeks);
@@ -93,6 +94,7 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
         {weeks.map((week) => (
           <option key={week.week_start} value={week.week_start}>
             {formatDateRange(week.week_start, week.week_end)}
+            {week.retrospective && ' (Geriye dönük tahmin)'}
             {!week.is_complete && ` (Devam ediyor...)`}
           </option>
         ))}

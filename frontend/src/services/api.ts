@@ -72,7 +72,40 @@ export type ConsumptionData = {
 // API functions
 const API_BASE = 'http://localhost:5001/api';
 
+type HistoryWeek = {
+  week_start: string;
+  week_end: string;
+  forecasts: (ForecastData & { error: number; error_percent: number | null })[];
+  performance: WeeklyPerformance | null;
+  provenance: { kind: string } | null;
+};
+
+async function loadHistory(): Promise<{ generated_at: string; weeks: HistoryWeek[] }> {
+  const response = await axios.get(`/forecast-history.json?t=${Date.now()}`);
+  return response.data;
+}
+
 export const api = {
+  async getAvailableWeeks() {
+    try {
+      const response = await axios.get(`${API_BASE}/weeks/available`);
+      if (!response.data.success) throw new Error('Haftalar yüklenemedi');
+      return response.data.weeks;
+    } catch {
+      const history = await loadHistory();
+      return history.weeks.map(week => {
+        const completed = week.forecasts.filter(row => row.actual != null).length;
+        return {
+          week_start: week.week_start, week_end: week.week_end,
+          total_predictions: week.forecasts.length, completed_predictions: completed,
+          is_complete: completed === week.forecasts.length,
+          completion_percentage: Math.round(completed / week.forecasts.length * 100),
+          performance: week.performance,
+          retrospective: week.provenance?.kind === 'retrospective'
+        };
+      });
+    }
+  },
   async getForecasts(): Promise<ForecastsResponse> {
     try {
       const timestamp = new Date().getTime();
@@ -186,6 +219,23 @@ export const api = {
 
     } catch (error: any) {
       console.error('Error fetching week data:', error);
+      try {
+        const history = await loadHistory();
+        const week = history.weeks.find(item => item.week_start === weekStart);
+        if (!week) throw new Error('Arşivde hafta bulunamadı');
+        return {
+          generated_at: history.generated_at,
+          current_week: { start: week.week_start, end: week.week_end, forecasts: week.forecasts },
+          last_week_performance: week.performance,
+          last_week_comparison: week.forecasts.filter(row => row.actual != null).map(row => ({
+            datetime: row.datetime, predicted: row.predicted, actual: row.actual!,
+            error: row.error, error_percent: row.error_percent
+          })),
+          historical_trend: history.weeks.flatMap(item => item.performance ? [item.performance] : [])
+        };
+      } catch {
+        // Report the original API failure if the published archive is unavailable too.
+      }
       const errorMessage = error.response?.data?.message || error.message || 'Bilinmeyen hata';
       throw new Error(`Hafta verileri yüklenemedi: ${errorMessage}`);
     }
@@ -197,7 +247,12 @@ export const api = {
       return response.data.data;
     } catch (error) {
       console.error('Error fetching weekly performance:', error);
-      return [];
+      try {
+        const history = await loadHistory();
+        return history.weeks.flatMap(week => week.performance ? [week.performance] : []);
+      } catch {
+        return [];
+      }
     }
   }
 };

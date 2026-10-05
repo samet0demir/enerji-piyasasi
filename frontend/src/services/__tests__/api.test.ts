@@ -12,6 +12,41 @@ describe('API Service', () => {
     vi.clearAllMocks();
   });
 
+  describe('published history fallback', () => {
+    const week = {
+      week_start: '2026-03-09', week_end: '2026-03-15',
+      forecasts: [{ datetime: '2026-03-09 00:00:00', predicted: 2400,
+        actual: 0, error: 2400, error_percent: null }],
+      performance: { week_start: '2026-03-09', week_end: '2026-03-15',
+        mape: 50, mae: 100, rmse: 120, total_predictions: 168 },
+      provenance: { kind: 'retrospective' }
+    };
+    const history = { generated_at: '2026-10-05', weeks: [week] };
+
+    it('lists historical weeks when the API is unavailable', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('offline'))
+        .mockResolvedValueOnce({ data: history });
+      const weeks = await api.getAvailableWeeks();
+      expect(weeks[0]).toMatchObject({ week_start: week.week_start,
+        retrospective: true, completed_predictions: 1, is_complete: true });
+    });
+
+    it('loads archived predictions and preserves undefined percentage errors', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('offline'))
+        .mockResolvedValueOnce({ data: history });
+      const data = await api.getWeekData(week.week_start);
+      expect(data.current_week.start).toBe(week.week_start);
+      expect(data.last_week_comparison[0].actual).toBe(0);
+      expect(data.last_week_comparison[0].error_percent).toBeNull();
+    });
+
+    it('loads historical performance when the API is unavailable', async () => {
+      mockedAxios.get.mockRejectedValueOnce(new Error('offline'))
+        .mockResolvedValueOnce({ data: history });
+      expect(await api.getWeeklyPerformance()).toEqual([week.performance]);
+    });
+  });
+
   describe('getForecasts', () => {
     it('should fetch forecasts successfully', async () => {
       const mockResponse: ForecastsResponse = {

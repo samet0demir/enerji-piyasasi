@@ -97,8 +97,13 @@ class PublicationTests(unittest.TestCase):
         def fail_export():
             raise RuntimeError('export failed')
         export.main = fail_export
+        backfill = types.ModuleType('backfill_missing_weeks')
+        backfill.run_backfill = lambda *args: []
+        config = types.ModuleType('db_config')
+        config.DB_PATH = ':memory:'
         with patch.dict(sys.modules, {'train_prophet_improved': train, 'predict': predict,
-                                     'compare_forecasts': compare, 'export_json': export}), \
+                                     'compare_forecasts': compare, 'export_json': export,
+                                     'backfill_missing_weeks': backfill, 'db_config': config}), \
              contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()), \
              self.assertRaisesRegex(RuntimeError, 'export failed'):
             workflow.run_weekly_cycle()

@@ -74,6 +74,11 @@ def run_weekly_cycle():
     print(f"\nBU HAFTA: {this_week_monday} (Pazartesi) - {this_week_sunday} (Pazar)")
     print(f"GECEN HAFTA: {last_week_monday} (Pazartesi) - {last_week_sunday} (Pazar)")
 
+    # Repair past gaps before publishing the next live forecast.
+    from db_config import DB_PATH
+    from backfill_missing_weeks import run_backfill
+    run_backfill(DB_PATH, last_week_monday)
+
     # =====================================================================
     # ADIM 1: Geçen hafta tahmin vs gerçek karşılaştırması
     # =====================================================================
@@ -157,6 +162,8 @@ def run_weekly_cycle():
         data = export_json()
         from forecast_validation import validate_forecasts
         validate_forecasts(data)
+        from export_history import export_history
+        export_history()
         print(f"Basarili! JSON export tamamlandi")
     except Exception as e:
         print(f"\nHATA: JSON export BASARISIZ: {e}")

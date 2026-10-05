@@ -3,12 +3,20 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const prodDbPath = path.join(__dirname, '../data/energy.db');
-const devDbPath = path.join(__dirname, '../data/energy-dev.db');
+dotenv.config({ path: path.join(__dirname, '../.env') });
+const configuredPath = process.env.DB_PATH || 'data/energy-dev.db';
+const devDbPath = path.resolve(__dirname, '..', configuredPath);
+
+if (devDbPath === path.resolve(prodDbPath)) {
+    console.error('DB_PATH must point to a separate local development database.');
+    process.exit(1);
+}
 
 console.log('🔄 Syncing production data to local development database...');
 
@@ -19,6 +27,10 @@ if (!fs.existsSync(prodDbPath)) {
 }
 
 try {
+    fs.mkdirSync(path.dirname(devDbPath), { recursive: true });
+    if (fs.existsSync(`${devDbPath}-wal`) && fs.statSync(`${devDbPath}-wal`).size > 0) {
+        throw new Error('Stop the backend and checkpoint its database before syncing.');
+    }
     // Backup current dev db just in case
     if (fs.existsSync(devDbPath)) {
         const backupPath = `${devDbPath}.backup-${Date.now()}`;

@@ -146,6 +146,11 @@ export function initDatabase() {
     CREATE INDEX IF NOT EXISTS idx_weekly_perf_week ON weekly_performance(week_start);
   `);
 
+  db.exec(`CREATE TABLE IF NOT EXISTS forecast_provenance (
+    week_start TEXT PRIMARY KEY,
+    metadata TEXT NOT NULL
+  )`);
+
   console.log('✅ Database initialized successfully');
 }
 
