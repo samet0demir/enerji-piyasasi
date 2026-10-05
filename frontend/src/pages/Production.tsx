@@ -21,6 +21,7 @@ export function Production() {
   const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
 
   useEffect(() => {
+    let active = true;
     const fetchData = async () => {
       try {
         setIsLoading(true);
@@ -34,33 +35,46 @@ export function Production() {
           genData = await api.getGeneration();
         }
 
+        if (!active) return;
         setGeneration(genData);
         setError(null);
       } catch (err: any) {
         console.error('Veri çekme hatası:', err);
+        if (!active) return;
         setError(err.message || 'Veriler yüklenirken bir hata oluştu');
       } finally {
-        setIsLoading(false);
+        if (active) setIsLoading(false);
       }
     };
 
     fetchData();
+    return () => { active = false; };
   }, [selectedWeek]);
+
+  const selector = <WeekSelector selectedWeek={selectedWeek} onWeekChange={setSelectedWeek} availableFor="generation" />;
 
   if (isLoading) {
     return (
-      <div className="loading-container">
+      <div className="page-content">
+        <h2 className="page-title">Üretim Analizi</h2>
+        {selector}
+        <div className="loading-container">
         <div className="spinner"></div>
         <p>Veriler yükleniyor...</p>
+        </div>
       </div>
     );
   }
 
   if (error || generation.length === 0) {
     return (
-      <div className="error-container">
+      <div className="page-content">
+        <h2 className="page-title">Üretim Analizi</h2>
+        {selector}
+        <div className="error-container">
         <h2>Hata</h2>
         <p>{error || 'Üretim verileri yüklenemedi'}</p>
+        </div>
       </div>
     );
   }
@@ -171,6 +185,7 @@ export function Production() {
       {/* Week Selector */}
       <div style={{ padding: '20px 12px 0 12px' }}>
         <WeekSelector
+          availableFor="generation"
           selectedWeek={selectedWeek}
           onWeekChange={setSelectedWeek}
         />

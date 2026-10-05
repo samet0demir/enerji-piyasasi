@@ -9,6 +9,8 @@ interface Week {
   completed_predictions: number;
   completion_percentage: number;
   retrospective?: boolean;
+  generation_count?: number;
+  consumption_count?: number;
   performance: {
     mape: number;
     mae: number;
@@ -19,26 +21,30 @@ interface Week {
 interface WeekSelectorProps {
   selectedWeek: string | null;
   onWeekChange: (weekStart: string) => void;
+  availableFor?: 'forecasts' | 'generation' | 'consumption';
 }
 
-export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelectorProps) {
+export default function WeekSelector({ selectedWeek, onWeekChange, availableFor = 'forecasts' }: WeekSelectorProps) {
   const [weeks, setWeeks] = useState<Week[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAvailableWeeks();
-  }, []);
+  }, [availableFor]);
 
   const fetchAvailableWeeks = async () => {
     try {
       setLoading(true);
-      const data = { success: true, weeks: await api.getAvailableWeeks() };
+      const available: Week[] = await api.getAvailableWeeks();
+      const data = { success: true, weeks: available.filter(week =>
+        availableFor === 'generation' ? (week.generation_count ?? 0) > 0 :
+          availableFor === 'consumption' ? (week.consumption_count ?? 0) > 0 : true) };
 
       if (data.success) {
         setWeeks(data.weeks);
         // İlk haftayı otomatik seç (eğer henüz seçim yapılmadıysa)
-        if (!selectedWeek && data.weeks.length > 0) {
+        if ((!selectedWeek || !data.weeks.some(week => week.week_start === selectedWeek)) && data.weeks.length > 0) {
           onWeekChange(data.weeks[0].week_start);
         }
       } else {
@@ -80,6 +86,10 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
     );
   }
 
+  if (weeks.length === 0) {
+    return <div className="week-selector-container">Bu analiz için veri bulunan hafta yok.</div>;
+  }
+
   return (
     <div className="week-selector-container">
       <label htmlFor="week-select" className="week-selector-label">
@@ -94,8 +104,8 @@ export default function WeekSelector({ selectedWeek, onWeekChange }: WeekSelecto
         {weeks.map((week) => (
           <option key={week.week_start} value={week.week_start}>
             {formatDateRange(week.week_start, week.week_end)}
-            {week.retrospective && ' (Geriye dönük tahmin)'}
-            {!week.is_complete && ` (Devam ediyor...)`}
+            {availableFor === 'forecasts' && week.retrospective && ' (Geriye dönük tahmin)'}
+            {availableFor === 'forecasts' && !week.is_complete && ` (Devam ediyor...)`}
           </option>
         ))}
       </select>

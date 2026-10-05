@@ -12,6 +12,7 @@ export function Consumption() {
   const [selectedWeek, setSelectedWeek] = useState<string | null>(null);
 
   useEffect(() => {
+    let active = true;
     const fetchData = async () => {
       try {
         setIsLoading(true);
@@ -25,33 +26,46 @@ export function Consumption() {
           consData = await api.getConsumption();
         }
 
+        if (!active) return;
         setConsumption(consData);
         setError(null);
       } catch (err: any) {
         console.error('Veri çekme hatası:', err);
+        if (!active) return;
         setError(err.message || 'Veriler yüklenirken bir hata oluştu');
       } finally {
-        setIsLoading(false);
+        if (active) setIsLoading(false);
       }
     };
 
     fetchData();
+    return () => { active = false; };
   }, [selectedWeek]);
+
+  const selector = <WeekSelector selectedWeek={selectedWeek} onWeekChange={setSelectedWeek} availableFor="consumption" />;
 
   if (isLoading) {
     return (
-      <div className="loading-container">
+      <div className="page-content">
+        <h2 className="page-title">Tüketim Analizi</h2>
+        {selector}
+        <div className="loading-container">
         <div className="spinner"></div>
         <p>Veriler yükleniyor...</p>
+        </div>
       </div>
     );
   }
 
   if (error || consumption.length === 0) {
     return (
-      <div className="error-container">
+      <div className="page-content">
+        <h2 className="page-title">Tüketim Analizi</h2>
+        {selector}
+        <div className="error-container">
         <h2>Hata</h2>
         <p>{error || 'Tüketim verileri yüklenemedi'}</p>
+        </div>
       </div>
     );
   }
@@ -123,11 +137,11 @@ export function Consumption() {
   ].filter(d => d.ortalama > 0);
 
   // Peak ve Off-Peak saatler
-  const peakHours = hourlyData
+  const peakHours = [...hourlyData]
     .sort((a, b) => b.tüketim - a.tüketim)
     .slice(0, 6);
 
-  const offPeakHours = hourlyData
+  const offPeakHours = [...hourlyData]
     .sort((a, b) => a.tüketim - b.tüketim)
     .slice(0, 6);
 
@@ -155,6 +169,7 @@ export function Consumption() {
       {/* Week Selector */}
       <div style={{ padding: '20px 12px 0 12px' }}>
         <WeekSelector
+          availableFor="consumption"
           selectedWeek={selectedWeek}
           onWeekChange={setSelectedWeek}
         />

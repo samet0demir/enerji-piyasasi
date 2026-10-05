@@ -133,7 +133,7 @@ export const api = {
       // Generation verisini döndür
       return response.data.generation.data.map((item: any) => ({
         date: item.datetime,
-        hour: new Date(item.datetime).getHours().toString(),
+        hour: item.datetime.slice(11, 16),
         total: item.total,
         solar: item.solar,
         wind: item.wind,
@@ -165,7 +165,7 @@ export const api = {
       // Consumption verisini döndür
       return response.data.consumption.data.map((item: any) => ({
         date: item.datetime,
-        hour: new Date(item.datetime).getHours().toString(),
+        hour: item.datetime.slice(11, 16),
         consumption: item.consumption
       }));
     } catch (error) {

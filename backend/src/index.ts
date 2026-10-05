@@ -573,6 +573,12 @@ app.get('/api/weeks/available', (req: Request, res: Response) => {
       return {
         week_start: week.week_start,
         week_end: week.week_end,
+        ...db.prepare(`SELECT
+          (SELECT COUNT(*) FROM generation_data WHERE date >= ? AND date < date(?, '+1 day')) AS generation_count,
+          (SELECT COUNT(*) FROM consumption_data WHERE date >= ? AND date < date(?, '+1 day')) AS consumption_count
+        `).get(week.week_start, week.week_end, week.week_start, week.week_end) as {
+          generation_count: number; consumption_count: number
+        },
         is_complete: is_complete,
         total_predictions: stats.total_predictions,
         completed_predictions: stats.completed_predictions,
@@ -661,7 +667,7 @@ app.get('/api/weeks/:week_start/data', async (req: Request, res: Response) => {
         geothermal,
         biomass
       FROM generation_data
-      WHERE date >= ? AND date <= datetime(?, '+1 day')
+      WHERE date >= ? AND date < date(?, '+1 day')
       ORDER BY date ASC
     `);
 
@@ -673,7 +679,7 @@ app.get('/api/weeks/:week_start/data', async (req: Request, res: Response) => {
         date as datetime,
         consumption
       FROM consumption_data
-      WHERE date >= ? AND date <= datetime(?, '+1 day')
+      WHERE date >= ? AND date < date(?, '+1 day')
       ORDER BY date ASC
     `);
 
